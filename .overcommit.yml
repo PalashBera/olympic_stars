@@ -1,0 +1,56 @@
+CommitMsg:
+  ALL:
+    requires_files: false
+    quiet: false
+
+  CapitalizedSubject:
+    enabled: true
+
+  EmptyMessage:
+    enabled: true
+
+  TrailingPeriod:
+    enabled: true
+
+  TextWidth:
+    enabled: true
+    max_subject_width: 60
+
+  HardTabs:
+    enabled: true
+
+PreCommit:
+  ALL:
+    on_warn: fail
+
+  AuthorEmail:
+    enabled: true
+
+  AuthorName:
+    enabled: true
+
+  MergeConflicts:
+    enabled: true
+
+  BundleCheck:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+
+  RailsSchemaUpToDate:
+    enabled: false
+
+PreRebase:
+  MergedCommits:
+    enabled: true
+
+PrePush:
+  ALL:
+    requires_files: false
+    required: false
+    quiet: false
+
+  RSpec:
+    enabled: true
+    required_executable: 'rspec'
