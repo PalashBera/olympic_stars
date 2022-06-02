@@ -7,6 +7,7 @@ ruby "3.1.2"
 
 gem "bootsnap", "~> 1.12", require: false
 gem "dotenv-rails", "~> 2.7", ">= 2.7.6"
+gem "haml", "~> 5.2", ">= 5.2.2"
 gem "importmap-rails", "~> 1.1"
 gem "jbuilder", "~> 2.11", ">= 2.11.5"
 gem "pg", "~> 1.3", ">= 1.3.5"
