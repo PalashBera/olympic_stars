@@ -1,0 +1,5 @@
+- flash.each do |message_type, message|
+  .alert{class: "alert-#{message_type(message_type)}", role: "alert"}
+    %p.m-0
+      = flash_message_prefix(message_type(message_type))
+      = message

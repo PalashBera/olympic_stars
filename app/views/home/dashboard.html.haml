@@ -1,0 +1,6 @@
+- provide(:page_title, "Dashboard")
+
+%p
+  This is dashboard page.
+
+= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "text-danger"

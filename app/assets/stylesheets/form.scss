@@ -1,0 +1,42 @@
+@import "variables";
+
+.form-label, .col-form-label {
+  font-size: $small-font-size;
+  margin-bottom: 3px;
+  font-family: "AribauGroteskLight";
+  text-transform: uppercase;
+}
+
+.form-control {
+  border-color: $grey-color;
+  color: $text-color;
+  padding: 0.6rem 1rem;
+  transition: $default-transition;
+  font-size: 0.9rem;
+  border-radius: $default-border-radius;
+
+  &:focus, &:hover {
+    box-shadow: none;
+    border-color: $primary-color;
+  }
+}
+
+.form-check-input {
+  &:checked {
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.form-check-label {
+  user-select: none;
+  cursor: pointer;
+}
+
+.actions {
+  margin-top: 25px;
+}

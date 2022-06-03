@@ -1,0 +1,19 @@
+@import "variables";
+
+#basic_layout {
+  background-color: $background-color;
+
+  .auth-card {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: $default-border-radius;
+    box-shadow: $default-box-shadow;
+    background-color: $white-color;
+  }
+
+  .auth-flash-message {
+    max-width: 500px;
+    margin: auto;
+  }
+}

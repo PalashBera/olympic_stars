@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 gem "bootsnap", "~> 1.12", require: false
+gem "devise", "~> 4.8", ">= 4.8.1"
 gem "dotenv-rails", "~> 2.7", ">= 2.7.6"
 gem "haml", "~> 5.2", ">= 5.2.2"
 gem "importmap-rails", "~> 1.1"
@@ -16,6 +17,7 @@ gem "rails", "~> 7.0.3"
 gem "sassc-rails", "~> 2.1", ">= 2.1.2"
 gem "sprockets-rails", "~> 3.4", ">= 3.4.2"
 gem "stimulus-rails", "~> 1.0", ">= 1.0.4"
+gem "strip_attributes", "~> 1.13"
 gem "turbo-rails", "~> 1.1", ">= 1.1.1"
 
 group :development, :test do
@@ -26,6 +28,7 @@ end
 
 group :development do
   gem "bullet", "~> 7.0", ">= 7.0.2"
+  gem "letter_opener_web", "~> 2.0"
   gem "overcommit", "~> 0.59.1"
   gem "pgreset", "~> 0.3"
   gem "rack-mini-profiler", "~> 3.0"

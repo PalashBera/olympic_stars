@@ -1,2 +1,20 @@
 en:
   page_title: "Olympic Stars | Comprehensive Administration System"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
+  time:
+    formats:
+      default: "%d/%m/%Y at %I:%M %p"
+
+  alert_prefix:
+    success: "Well done!"
+    info: "Heads up!"
+    warning: "Warning!"
+    danger: "Oh snap!"
+
+  message_type:
+    notice: "success"
+    alert: "danger"

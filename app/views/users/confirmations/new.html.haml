@@ -1,0 +1,21 @@
+- provide(:page_title, "Account confirmation")
+
+.auth-flash-message
+  = render "shared/flash_message"
+
+.auth-card
+  %h5.margin-bottom-30 Confirmation
+
+  .form-container
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      = render "shared/error_messages", resource: resource
+
+      .mb-3
+        = f.label :email, class: "form-label"
+        = f.email_field :email, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), autocomplete: "email", autofocus: true, class: "form-control", required: true, maxlength: 255
+
+      .actions
+        = f.submit "Send", class: "btn btn-primary m-0"
+
+  %hr.my-4/
+  = render "users/shared/links"

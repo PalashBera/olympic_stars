@@ -1,0 +1,21 @@
+- provide(:page_title, "Forgot password")
+
+.auth-flash-message
+  = render "shared/flash_message"
+
+.auth-card
+  %h5.margin-bottom-30 Forgot password
+
+  .form-container
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render "shared/error_messages", resource: resource
+
+      .mb-3
+        = f.label :email, class: "form-label"
+        = f.email_field :email, autocomplete: "email", autofocus: true, class: "form-control", required: true, maxlength: 255
+
+      .actions
+        = f.submit "Send", class: "btn btn-primary m-0"
+
+  %hr.my-4/
+  = render "users/shared/links"

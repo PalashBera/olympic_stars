@@ -1,0 +1,29 @@
+- provide(:page_title, "Reset password")
+
+.auth-flash-message
+  = render "shared/flash_message"
+
+.auth-card
+  %h5.margin-bottom-30 Reset password
+
+  .form-container
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = render "shared/error_messages", resource: resource
+      = f.hidden_field :reset_password_token
+
+      .mb-3
+        = f.label :password, class: "form-label"
+        = f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", required: true, minlength: 6, maxlength: 128
+        - if @minimum_password_length
+          .secondary-text
+            Password length should be minimum #{@minimum_password_length} characters.
+
+      .mb-3
+        = f.label :password_confirmation, class: "form-label"
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true, minlength: 6, maxlength: 128
+
+      .actions
+        = f.submit "Change password", class: "btn btn-primary m-0"
+
+  %hr.my-4/
+  = render "users/shared/links"
