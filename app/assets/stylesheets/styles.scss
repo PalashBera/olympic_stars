@@ -7,11 +7,21 @@
 
 .sidebar {
   position: fixed;
-  left: 0;
+  left: -270px;
   width: 270px;
   height: 100vh;
   background-color: $white-color;
   padding-bottom: 65px;
+  transition: $default-transition;
+  z-index: 1032;
+
+  @media(min-width: 992px) {
+    left: 0;
+  }
+
+  &.active {
+    left: 0;
+  }
 
   .footer {
     padding: 15px;
@@ -51,6 +61,30 @@
       background-color: $red-color;
       color: $white-color;
     }
+  }
+}
+
+.mobile-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $white-color;
+  padding: 8px 15px;
+
+  @media(min-width: 992px) {
+    display: none;
+  }
+
+  .brand-logo {
+    height: 40px;
+    width: auto;
+  }
+
+  .hamburger {
+    color: $primary-color;
+    background-color: $primary-bg-color;
+    padding: 5px;
+    border-radius: $default-border-radius;
   }
 }
 
@@ -103,5 +137,27 @@
 }
 
 .content-container {
-  margin-left: 270px;
+  padding-top: 65px;
+  padding-bottom: 20px;
+
+  @media(min-width: 992px) {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-left: 270px;
+  }
+}
+
+.overlay {
+  height: 100vh;
+  width: 100vh;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1031;
+  display: none;
+  transition: $default-transition;
+
+  &.active {
+    display: block;
+  }
 }
