@@ -4,3 +4,104 @@
   font-size: 11px;
   font-family: "AribauGroteskLight";
 }
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 270px;
+  height: 100vh;
+  background-color: $white-color;
+  padding-bottom: 65px;
+
+  .footer {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $primary-color;
+    position: fixed;
+    bottom: 0;
+    width: 270px;
+  }
+
+  .settings-icon {
+    display: flex;
+    align-items: center;
+    color: $white-color;
+
+    span {
+      font-size: 16px;
+      margin-left: 5px;
+      font-family: "AribauGroteskMedium";
+      max-width: 150px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .logout-icon {
+    padding: 6px;
+    background-color: $white-color;
+    color: $red-color;
+    border-radius: $default-border-radius;
+    transition: $default-transition;
+
+    &:hover {
+      background-color: $red-color;
+      color: $white-color;
+    }
+  }
+}
+
+.brand-logo {
+  width: 150px;
+  height: auto;
+}
+
+.sidebar-items-group {
+  margin-right: 10px;
+}
+
+.sidebar-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  transition: $default-transition;
+
+  .indicator {
+    margin: 7px 6px 7px 0px;
+    border-top-right-radius: $default-border-radius;
+    border-bottom-right-radius: $default-border-radius;
+    width: 4px;
+  }
+
+  .link {
+    color: $grey-color;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-family: "AribauGroteskRegular";
+    border-radius: $default-border-radius;
+    width: 100%;
+
+    &:hover {
+      background-color: $primary-bg-color;
+      color: $light-primary-color;
+    }
+  }
+
+  &.active {
+    .indicator {
+      background-color: $primary-color;
+    }
+
+    .link {
+      background-color: $primary-bg-color;
+      color: $primary-color;
+    }
+  }
+}
+
+.content-container {
+  margin-left: 270px;
+}
