@@ -1,0 +1,12 @@
+- provide(:page_title, "Client Types")
+- provide(:page_header, "Client Types")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_master_client_type_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }
+
+  .page-card-body
+    - if @client_types.present?
+      = render "table"
+    - else
+      = render "shared/empty_record"

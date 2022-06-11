@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_02_050057) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_09_090351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name", limit: 255, default: "", null: false
+    t.string "time_zone", limit: 50, default: "UTC", null: false
+    t.bigint "client_types_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "client_types", force: :cascade do |t|
+    t.string "name", limit: 255, default: "", null: false
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_client_types_on_account_id"
+    t.index ["created_by_id"], name: "index_client_types_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_client_types_on_updated_by_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", limit: 255, default: "", null: false
@@ -43,4 +64,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_050057) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "client_types", "accounts"
 end

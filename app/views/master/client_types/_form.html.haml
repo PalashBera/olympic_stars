@@ -1,0 +1,16 @@
+= form_for [:master, resource] do |f|
+  .mb-3
+    = f.label :name, class: "form-label required"
+    = f.text_field :name, autofocus: true, placeholder: "Enter name", class: "form-control", required: true, maxlength: 255
+    - if resource.errors.include?(:name)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:name).each do |error_message|
+          = "#{error_message}. "
+
+  .form-check
+    = f.check_box :archived, class: "form-check-input"
+    = f.label :archived, class: "form-check-label"
+
+  .actions.form-btn-group
+    = link_to "Cancel", master_client_types_path, title: "Cancel", class: "btn btn-light ms-0"
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

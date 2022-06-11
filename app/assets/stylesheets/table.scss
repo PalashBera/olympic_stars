@@ -1,0 +1,43 @@
+@import "variables";
+
+.table {
+  thead {
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  th {
+    background-color: $primary-bg-color;
+    padding: 10px 10px 10px 10px;
+    color: $primary-color;
+    min-width: 150px;
+    max-width: 300px;
+    border-bottom: 2px solid $primary-color;
+    font-family: "AribauGroteskBold";
+  }
+
+  tbody {
+    border: 0 !important;
+  }
+
+  td {
+    padding: 7px 15px 7px 10px;
+    min-width: 150px;
+    max-width: 300px;
+    vertical-align: middle;
+    border: 0;
+    font-family: "AribauGroteskRegular";
+  }
+
+  tr td:first-child {
+    font-family: "AribauGroteskMedium";
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  tr:nth-child(even) {
+    background-color: $light-grey-color;
+  }
+}

@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+import "@hotwired/turbo-rails";
+import "controllers";
+import "bootstrap";
 
 $(document).on("click", ".hamburger, .overlay", function (event) {
   $(".sidebar").toggleClass("active");
@@ -12,4 +13,8 @@ $(document).keyup(function(e) {
     $(".sidebar").toggleClass("active");
     $(".overlay").toggleClass("active");
   }
+});
+
+$(document).on("click", ".sidebar-item-group", function (event) {
+  $(this).find(".sidebar-sub-item-group").slideToggle();
 });

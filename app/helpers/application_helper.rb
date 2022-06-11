@@ -28,4 +28,12 @@ module ApplicationHelper
     else message_type
     end
   end
+
+  def active_sidebar_item(str)
+    "active" if str == @active_sidebar_item
+  end
+
+  def active_sidebar_sub_item(str)
+    "active" if str == @active_sidebar_sub_item
+  end
 end

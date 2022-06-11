@@ -13,3 +13,22 @@
   max-width: 500px;
   margin: auto;
 }
+
+.page-card {
+  border-radius: $default-border-radius;
+  padding: 15px;
+  background-color: $white-color;
+  box-shadow: $default-box-shadow;
+
+  @media(min-width: 992px) {
+    padding: 35px 25px;
+  }
+}
+
+.page-card-header {
+  margin-bottom: 20px;
+
+  @media(min-width: 992px) {
+    margin-bottom: 30px;
+  }
+}

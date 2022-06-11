@@ -3,25 +3,46 @@
     <%= image_tag "logo.png", alt: "olympic stars logo", class: "brand-logo" %>
   </div>
 
-  <div class="sidebar-items-group">
-    <div class="sidebar-item active">
-      <span class="indicator"></span>
-      <%= link_to "Dashboard", dashboard_path, class: "link" %>
+  <div class="sidebar-item-groups">
+    <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("dashboard") %>">
+        <span class="indicator"></span>
+        <%= link_to "Dashboard", dashboard_path, class: "link" %>
+      </div>
     </div>
 
-    <div class="sidebar-item">
-      <span class="indicator"></span>
-      <%= link_to "Students", "#", class: "link" %>
+
+    <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("students") %>">
+        <span class="indicator"></span>
+        <%= link_to "Students", "#", class: "link" %>
+      </div>
     </div>
 
-    <div class="sidebar-item">
-      <span class="indicator"></span>
-      <%= link_to "Master", "#", class: "link" %>
+    <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("master") %>">
+        <span class="indicator"></span>
+        <span class="link">Master</span>
+      </div>
+
+      <div class="sidebar-sub-item-group hide">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("client_types") %>">
+          <span class="indicator"></span>
+          <%= link_to "Client Types", master_client_types_path, class: "link" %>
+        </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_types") %>">
+          <span class="indicator"></span>
+          <%= link_to "Payment Types", "#", class: "link" %>
+        </div>
+      </div>
     </div>
 
-    <div class="sidebar-item">
-      <span class="indicator"></span>
-      <%= link_to "Settings", "#", class: "link" %>
+    <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("settings") %>">
+        <span class="indicator"></span>
+        <%= link_to "Settings", "#", class: "link" %>
+      </div>
     </div>
   </div>
 

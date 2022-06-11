@@ -1,0 +1,23 @@
+@import "variables";
+
+.modal-content {
+  border-radius: $default-border-radius;
+}
+
+.modal-header {
+  border: 0;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-family: "AribauGroteskMedium";
+}
+
+.modal-body {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+}

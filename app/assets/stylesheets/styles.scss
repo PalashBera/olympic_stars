@@ -2,7 +2,7 @@
 
 .secondary-text {
   font-size: 11px;
-  font-family: "AribauGroteskLight";
+  font-family: "AribauGroteskRegular";
 }
 
 .sidebar {
@@ -93,7 +93,7 @@
   height: auto;
 }
 
-.sidebar-items-group {
+.sidebar-item-groups {
   margin-right: 10px;
 }
 
@@ -114,9 +114,10 @@
     color: $grey-color;
     padding: 8px 15px;
     font-size: 16px;
-    font-family: "AribauGroteskRegular";
+    font-family: "AribauGroteskMedium";
     border-radius: $default-border-radius;
     width: 100%;
+    cursor: pointer;
 
     &:hover {
       background-color: $primary-bg-color;
@@ -133,6 +134,40 @@
       background-color: $primary-bg-color;
       color: $primary-color;
     }
+
+    & + .hide {
+      display: block;
+    }
+  }
+}
+
+.sidebar-sub-item {
+  display: flex;
+
+  .indicator {
+    margin: 7px 20px 7px 0px;
+    border-top-right-radius: $default-border-radius;
+    border-bottom-right-radius: $default-border-radius;
+    width: 4px;
+  }
+
+  .link {
+    color: $grey-color;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: $default-border-radius;
+    width: 100%;
+
+    &:hover {
+      background-color: $primary-bg-color;
+      color: $light-primary-color;
+    }
+  }
+
+  &.active {
+    .link {
+      color: $primary-color;
+    }
   }
 }
 
@@ -145,6 +180,11 @@
     padding-bottom: 30px;
     margin-left: 270px;
   }
+}
+
+.main-content {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .overlay {
@@ -160,4 +200,49 @@
   &.active {
     display: block;
   }
+}
+
+.hide {
+  display: none;
+}
+
+.page-header {
+  font-size: 30px;
+  font-family: "AribauGroteskBold";
+  color: $grey-color;
+  margin-bottom: 20px;
+
+  @media(min-width: 992px) {
+    margin-bottom: 30px;
+  }
+}
+
+.well {
+  background-color: $primary-bg-color;
+  border-radius: $default-border-radius;
+  padding: 15px;
+
+  @media screen and (min-width: 992px) {
+    padding: 25px;
+  }
+}
+
+.empty-record-well {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .no-record-text {
+    margin-top: 15px;
+    color: $primary-color;
+  }
+}
+
+.required:after {
+  content: "*";
+  position: relative;
+  font-size: inherit;
+  color: $red-color;
+  padding-left: 4px;
+  font-family: "AribauGroteskBold";
 }

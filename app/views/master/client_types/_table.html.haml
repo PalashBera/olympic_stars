@@ -1,0 +1,16 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} Name
+        %th{scope: "col"} Status
+        %th{scope: "col"} Actions
+
+    %tbody
+      - @client_types.each do |client_type|
+        %tr
+          %td{scope: "row"}= client_type.name
+          %td= client_type.archived_status
+          %td
+            = link_to "Edit", edit_master_client_type_path(client_type), title: "Edit client type", class: "btn btn-light btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete", master_client_type_path(client_type), title: "Delete client type", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the client type?" }

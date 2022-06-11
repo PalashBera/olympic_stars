@@ -1,3 +1,7 @@
+account = Account.create(
+  name: "Olympic Stars"
+)
+
 user = User.create(
   first_name: "Olympic",
   last_name: "Stars",

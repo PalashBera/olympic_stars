@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: :dashboard
+  before_action { active_sidebar_item_option("dashboard") }
 
   def index
     if user_signed_in?

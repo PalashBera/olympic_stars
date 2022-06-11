@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
+  cattr_accessor :current_user
+
   strip_attributes only: %i[first_name last_name email], collapse_spaces: true, replace_newlines: true
 
   validates :first_name, :last_name, :email, presence: true, length: { maximum: 255 }
