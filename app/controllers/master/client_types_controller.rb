@@ -5,7 +5,8 @@ module Master
     before_action { active_sidebar_sub_item_option("client_types") }
 
     def index
-      @pagy, @client_types = pagy(current_account.client_types.order_by_name)
+      @search = current_account.client_types.ransack(params[:q])
+      @pagy, @client_types = pagy(@search.result)
     end
 
     def new

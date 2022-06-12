@@ -2,8 +2,8 @@
   %table.table
     %thead
       %tr
-        %th{scope: "col"} Name
-        %th{scope: "col"} Status
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th{scope: "col"} Actions
 
     %tbody
