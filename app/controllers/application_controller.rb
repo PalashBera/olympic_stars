@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   layout :resolve_layout
 
+  include Pagy::Backend
   include SessionsHelper
 
   before_action :configure_permitted_parameters, if: :devise_controller?

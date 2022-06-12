@@ -246,3 +246,58 @@
   padding-left: 4px;
   font-family: "AribauGroteskBold";
 }
+
+.pagination-block {
+  display: flex;
+  justify-content: center;
+  font-family: "AribauGroteskMedium";
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page {
+    padding: 6px 13px;
+    background-color: $primary-bg-color;
+    margin: 3px;
+    border-radius: $default-border-radius;
+    font-weight: 500;
+    transition: $default-transition;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+
+    a {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      padding: 7px 15px;
+      margin: -7px -15px;
+      color: $primary-color;
+      border-radius: $default-border-radius;
+
+      &:hover {
+        color: $white-color;
+        background-color: $primary-color;
+      }
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: $white-color;
+      cursor: not-allowed;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $primary-bg-color;
+    }
+  }
+}

@@ -5,7 +5,7 @@ module Master
     before_action { active_sidebar_sub_item_option("client_types") }
 
     def index
-      @client_types = current_account.client_types.order_by_name
+      @pagy, @client_types = pagy(current_account.client_types.order_by_name)
     end
 
     def new
