@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_current_user, unless: :devise_controller?
+  before_action :set_paper_trail_whodunnit, :set_current_user, unless: :devise_controller?
 
   protected
 
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def active_sidebar_sub_item_option(option)
     @active_sidebar_sub_item = option
+  end
+
+  def user_for_paper_trail
+    current_user&.full_name.presence || "System User"
   end
 
   private

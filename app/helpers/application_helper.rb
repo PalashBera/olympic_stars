@@ -38,4 +38,8 @@ module ApplicationHelper
   def active_sidebar_sub_item(str)
     "active" if str == @active_sidebar_sub_item
   end
+
+  def archive_status(archived)
+    archived ? t("status.archived") : t("status.active")
+  end
 end

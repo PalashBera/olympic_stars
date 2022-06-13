@@ -7,4 +7,6 @@ class Account < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :time_zone, presence: true, length: { maximum: 50 }
+
+  has_paper_trail only: %i[name time_zone]
 end

@@ -8,7 +8,7 @@
 
   th {
     background-color: $primary-bg-color;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 15px 10px 10px;
     color: $primary-color;
     min-width: 150px;
     max-width: 300px;
@@ -39,5 +39,11 @@
 
   tr:nth-child(even) {
     background-color: $light-grey-color;
+  }
+
+  &.table-sm {
+    th, td {
+      padding: 5px 5px 5px 10px;
+    }
   }
 }

@@ -16,12 +16,12 @@
 
 .page-card {
   border-radius: $default-border-radius;
-  padding: 15px;
+  padding: 20px;
   background-color: $white-color;
   box-shadow: $default-box-shadow;
 
   @media(min-width: 992px) {
-    padding: 35px 25px;
+    padding: 35px;
   }
 }
 

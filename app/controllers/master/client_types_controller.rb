@@ -2,6 +2,8 @@
 
 module Master
   class ClientTypesController < Master::HomeController
+    include ChangeLogable
+
     before_action { active_sidebar_sub_item_option("client_types") }
 
     def index

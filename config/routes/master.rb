@@ -2,6 +2,10 @@
 
 Rails.application.routes.draw do
   namespace :master do
-    resources :client_types, except: :show
+    concern :change_loggable do
+      get :change_logs, on: :member
+    end
+
+    resources :client_types, except: :show, concerns: :change_loggable
   end
 end
