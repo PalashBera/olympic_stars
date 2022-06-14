@@ -3,7 +3,7 @@
 
 .page-card
   .page-card-header
-    = link_to "Add New", new_master_client_type_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }
+    = link_to "Add New", new_master_client_type_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add client type"
 
   .page-card-body
     - if @client_types.present?

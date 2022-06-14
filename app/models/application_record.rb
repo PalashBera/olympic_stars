@@ -3,6 +3,8 @@
 require "string"
 
 class ApplicationRecord < ActiveRecord::Base
+  VALID_DECIMAL_REGEX = /\A\d+(?:\.\d{0,2})?\z/
+
   primary_abstract_class
 
   def class_title

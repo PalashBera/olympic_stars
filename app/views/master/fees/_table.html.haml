@@ -1,0 +1,19 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :name, "Amount"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
+        %th{scope: "col"} Actions
+
+    %tbody
+      - @fees.each do |fee|
+        %tr
+          %td{scope: "row"}= fee.name
+          %td= number_with_precision(fee.amount, precision: 2)
+          %td= fee.archived_status
+          %td
+            = link_to "Edit", edit_master_fee_path(fee), title: "Edit fee", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to "History", change_logs_master_fee_path(fee), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete", master_fee_path(fee), title: "Delete fee", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the fee?" }

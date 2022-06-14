@@ -1,0 +1,33 @@
+%p
+  #{@resource.name} has been created by #{@resource.created_by.full_name} on #{I18n.l(@resource.created_at)}.
+
+- @versions.each_with_index do |version, index|
+  %hr/
+
+  .secondary-text.mb-2
+    Change Log #{@versions.size - index} – Done by #{version.whodunnit} on #{I18n.l(version.created_at)}
+
+  .table-responsive
+    %table.table.table-sm
+      %thead
+        %th Field Name
+        %th Previous Value
+        %th Current Value
+
+      %tbody
+        - version.changeset.each do |key, value|
+          %tr
+            - if key == "name"
+              %td Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "amount"
+              %td Amount
+              %td= number_with_precision(value[0], precision: 2)
+              %td= number_with_precision(value[1], precision: 2)
+
+            - if key == "archived"
+              %td Status
+              %td= archive_status(value[0])
+              %td= archive_status(value[1])
