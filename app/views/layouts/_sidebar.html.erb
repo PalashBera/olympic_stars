@@ -35,6 +35,11 @@
           <span class="indicator"></span>
           <%= link_to "Fees", master_fees_path, class: "link" %>
         </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
+          <span class="indicator"></span>
+          <%= link_to "Payment Methods", master_payment_methods_path, class: "link" %>
+        </div>
       </div>
     </div>
 

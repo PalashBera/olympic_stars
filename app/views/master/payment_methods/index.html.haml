@@ -1,0 +1,13 @@
+- provide(:page_title, "Payment Methods")
+- provide(:page_header, "Payment Methods")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_master_payment_method_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add payment method"
+
+  .page-card-body
+    - if @payment_methods.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"
