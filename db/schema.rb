@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_13_143530) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_14_105712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_143530) do
     t.datetime "updated_at", null: false
     t.bigint "fees_count", default: 0, null: false
     t.integer "payment_methods_count", default: 0, null: false
+    t.integer "teachers_count", default: 0, null: false
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -62,6 +63,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_143530) do
     t.index ["account_id"], name: "index_payment_methods_on_account_id"
     t.index ["created_by_id"], name: "index_payment_methods_on_created_by_id"
     t.index ["updated_by_id"], name: "index_payment_methods_on_updated_by_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "first_name", limit: 255, default: "", null: false
+    t.string "last_name", limit: 255, default: "", null: false
+    t.string "email", limit: 255, default: "", null: false
+    t.string "phone_number", limit: 255
+    t.string "mobile_number", limit: 255
+    t.decimal "wages_per_hour", precision: 12, scale: 2, default: "0.0"
+    t.decimal "wages_per_day", precision: 12, scale: 2, default: "0.0"
+    t.decimal "wages_per_month", precision: 12, scale: 2, default: "0.0"
+    t.date "date_of_birth"
+    t.text "availability"
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_teachers_on_account_id"
+    t.index ["created_by_id"], name: "index_teachers_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_teachers_on_updated_by_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,4 +130,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_143530) do
   add_foreign_key "client_types", "accounts"
   add_foreign_key "fees", "accounts"
   add_foreign_key "payment_methods", "accounts"
+  add_foreign_key "teachers", "accounts"
 end

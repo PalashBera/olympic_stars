@@ -42,4 +42,8 @@ module ApplicationHelper
   def archive_status(archived)
     archived ? t("status.archived") : t("status.active")
   end
+
+  def amount_with_currency(amount)
+    amount.blank? ? "-" : "$#{number_with_precision(amount, precision: 2, delimiter: ',')}"
+  end
 end

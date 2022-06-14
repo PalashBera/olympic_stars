@@ -1,0 +1,13 @@
+- provide(:page_title, "Teachers")
+- provide(:page_header, "Teachers")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_personal_teacher_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add teacher"
+
+  .page-card-body
+    - if @teachers.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

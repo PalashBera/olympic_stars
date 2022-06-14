@@ -44,6 +44,20 @@
     </div>
 
     <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("personal") %>">
+        <span class="indicator"></span>
+        <span class="link">Personal</span>
+      </div>
+
+      <div class="sidebar-sub-item-group hide">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("teachers") %>">
+          <span class="indicator"></span>
+          <%= link_to "Teachers", personal_teachers_path, class: "link" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-item-group">
       <div class="sidebar-item <%= active_sidebar_item("settings") %>">
         <span class="indicator"></span>
         <%= link_to "Settings", "#", class: "link" %>

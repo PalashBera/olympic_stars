@@ -1,0 +1,30 @@
+- provide(:page_title, "Teachers")
+- provide(:page_header, "Teachers")
+
+.page-card
+  .h4= @teacher.full_name
+
+  .page-card-body
+    %h6 Email
+    %p= @teacher.email
+
+    %h6 Phone Number
+    %p= @teacher.phone_number
+
+    %h6 Mobile Number
+    %p= @teacher.mobile_number
+
+    %h6 Date of Birth
+    %p= I18n.l(@teacher.date_of_birth, default: "")
+
+    %h6 Availability
+    %p= @teacher.availability.split("\n").join("<br />").html_safe
+
+    %h6 Wages per hour
+    %p= amount_with_currency(@teacher.wages_per_hour)
+
+    %h6 Wages per day
+    %p= amount_with_currency(@teacher.wages_per_day)
+
+    %h6 Wages per month
+    %p= amount_with_currency(@teacher.wages_per_month)
