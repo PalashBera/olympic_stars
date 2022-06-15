@@ -1,0 +1,118 @@
+%p
+  #{@resource.full_name} has been created by #{@resource.created_by.full_name} on #{I18n.l(@resource.created_at)}.
+
+- @versions.each_with_index do |version, index|
+  %hr/
+
+  .secondary-text.mb-2
+    Change Log #{@versions.size - index} – Done by #{version.whodunnit} on #{I18n.l(version.created_at)}
+
+  .table-responsive
+    %table.table.table-sm
+      %thead
+        %th Field Name
+        %th Previous Value
+        %th Current Value
+
+      %tbody
+        - version.changeset.each do |key, value|
+          %tr
+            - if key == "first_name"
+              %td First Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "last_name"
+              %td Last Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "father_name"
+              %td Father Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "mother_name"
+              %td Mother Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "father_email"
+              %td Father Email
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "mother_email"
+              %td Mother Email
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "father_phone"
+              %td Father Phone Number
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "mother_phone"
+              %td Mother Mobile Number
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "date_of_birth"
+              %td Date of Birth
+              %td= I18n.l(value[0], default: "")
+              %td= I18n.l(value[1], default: "")
+
+            - if key == "registration_date"
+              %td Registration Date
+              %td= I18n.l(value[0], default: "")
+              %td= I18n.l(value[1], default: "")
+
+            - if key == "school_name"
+              %td School Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "student_code"
+              %td Student Code
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "allergies"
+              %td Allergies
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "address"
+              %td Address
+              %td= value[0]&.split("\n")&.join("<br />").to_s.html_safe
+              %td= value[1]&.split("\n")&.join("<br />").to_s.html_safe
+
+            - if key == "client_type_id"
+              %td Client Type
+              %td= ClientType.find_by(id: value[0]).name
+              %td= ClientType.find_by(id: value[1]).name
+
+            - if key == "fee_id"
+              %td Fee
+              %td= Fee.find_by(id: value[0]).name
+              %td= Fee.find_by(id: value[1]).name
+
+            - if key == "archived"
+              %td Status
+              %td= archive_status(value[0])
+              %td= archive_status(value[1])
+
+            - if key == "pro_client"
+              %td Pro Client
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "facebook"
+              %td Facebook
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "remarks"
+              %td Remarks
+              %td= value[0]&.split("\n")&.join("<br />").to_s.html_safe
+              %td= value[1]&.split("\n")&.join("<br />").to_s.html_safe

@@ -1,0 +1,21 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :student_code, "Student Code"
+        %th{scope: "col"}= sort_link @search, :school_name, "School Name"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
+        %th{scope: "col"} Actions
+
+    %tbody
+      - @students.each do |student|
+        %tr
+          %td{scope: "row"}= link_to student.full_name, coaching_student_path(student), title: "Show Detail"
+          %td= student.student_code
+          %td= student.school_name
+          %td= student.archived_status
+          %td
+            = link_to "Edit", edit_coaching_student_path(student), title: "Edit student", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to "History", change_logs_coaching_student_path(student), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete", coaching_student_path(student), title: "Delete student", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the student?" }

@@ -1,0 +1,80 @@
+- provide(:page_title, "Students")
+- provide(:page_header, "Students")
+
+.page-card
+  .h4= @student.full_name
+
+  .page-card-body
+    .row
+      .col-4.mb-3
+        %h6 Date of Birth
+        %p= I18n.l(@student.date_of_birth, default: "")
+
+      .col-4.mb-3
+        %h6 School Name
+        %p= @student.school_name
+
+      .col-4.mb-3
+        %h6 Student Code
+        %p= @student.student_code
+
+    .row
+      .col-4.mb-3
+        %h6 Father Name
+        %p= @student.father_name
+      .col-4.mb-3
+        %h6 Father Phone
+        %p= @student.father_phone
+      .col-4.mb-3
+        %h6 Father Email
+        %p= @student.father_email
+
+
+    .row
+      .col-4.mb-3
+        %h6 Mother Name
+        %p= @student.mother_name
+
+      .col-4.mb-3
+        %h6 Mother Phone
+        %p= @student.mother_phone
+
+      .col-4.mb-3
+        %h6 Mother Email
+        %p= @student.mother_email
+
+    .row
+      .col-4.mb-3
+        %h6 Registration Date
+        %p= I18n.l(@student.registration_date, default: "")
+
+      .col-4.mb-3
+        %h6 Client Type
+        %p= @student.client_type_name
+
+      .col-4.mb-3
+        %h6 Fee
+        %p= @student.fee_name
+
+    .row
+      .col-4.mb-3
+        %h6 Facebook
+        %p= @student.facebook
+
+      .col-4.mb-3
+        %h6 Pro Client
+        %p= @student.pro_client
+
+      .col-4.mb-3
+        %h6 Archived
+        %p= @student.archived_status
+
+
+    .row
+      .col-12.mb-3
+        %h6 Address
+        %p= @student.address&.split("\n")&.join("<br />").to_s.html_safe
+
+      .col-12.mb-3
+        %h6 Remarks
+        %p= @student.remarks&.split("\n")&.join("<br />").to_s.html_safe

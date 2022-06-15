@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_14_105712) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_15_134248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_105712) do
     t.bigint "fees_count", default: 0, null: false
     t.integer "payment_methods_count", default: 0, null: false
     t.integer "teachers_count", default: 0, null: false
+    t.integer "students_count", default: 0, null: false
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -63,6 +64,39 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_105712) do
     t.index ["account_id"], name: "index_payment_methods_on_account_id"
     t.index ["created_by_id"], name: "index_payment_methods_on_created_by_id"
     t.index ["updated_by_id"], name: "index_payment_methods_on_updated_by_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name", limit: 255, default: "", null: false
+    t.string "last_name", limit: 255, default: "", null: false
+    t.date "date_of_birth"
+    t.string "student_code", limit: 255, default: "", null: false
+    t.string "school_name", limit: 255, default: "", null: false
+    t.date "registration_date", null: false
+    t.text "address", default: ""
+    t.string "allergies", limit: 255
+    t.string "mother_name", limit: 255, default: "", null: false
+    t.string "mother_email", limit: 255, default: "", null: false
+    t.string "mother_phone", limit: 255
+    t.string "father_name", limit: 255, default: "", null: false
+    t.string "father_email", limit: 255, default: "", null: false
+    t.string "father_phone", limit: 255
+    t.text "remarks", default: ""
+    t.boolean "pro_client", default: false, null: false
+    t.boolean "facebook", default: false, null: false
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "client_type_id", null: false
+    t.bigint "fee_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_students_on_account_id"
+    t.index ["client_type_id"], name: "index_students_on_client_type_id"
+    t.index ["created_by_id"], name: "index_students_on_created_by_id"
+    t.index ["fee_id"], name: "index_students_on_fee_id"
+    t.index ["updated_by_id"], name: "index_students_on_updated_by_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -130,5 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_105712) do
   add_foreign_key "client_types", "accounts"
   add_foreign_key "fees", "accounts"
   add_foreign_key "payment_methods", "accounts"
+  add_foreign_key "students", "accounts"
+  add_foreign_key "students", "client_types"
+  add_foreign_key "students", "fees"
   add_foreign_key "teachers", "accounts"
 end
