@@ -1,0 +1,13 @@
+- provide(:page_title, "Groups")
+- provide(:page_header, "Groups")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_coaching_group_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add group"
+
+  .page-card-body
+    - if @groups.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

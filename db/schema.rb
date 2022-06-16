@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_15_134248) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_16_071915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_134248) do
     t.integer "payment_methods_count", default: 0, null: false
     t.integer "teachers_count", default: 0, null: false
     t.integer "students_count", default: 0, null: false
+    t.integer "groups_count", default: 0, null: false
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -51,6 +52,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_134248) do
     t.index ["account_id"], name: "index_fees_on_account_id"
     t.index ["created_by_id"], name: "index_fees_on_created_by_id"
     t.index ["updated_by_id"], name: "index_fees_on_updated_by_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", limit: 255, default: "", null: false
+    t.integer "quota", null: false
+    t.string "start_time", limit: 255, default: "", null: false
+    t.string "end_time", limit: 255, default: "", null: false
+    t.boolean "monday", default: false, null: false
+    t.boolean "tuesday", default: false, null: false
+    t.boolean "wednesday", default: false, null: false
+    t.boolean "thursday", default: false, null: false
+    t.boolean "friday", default: false, null: false
+    t.boolean "saturday", default: false, null: false
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "client_type_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_groups_on_account_id"
+    t.index ["client_type_id"], name: "index_groups_on_client_type_id"
+    t.index ["created_by_id"], name: "index_groups_on_created_by_id"
+    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+    t.index ["updated_by_id"], name: "index_groups_on_updated_by_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -163,6 +190,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_134248) do
 
   add_foreign_key "client_types", "accounts"
   add_foreign_key "fees", "accounts"
+  add_foreign_key "groups", "accounts"
+  add_foreign_key "groups", "client_types"
+  add_foreign_key "groups", "teachers"
   add_foreign_key "payment_methods", "accounts"
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"

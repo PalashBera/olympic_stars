@@ -1,0 +1,88 @@
+= form_for [:coaching, resource] do |f|
+  .row
+    .col-6.mb-3
+      = f.label :name, class: "form-label required"
+      = f.text_field :name, autofocus: true, placeholder: "Enter name", class: "form-control", required: true, maxlength: 255
+      - if resource.errors.include?(:name)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:name).each do |error_message|
+            = "#{error_message}. "
+
+    .col-6.mb-3
+      = f.label :quota, class: "form-label required"
+      = f.number_field :quota, placeholder: "Enter quota", class: "form-control", required: true, min: 0, step: 1
+      - if resource.errors.include?(:quota)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:quota).each do |error_message|
+            = "#{error_message}. "
+
+    .col-6.mb-3
+      = f.label :start_time, class: "form-label required"
+      = f.text_field :start_time, placeholder: "Enter start time", class: "form-control", required: true, maxlength: 255
+      - if resource.errors.include?(:start_time)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:start_time).each do |error_message|
+            = "#{error_message}. "
+
+    .col-6.mb-3
+      = f.label :end_time, class: "form-label required"
+      = f.text_field :end_time, placeholder: "Enter end time", class: "form-control", required: true, maxlength: 255
+      - if resource.errors.include?(:end_time)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:end_time).each do |error_message|
+            = "#{error_message}. "
+
+    .col-6.mb-3
+      = f.label :teacher_id, class: "form-label required"
+      = f.select :teacher_id, teacher_list(@group.teacher_id), { prompt: "Select teacher" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:teacher_id)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:teacher_id).each do |error_message|
+            = "#{error_message}. "
+
+    .col-6.mb-3
+      = f.label :client_type_id, class: "form-label required"
+      = f.select :client_type_id, client_type_list(@group.client_type_id), { prompt: "Select client type" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:client_type_id)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:client_type_id).each do |error_message|
+            = "#{error_message}. "
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :monday, class: "form-check-input"
+        = f.label :monday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :tuesday, class: "form-check-input"
+        = f.label :tuesday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :wednesday, class: "form-check-input"
+        = f.label :wednesday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :thursday, class: "form-check-input"
+        = f.label :thursday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :friday, class: "form-check-input"
+        = f.label :friday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :saturday, class: "form-check-input"
+        = f.label :saturday, class: "form-check-label"
+
+    .col-4.mb-3
+      .form-check
+        = f.check_box :archived, class: "form-check-input"
+        = f.label :archived, class: "form-check-label"
+
+  .actions.form-btn-group
+    %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     end
 
     resources :students, concerns: :change_loggable
+    resources :groups,   concerns: :change_loggable
   end
 end

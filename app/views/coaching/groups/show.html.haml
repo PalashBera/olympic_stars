@@ -1,0 +1,58 @@
+- provide(:page_title, "Groups")
+- provide(:page_header, "Groups")
+
+.page-card
+  .h4= @group.name
+
+  .page-card-body
+    .row
+      .col-4.mb-3
+        %h6 Quota
+        %p= @group.quota
+
+      .col-4.mb-3
+        %h6 Start Time
+        %p= @group.start_time
+
+      .col-4.mb-3
+        %h6 End Time
+        %p= @group.end_time
+
+    .row
+      .col-4.mb-3
+        %h6 Teacher
+        %p= @group.teacher_full_name
+
+      .col-4.mb-3
+        %h6 Client Type
+        %p= @group.client_type_name
+
+    %h3 Schedule
+    .row
+      .col-4.mb-3
+        %h6 Monday
+        %p= @group.monday
+
+      .col-4.mb-3
+        %h6 Tuesday
+        %p= @group.tuesday
+
+      .col-4.mb-3
+        %h6 Wednesday
+        %p= @group.wednesday
+
+      .col-4.mb-3
+        %h6 Thursday
+        %p= @group.thursday
+
+      .col-4.mb-3
+        %h6 Friday
+        %p= @group.friday
+
+      .col-4.mb-3
+        %h6 Saturday
+        %p= @group.saturday
+
+      .col-4.mb-3
+        %h6 Archived
+        %p= @group.archived_status

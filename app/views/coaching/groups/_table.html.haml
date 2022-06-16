@@ -1,0 +1,21 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :start_time, "Start Time"
+        %th{scope: "col"}= sort_link @search, :end_time, "End Time"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
+        %th{scope: "col"} Actions
+
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show Detail"
+          %td= group.start_time
+          %td= group.end_time
+          %td= group.archived_status
+          %td
+            = link_to "Edit", edit_coaching_group_path(group), title: "Edit group", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to "History", change_logs_coaching_group_path(group), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete", coaching_group_path(group), title: "Delete group", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the group?" }

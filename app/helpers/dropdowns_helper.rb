@@ -24,4 +24,18 @@ module DropdownsHelper
 
     dropdown_list
   end
+
+  def teacher_list(teacher_id)
+    dropdown_list = current_account.teachers.non_archived.order_by_first_name.map do |teacher|
+      [teacher.full_name, teacher.id]
+    end
+    teacher_ids = dropdown_list.map { |e| e[1] }
+
+    if teacher_id && !teacher_ids.include?(teacher_id)
+      teacher = current_account.teachers.find(teacher_id)
+      dropdown_list.prepend([teacher.full_name, teacher.id])
+    end
+
+    dropdown_list
+  end
 end

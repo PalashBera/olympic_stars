@@ -1,0 +1,83 @@
+%p
+  #{@resource.name} has been created by #{@resource.created_by.full_name} on #{I18n.l(@resource.created_at)}.
+
+- @versions.each_with_index do |version, index|
+  %hr/
+
+  .secondary-text.mb-2
+    Change Log #{@versions.size - index} – Done by #{version.whodunnit} on #{I18n.l(version.created_at)}
+
+  .table-responsive
+    %table.table.table-sm
+      %thead
+        %th Field Name
+        %th Previous Value
+        %th Current Value
+
+      %tbody
+        - version.changeset.each do |key, value|
+          %tr
+            - if key == "name"
+              %td Name
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "quota"
+              %td Quota
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "start_time"
+              %td Start Time
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "end_time"
+              %td End Time
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "monday"
+              %td Monday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "tuesday"
+              %td Tuesday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "wednesday"
+              %td Wednesday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "thursday"
+              %td Thursday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "friday"
+              %td Friday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "saturday"
+              %td Saturday
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "client_type_id"
+              %td Client Type
+              %td= ClientType.find_by(id: value[0]).name
+              %td= ClientType.find_by(id: value[1]).name
+
+            - if key == "teacher_id"
+              %td Teacher
+              %td= Teacher.find_by(id: value[0]).name
+              %td= Teacher.find_by(id: value[1]).name
+
+            - if key == "archived"
+              %td Status
+              %td= archive_status(value[0])
+              %td= archive_status(value[1])
