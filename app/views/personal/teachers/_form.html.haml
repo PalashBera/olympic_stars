@@ -48,25 +48,25 @@
           - resource.errors.full_messages_for(:mobile_number).each do |error_message|
             = "#{error_message}. "
 
-    .col-6.mb-3
+    .col-6.col-lg-4.mb-3
       = f.label :wages_per_hour, class: "form-label"
-      = f.number_field :wages_per_hour, placeholder: "Enter wage per hour", class: "form-control", step: 0.01, min: 0
+      = f.number_field :wages_per_hour, value: display_form_amount(resource.wages_per_hour), placeholder: "Enter wage per hour", class: "form-control", step: 0.01, min: 0
       - if resource.errors.include?(:wages_per_hour)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:wages_per_hour).each do |error_message|
             = "#{error_message}. "
 
-    .col-6.mb-3
+    .col-6.col-lg-4.mb-3
       = f.label :wages_per_day, class: "form-label"
-      = f.number_field :wages_per_day, placeholder: "Enter wage per day", class: "form-control", step: 0.01, min: 0
+      = f.number_field :wages_per_day, value: display_form_amount(resource.wages_per_day), placeholder: "Enter wage per day", class: "form-control", step: 0.01, min: 0
       - if resource.errors.include?(:wages_per_day)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:wages_per_day).each do |error_message|
             = "#{error_message}. "
 
-    .col-6.mb-3
+    .col-6.col-lg-4.mb-3
       = f.label :wages_per_month, class: "form-label"
-      = f.number_field :wages_per_month, placeholder: "Enter wage per month", class: "form-control", step: 0.01, min: 0
+      = f.number_field :wages_per_month, value: display_form_amount(resource.wages_per_month), placeholder: "Enter wage per month", class: "form-control", step: 0.01, min: 0
       - if resource.errors.include?(:wages_per_month)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:wages_per_month).each do |error_message|
@@ -74,7 +74,7 @@
 
     .col-12.mb-3
       = f.label :availability, class: "form-label"
-      = f.text_area :availability, placeholder: "Enter availability", class: "form-control", row: 3
+      = f.text_area :availability, placeholder: "Enter availability", class: "form-control", row: 4
       - if resource.errors.include?(:availability)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:availability).each do |error_message|

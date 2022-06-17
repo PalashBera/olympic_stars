@@ -12,25 +12,20 @@
     </div>
 
     <div class="sidebar-item-group">
-      <div class="sidebar-item <%= active_sidebar_item("master") %>">
+      <div class="sidebar-item <%= active_sidebar_item("coaching") %>">
         <span class="indicator"></span>
-        <span class="link">Master</span>
+        <span class="link">Coaching</span>
       </div>
 
       <div class="sidebar-sub-item-group hide">
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("client_types") %>">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("students") %>">
           <span class="indicator"></span>
-          <%= link_to "Client Types", master_client_types_path, class: "link" %>
+          <%= link_to "Students", coaching_students_path, class: "link" %>
         </div>
 
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("fees") %>">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("groups") %>">
           <span class="indicator"></span>
-          <%= link_to "Fees", master_fees_path, class: "link" %>
-        </div>
-
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
-          <span class="indicator"></span>
-          <%= link_to "Payment Methods", master_payment_methods_path, class: "link" %>
+          <%= link_to "Groups", coaching_groups_path, class: "link" %>
         </div>
       </div>
     </div>
@@ -50,20 +45,25 @@
     </div>
 
     <div class="sidebar-item-group">
-      <div class="sidebar-item <%= active_sidebar_item("coaching") %>">
+      <div class="sidebar-item <%= active_sidebar_item("master") %>">
         <span class="indicator"></span>
-        <span class="link">Coaching</span>
+        <span class="link">Master</span>
       </div>
 
       <div class="sidebar-sub-item-group hide">
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("students") %>">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("client_types") %>">
           <span class="indicator"></span>
-          <%= link_to "Students", coaching_students_path, class: "link" %>
+          <%= link_to "Client Types", master_client_types_path, class: "link" %>
         </div>
 
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("groups") %>">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("fees") %>">
           <span class="indicator"></span>
-          <%= link_to "Groups", coaching_groups_path, class: "link" %>
+          <%= link_to "Fees", master_fees_path, class: "link" %>
+        </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
+          <span class="indicator"></span>
+          <%= link_to "Payment Methods", master_payment_methods_path, class: "link" %>
         </div>
       </div>
     </div>

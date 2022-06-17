@@ -11,7 +11,7 @@
     %tbody
       - @students.each do |student|
         %tr
-          %td{scope: "row"}= link_to student.full_name, coaching_student_path(student), title: "Show Detail"
+          %td{scope: "row"}= link_to student.full_name, coaching_student_path(student), title: "Show details"
           %td= student.student_code
           %td= student.school_name
           %td= student.archived_status

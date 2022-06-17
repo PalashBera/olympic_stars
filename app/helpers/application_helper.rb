@@ -43,7 +43,19 @@ module ApplicationHelper
     archived ? t("status.archived") : t("status.active")
   end
 
+  def display_amount(amount)
+    number_with_precision(amount, precision: 2, delimiter: ",") unless amount.blank?
+  end
+
+  def display_form_amount(amount)
+    number_with_precision(amount, precision: 2) unless amount.blank?
+  end
+
   def amount_with_currency(amount)
-    amount.blank? ? "-" : "$#{number_with_precision(amount, precision: 2, delimiter: ',')}"
+    "$#{display_amount(amount)}" unless amount.blank?
+  end
+
+  def display_text(text)
+    text.split("\n").join("<br />") unless text.blank?
   end
 end

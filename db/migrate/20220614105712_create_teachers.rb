@@ -4,12 +4,12 @@ class CreateTeachers < ActiveRecord::Migration[7.0]
       t.string     :first_name,      null: false, default: "", limit: 255
       t.string     :last_name,       null: false, default: "", limit: 255
       t.string     :email,           null: false, default: "", limit: 255
+      t.date       :date_of_birth
       t.string     :phone_number,                              limit: 255
       t.string     :mobile_number,                             limit: 255
-      t.decimal    :wages_per_hour,               default: 0,  precision: 12, scale: 2
-      t.decimal    :wages_per_day,                default: 0,  precision: 12, scale: 2
-      t.decimal    :wages_per_month,              default: 0,  precision: 12, scale: 2
-      t.date       :date_of_birth
+      t.decimal    :wages_per_hour,  precision: 12, scale: 2
+      t.decimal    :wages_per_day,   precision: 12, scale: 2
+      t.decimal    :wages_per_month, precision: 12, scale: 2
       t.text       :availability
       t.boolean    :archived,        null: false, default: false
       t.references :account,         null: false, foreign_key: true

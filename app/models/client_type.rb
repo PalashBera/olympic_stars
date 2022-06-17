@@ -10,7 +10,7 @@ class ClientType < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false, scope: :account_id }
 
-  has_paper_trail only: %i[name archived]
+  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   scope :order_by_name, -> { order("LOWER(name)") }
 end

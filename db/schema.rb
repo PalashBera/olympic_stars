@@ -130,12 +130,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_071915) do
     t.string "first_name", limit: 255, default: "", null: false
     t.string "last_name", limit: 255, default: "", null: false
     t.string "email", limit: 255, default: "", null: false
+    t.date "date_of_birth"
     t.string "phone_number", limit: 255
     t.string "mobile_number", limit: 255
-    t.decimal "wages_per_hour", precision: 12, scale: 2, default: "0.0"
-    t.decimal "wages_per_day", precision: 12, scale: 2, default: "0.0"
-    t.decimal "wages_per_month", precision: 12, scale: 2, default: "0.0"
-    t.date "date_of_birth"
+    t.decimal "wages_per_hour", precision: 12, scale: 2
+    t.decimal "wages_per_day", precision: 12, scale: 2
+    t.decimal "wages_per_month", precision: 12, scale: 2
     t.text "availability"
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false

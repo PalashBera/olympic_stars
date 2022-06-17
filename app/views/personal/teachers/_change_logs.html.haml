@@ -32,6 +32,11 @@
               %td= value[0]
               %td= value[1]
 
+            - if key == "date_of_birth"
+              %td Date of Birth
+              %td= I18n.l(value[0], default: "")
+              %td= I18n.l(value[1], default: "")
+
             - if key == "phone_number"
               %td Phone Number
               %td= value[0]
@@ -41,16 +46,6 @@
               %td Mobile Number
               %td= value[0]
               %td= value[1]
-
-            - if key == "date_of_birth"
-              %td Date of Birth
-              %td= I18n.l(value[0], default: "")
-              %td= I18n.l(value[1], default: "")
-
-            - if key == "availability"
-              %td Availability
-              %td= value[0].split("\n").join("<br />").html_safe
-              %td= value[1].split("\n").join("<br />").html_safe
 
             - if key == "wages_per_day"
               %td Wages Per Day
@@ -65,7 +60,12 @@
             - if key == "wages_per_month"
               %td Wages Per Month
               %td= amount_with_currency(value[0])
-              %td= amount_with_currency(value[1)
+              %td= amount_with_currency(value[1])
+
+            - if key == "availability"
+              %td Availability
+              %td= raw(display_text(value[0]))
+              %td= raw(display_text(value[1]))
 
             - if key == "archived"
               %td Status

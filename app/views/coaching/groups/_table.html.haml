@@ -11,7 +11,7 @@
     %tbody
       - @groups.each do |group|
         %tr
-          %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show Detail"
+          %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show details"
           %td= group.start_time
           %td= group.end_time
           %td= group.archived_status

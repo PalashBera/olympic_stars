@@ -3,7 +3,7 @@
 
 .page-card
   .page-card-header
-    = link_to "Add New", new_personal_teacher_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add teacher"
+    = link_to "Add New", new_personal_teacher_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new teacher"
 
   .page-card-body
     - if @teachers.present?

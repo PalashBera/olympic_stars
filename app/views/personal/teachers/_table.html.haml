@@ -4,14 +4,34 @@
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
         %th{scope: "col"}= sort_link @search, :email, "Email"
+        %th{scope: "col"} Contact Numbers
+        %th{scope: "col"} Wages
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th{scope: "col"} Actions
 
     %tbody
       - @teachers.each do |teacher|
         %tr
-          %td{scope: "row"}= link_to teacher.full_name, personal_teacher_path(teacher), title: "Show Detail"
-          %td= teacher.email
+          %td{scope: "row"}= link_to teacher.full_name, personal_teacher_path(teacher), title: "Show details"
+          %td
+            %a(href="mailto: #{teacher.email}")
+              %i.bi.bi-envelope-fill
+              = teacher.email
+          %td
+            - if teacher.phone_number.present?
+              .icon-details
+                %a(href="tel:#{teacher.phone_number}")
+                  %i.bi.bi-telephone-fill
+                  = teacher.phone_number
+            - if teacher.mobile_number.present?
+              .icon-details
+                %a(href="tel:#{teacher.mobile_number}")
+                  %i.bi.bi-phone-fill
+                  = teacher.mobile_number
+          %td
+            %div= teacher.wages_per_hour_with_currency
+            %div= teacher.wages_per_day_with_currency
+            %div= teacher.wages_per_month_with_currency
           %td= teacher.archived_status
           %td
             = link_to "Edit", edit_personal_teacher_path(teacher), title: "Edit teacher", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
