@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "string"
+require "true_class"
+require "false_class"
 
 class ApplicationRecord < ActiveRecord::Base
   VALID_DECIMAL_REGEX = /\A\d+(?:\.\d{0,2})?\z/

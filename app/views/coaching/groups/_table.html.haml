@@ -3,8 +3,11 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
-        %th{scope: "col"}= sort_link @search, :start_time, "Start Time"
-        %th{scope: "col"}= sort_link @search, :end_time, "End Time"
+        %th{scope: "col"}= sort_link @search, :teacher_full_name, "Teacher"
+        %th{scope: "col"}= sort_link @search, :client_type_name, "Client Type"
+        %th{scope: "col"}= sort_link @search, :quota, "Quota"
+        %th{scope: "col"} Days
+        %th{scope: "col"} Duration
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th{scope: "col"} Actions
 
@@ -12,8 +15,11 @@
       - @groups.each do |group|
         %tr
           %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show details"
-          %td= group.start_time
-          %td= group.end_time
+          %td= group.teacher_full_name
+          %td= group.client_type_name
+          %td= group.quota
+          %td= group.days
+          %td= "#{group.start_time} - #{group.end_time}"
           %td= group.archived_status
           %td
             = link_to "Edit", edit_coaching_group_path(group), title: "Edit group", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }

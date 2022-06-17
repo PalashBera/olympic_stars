@@ -14,11 +14,23 @@ class Group < ApplicationRecord
   delegate :name,      to: :client_type, prefix: true
   delegate :full_name, to: :teacher,     prefix: true
 
-  validates :name, :start_time, :end_time, presence: true, length: { maximum: 255 }
+  validates :name, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false, scope: :account_id }
+  validates :start_time, :end_time, presence: true, length: { maximum: 255 }
   validates :quota, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, inclusion: { in: [true, false] }
 
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   scope :order_by_name, -> { order("LOWER(name)") }
+
+  def days
+    list = []
+    list << "M" if monday?
+    list << "T" if tuesday?
+    list << "W" if wednesday?
+    list << "Th" if thursday?
+    list << "F" if friday?
+    list << "S" if saturday?
+    list.join
+  end
 end

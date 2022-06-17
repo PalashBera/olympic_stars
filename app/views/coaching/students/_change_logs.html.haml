@@ -84,8 +84,8 @@
 
             - if key == "address"
               %td Address
-              %td= value[0]&.split("\n")&.join("<br />").to_s.html_safe
-              %td= value[1]&.split("\n")&.join("<br />").to_s.html_safe
+              %td= raw(display_text(value[0]))
+              %td= raw(display_text(value[1]))
 
             - if key == "client_type_id"
               %td Client Type
@@ -104,15 +104,15 @@
 
             - if key == "pro_client"
               %td Pro Client
-              %td= value[0]
-              %td= value[1]
+              %td= value[0].display
+              %td= value[1].display
 
             - if key == "facebook"
               %td Facebook
-              %td= value[0]
-              %td= value[1]
+              %td= value[0].display
+              %td= value[1].display
 
             - if key == "remarks"
               %td Remarks
-              %td= value[0]&.split("\n")&.join("<br />").to_s.html_safe
-              %td= value[1]&.split("\n")&.join("<br />").to_s.html_safe
+              %td= raw(display_text(value[0]))
+              %td= raw(display_text(value[1]))

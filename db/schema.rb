@@ -96,18 +96,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_071915) do
   create_table "students", force: :cascade do |t|
     t.string "first_name", limit: 255, default: "", null: false
     t.string "last_name", limit: 255, default: "", null: false
-    t.date "date_of_birth"
     t.string "student_code", limit: 255, default: "", null: false
-    t.string "school_name", limit: 255, default: "", null: false
+    t.date "date_of_birth", null: false
+    t.string "school_name", limit: 255, default: ""
+    t.string "allergies", limit: 255, default: ""
     t.date "registration_date", null: false
-    t.text "address", default: ""
-    t.string "allergies", limit: 255
     t.string "mother_name", limit: 255, default: "", null: false
     t.string "mother_email", limit: 255, default: "", null: false
     t.string "mother_phone", limit: 255
     t.string "father_name", limit: 255, default: "", null: false
     t.string "father_email", limit: 255, default: "", null: false
     t.string "father_phone", limit: 255
+    t.text "address", default: ""
     t.text "remarks", default: ""
     t.boolean "pro_client", default: false, null: false
     t.boolean "facebook", default: false, null: false
