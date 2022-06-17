@@ -6,7 +6,7 @@
         %th{scope: "col"}= sort_link @search, :teacher_full_name, "Teacher"
         %th{scope: "col"}= sort_link @search, :client_type_name, "Client Type"
         %th{scope: "col"}= sort_link @search, :quota, "Quota"
-        %th{scope: "col"} Days
+        %th{scope: "col"} Schedule
         %th{scope: "col"} Duration
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th{scope: "col"} Actions
@@ -18,7 +18,7 @@
           %td= group.teacher_full_name
           %td= group.client_type_name
           %td= group.quota
-          %td= group.days
+          %td= group.schedule
           %td= "#{group.start_time} - #{group.end_time}"
           %td= group.archived_status
           %td

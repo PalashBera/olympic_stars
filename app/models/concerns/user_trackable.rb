@@ -14,6 +14,10 @@ module UserTrackable
     scope :updated_by, ->(user) { where(updated_by_id: user.id) }
   end
 
+  def creator_name
+    created_by_id ? created_by.full_name : "System User"
+  end
+
   protected
 
   def set_created_by

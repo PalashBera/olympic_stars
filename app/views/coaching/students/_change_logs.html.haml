@@ -1,5 +1,5 @@
 %p
-  #{@resource.full_name} has been created by #{@resource.created_by.full_name} on #{I18n.l(@resource.created_at)}.
+  #{@resource.full_name} has been created by #{@resource.creator_name} on #{I18n.l(@resource.created_at)}.
 
 - @versions.each_with_index do |version, index|
   %hr/
@@ -47,13 +47,13 @@
               %td= value[0]
               %td= value[1]
 
-            - if key == "father_phone"
+            - if key == "father_phone_number"
               %td Father Phone Number
               %td= value[0]
               %td= value[1]
 
-            - if key == "mother_phone"
-              %td Mother Mobile Number
+            - if key == "mother_phone_number"
+              %td Mother Phone Number
               %td= value[0]
               %td= value[1]
 

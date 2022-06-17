@@ -10,10 +10,10 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.date       :registration_date, null: false
       t.string     :mother_name,       null: false, default: "", limit: 255
       t.string     :mother_email,      null: false, default: "", limit: 255
-      t.string     :mother_phone,                                limit: 255
+      t.string     :mother_phone_number,                                limit: 255
       t.string     :father_name,       null: false, default: "", limit: 255
       t.string     :father_email,      null: false, default: "", limit: 255
-      t.string     :father_phone,                                limit: 255
+      t.string     :father_phone_number,                                limit: 255
       t.text       :address,                        default: ""
       t.text       :remarks,                        default: ""
       t.boolean    :pro_client,        null: false, default: false

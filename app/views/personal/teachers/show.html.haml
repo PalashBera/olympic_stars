@@ -1,30 +1,57 @@
-- provide(:page_title, "Teachers")
-- provide(:page_header, "Teachers")
+- provide(:page_title, @teacher.full_name)
+- provide(:page_header, @teacher.full_name)
 
 .page-card
-  .h4= @teacher.full_name
+  .card-header.card-nav-header
+    %ul.nav.nav-tabs.card-header-tabs
+      %li.nav-item
+        = link_to "Details", personal_teacher_path(@teacher), class: "nav-link active"
+      %li.nav-item
+        = link_to "Work Logs", "#", class: "nav-link"
+      %li.nav-item
+        = link_to "Payment Book", "#", class: "nav-link"
 
   .page-card-body
-    %h6 Email
-    %p= @teacher.email
+    .row.g-3
+      .col-lg-6
+        .table-responsive
+          %table.table.table-sm.details-table
+            %tbody
+              %tr
+                %td Name
+                %td= @teacher.full_name
 
-    %h6 Phone Number
-    %p= @teacher.phone_number
+              %tr
+                %td Email
+                %td
+                  %a(href="mailto: #{@teacher.email}")= @teacher.email
 
-    %h6 Mobile Number
-    %p= @teacher.mobile_number
+              %tr
+                %td Phone Number
+                %td
+                  %a(href="tel:#{@teacher.phone_number}")= @teacher.phone_number
 
-    %h6 Date of Birth
-    %p= I18n.l(@teacher.date_of_birth, default: "")
+              %tr
+                %td Mobile Number
+                %td
+                  %a(href="tel:#{@teacher.mobile_number}")= @teacher.mobile_number
 
-    %h6 Availability
-    %p= @teacher.availability.split("\n").join("<br />").html_safe
+              %tr
+                %td Date of Birth
+                %td= I18n.l(@teacher.date_of_birth, default: "")
 
-    %h6 Wages per hour
-    %p= amount_with_currency(@teacher.wages_per_hour)
+              %tr
+                %td Wages per hour
+                %td= amount_with_currency(@teacher.wages_per_hour)
 
-    %h6 Wages per day
-    %p= amount_with_currency(@teacher.wages_per_day)
+              %tr
+                %td Wages per day
+                %td= amount_with_currency(@teacher.wages_per_day)
 
-    %h6 Wages per month
-    %p= amount_with_currency(@teacher.wages_per_month)
+              %tr
+                %td Wages per month
+                %td= amount_with_currency(@teacher.wages_per_month)
+
+              %tr
+                %td Availability
+                %td= raw(display_text(@teacher.availability))

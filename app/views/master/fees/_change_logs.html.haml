@@ -1,5 +1,5 @@
 %p
-  #{@resource.name} has been created by #{@resource.created_by.full_name} on #{I18n.l(@resource.created_at)}.
+  #{@resource.name} has been created by #{@resource.creator_name} on #{I18n.l(@resource.created_at)}.
 
 - @versions.each_with_index do |version, index|
   %hr/

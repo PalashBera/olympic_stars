@@ -89,11 +89,11 @@
             = "#{error_message}. "
 
     .col-md-6.col-lg-4.mb-3
-      = f.label :mother_phone, class: "form-label"
-      = f.text_field :mother_phone, placeholder: "Enter mother phone number", class: "form-control"
-      - if resource.errors.include?(:mother_phone)
+      = f.label :mother_phone_number, class: "form-label"
+      = f.text_field :mother_phone_number, placeholder: "Enter mother phone number", class: "form-control"
+      - if resource.errors.include?(:mother_phone_number)
         .secondary-text.text-danger
-          - resource.errors.full_messages_for(:mother_phone).each do |error_message|
+          - resource.errors.full_messages_for(:mother_phone_number).each do |error_message|
             = "#{error_message}. "
 
     .col-md-6.col-lg-4.mb-3
@@ -113,11 +113,11 @@
             = "#{error_message}. "
 
     .col-md-6.col-lg-4.mb-3
-      = f.label :father_phone, class: "form-label"
-      = f.text_field :father_phone, placeholder: "Enter father phone number", class: "form-control"
-      - if resource.errors.include?(:father_phone)
+      = f.label :father_phone_number, class: "form-label"
+      = f.text_field :father_phone_number, placeholder: "Enter father phone number", class: "form-control"
+      - if resource.errors.include?(:father_phone_number)
         .secondary-text.text-danger
-          - resource.errors.full_messages_for(:father_phone).each do |error_message|
+          - resource.errors.full_messages_for(:father_phone_number).each do |error_message|
             = "#{error_message}. "
 
     .col-12.mb-3

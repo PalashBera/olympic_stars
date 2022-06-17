@@ -8,7 +8,7 @@ module Coaching
 
     def index
       @search = current_account.groups.ransack(params[:q])
-      @pagy, @groups = pagy(@search.result)
+      @pagy, @groups = pagy(@search.result.includes(included_resources))
     end
 
     def show
@@ -55,6 +55,10 @@ module Coaching
 
     def group
       @group ||= current_account.groups.find(params[:id])
+    end
+
+    def included_resources
+      %i[teacher client_type]
     end
   end
 end

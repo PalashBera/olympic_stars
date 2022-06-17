@@ -23,7 +23,7 @@ class Group < ApplicationRecord
 
   scope :order_by_name, -> { order("LOWER(name)") }
 
-  def days
+  def schedule
     list = []
     list << "M" if monday?
     list << "T" if tuesday?

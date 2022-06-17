@@ -46,4 +46,27 @@
       padding: 5px 5px 5px 10px;
     }
   }
+
+  &.details-table {
+    margin-bottom: 0;
+    border: 1px solid $primary-bg-color;
+    border-radius: $default-border-radius;
+
+    tr td:first-child {
+      font-family: "AribauGroteskLight";
+      font-size: 12px;
+    }
+
+    tr td {
+      font-family: "AribauGroteskMedium";
+    }
+
+    tr:nth-child(odd) {
+      background-color: $light-grey-color;
+    }
+
+    tr:nth-child(even) {
+      background-color: $white-color;
+    }
+  }
 }

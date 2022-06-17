@@ -103,10 +103,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_071915) do
     t.date "registration_date", null: false
     t.string "mother_name", limit: 255, default: "", null: false
     t.string "mother_email", limit: 255, default: "", null: false
-    t.string "mother_phone", limit: 255
+    t.string "mother_phone_number", limit: 255
     t.string "father_name", limit: 255, default: "", null: false
     t.string "father_email", limit: 255, default: "", null: false
-    t.string "father_phone", limit: 255
+    t.string "father_phone_number", limit: 255
     t.text "address", default: ""
     t.text "remarks", default: ""
     t.boolean "pro_client", default: false, null: false

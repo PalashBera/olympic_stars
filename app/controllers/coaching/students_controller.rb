@@ -8,7 +8,7 @@ module Coaching
 
     def index
       @search = current_account.students.ransack(params[:q])
-      @pagy, @students = pagy(@search.result)
+      @pagy, @students = pagy(@search.result.includes(included_resources))
     end
 
     def show
@@ -49,14 +49,18 @@ module Coaching
     private
 
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :father_name, :mother_name, :father_email,
-                                      :mother_email, :address, :father_phone, :mother_phone, :date_of_birth,
+      params.require(:student).permit(:first_name, :last_name, :father_name, :mother_name, :father_email, :mother_email,
+                                      :address, :father_phone_number, :mother_phone_number, :date_of_birth,
                                       :registration_date, :archived, :facebook, :pro_client, :remarks, :fee_id,
                                       :client_type_id, :student_code, :allergies, :school_name)
     end
 
     def student
       @student ||= current_account.students.find(params[:id])
+    end
+
+    def included_resources
+      %i[fee client_type]
     end
   end
 end

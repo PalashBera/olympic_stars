@@ -6,7 +6,7 @@ class Student < ApplicationRecord
 
   strip_attributes only: %i[
     first_name last_name student_code school_name allergies mother_name
-    mother_email mother_phone father_name father_email father_phone
+    mother_email mother_phone_number father_name father_email father_phone_number
   ], collapse_spaces: true, replace_newlines: true
 
   belongs_to :account, counter_cache: true
@@ -22,7 +22,7 @@ class Student < ApplicationRecord
   validates :mother_email, :father_email, presence: true, length: { maximum: 255 },
                                           format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :date_of_birth, :registration_date, presence: true
-  validates :school_name, :allergies, :mother_phone, :father_phone, length: { maximum: 255 }
+  validates :school_name, :allergies, :mother_phone_number, :father_phone_number, length: { maximum: 255 }
   validates :pro_client, :facebook, inclusion: { in: [true, false] }
 
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
