@@ -42,16 +42,20 @@
 
               %tr
                 %td Wages per hour
-                %td= amount_with_currency(@teacher.wages_per_hour)
+                %td= @teacher.wages_per_hour_with_currency
 
               %tr
                 %td Wages per day
-                %td= amount_with_currency(@teacher.wages_per_day)
+                %td= @teacher.wages_per_day_with_currency
 
               %tr
                 %td Wages per month
-                %td= amount_with_currency(@teacher.wages_per_month)
+                %td= @teacher.wages_per_month_with_currency
 
               %tr
                 %td Availability
                 %td= raw(display_text(@teacher.availability))
+
+              %tr
+                %td Status
+                %td= @teacher.archived_status

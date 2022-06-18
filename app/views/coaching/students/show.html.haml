@@ -1,80 +1,104 @@
-- provide(:page_title, "Students")
-- provide(:page_header, "Students")
+- provide(:page_title, @student.full_name)
+- provide(:page_header, @student.full_name)
 
 .page-card
-  .h4= @student.full_name
+  .card-header.card-nav-header
+    %ul.nav.nav-tabs.card-header-tabs
+      %li.nav-item
+        = link_to "Details", coaching_student_path(@student), class: "nav-link active"
+      %li.nav-item
+        = link_to "Payments", "#", class: "nav-link"
 
   .page-card-body
-    .row
-      .col-4.mb-3
-        %h6 Date of Birth
-        %p= I18n.l(@student.date_of_birth, default: "")
+    .row.g-3
+      .col-lg-6
+        .table-responsive
+          %table.table.table-sm.details-table
+            %tbody
+              %tr
+                %td Name
+                %td= @student.full_name
 
-      .col-4.mb-3
-        %h6 School Name
-        %p= @student.school_name
+              %tr
+                %td Student Code
+                %td= @student.student_code
 
-      .col-4.mb-3
-        %h6 Student Code
-        %p= @student.student_code
+              %tr
+                %td Date of Birth
+                %td= I18n.l(@student.date_of_birth, default: "")
 
-    .row
-      .col-4.mb-3
-        %h6 Father Name
-        %p= @student.father_name
-      .col-4.mb-3
-        %h6 Father Phone
-        %p= @student.father_phone_number
-      .col-4.mb-3
-        %h6 Father Email
-        %p= @student.father_email
+              %tr
+                %td Client Type
+                %td= @student.client_type_name
 
+              %tr
+                %td Fee
+                %td= @student.fee_name
 
-    .row
-      .col-4.mb-3
-        %h6 Mother Name
-        %p= @student.mother_name
+              %tr
+                %td Fee Amount
+                %td= @student.fee_amount_with_currency
 
-      .col-4.mb-3
-        %h6 Mother Phone
-        %p= @student.mother_phone_number
+              %tr
+                %td Registration Date
+                %td= I18n.l(@student.registration_date, default: "")
 
-      .col-4.mb-3
-        %h6 Mother Email
-        %p= @student.mother_email
+              %tr
+                %td School Name
+                %td= @student.school_name
 
-    .row
-      .col-4.mb-3
-        %h6 Registration Date
-        %p= I18n.l(@student.registration_date, default: "")
+              %tr
+                %td Allergies
+                %td= @student.allergies
 
-      .col-4.mb-3
-        %h6 Client Type
-        %p= @student.client_type_name
+              %tr
+                %td Remarks
+                %td= raw(display_text(@student.remarks))
 
-      .col-4.mb-3
-        %h6 Fee
-        %p= @student.fee_name
+      .col-lg-6
+        .table-responsive
+          %table.table.table-sm.details-table
+            %tbody
+              %tr
+                %td Mother Name
+                %td= @student.mother_name
 
-    .row
-      .col-4.mb-3
-        %h6 Facebook
-        %p= @student.facebook
+              %tr
+                %td Mother Email
+                %td
+                  %a(href="mailto: #{@student.mother_email}")= @student.mother_email
 
-      .col-4.mb-3
-        %h6 Pro Client
-        %p= @student.pro_client
+              %tr
+                %td Mother Phone Number
+                %td
+                  %a(href="tel:#{@student.mother_phone_number}")= @student.mother_phone_number
 
-      .col-4.mb-3
-        %h6 Archived
-        %p= @student.archived_status
+              %tr
+                %td Father Name
+                %td= @student.father_name
 
+              %tr
+                %td Father Email
+                %td
+                  %a(href="mailto: #{@student.father_email}")= @student.father_email
 
-    .row
-      .col-12.mb-3
-        %h6 Address
-        %p= @student.address&.split("\n")&.join("<br />").to_s.html_safe
+              %tr
+                %td Father Phone Number
+                %td
+                  %a(href="tel:#{@student.father_phone_number}")= @student.father_phone_number
 
-      .col-12.mb-3
-        %h6 Remarks
-        %p= @student.remarks&.split("\n")&.join("<br />").to_s.html_safe
+              %tr
+                %td Address
+                %td= raw(display_text(@student.address))
+
+              %tr
+                %td Facebook
+                %td= @student.facebook.display
+
+              %tr
+                %td Pro Client
+                %td= @student.pro_client.display
+
+              %tr
+                %td Status
+                %td= @student.archived_status

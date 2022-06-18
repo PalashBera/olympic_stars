@@ -13,8 +13,9 @@ class Student < ApplicationRecord
   belongs_to :client_type
   belongs_to :fee
 
-  delegate :name, to: :client_type, prefix: true
-  delegate :name, to: :fee,         prefix: true
+  delegate :name,                 to: :client_type, prefix: true
+  delegate :name,                 to: :fee,         prefix: true
+  delegate :amount_with_currency, to: :fee,         prefix: true
 
   validates :first_name, :last_name, :mother_name, :father_name, presence: true, length: { maximum: 255 }
   validates :student_code, presence: true, length: { maximum: 255 },

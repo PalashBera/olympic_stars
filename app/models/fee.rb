@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Fee < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
   include UserTrackable
   include Archivable
 
@@ -15,4 +16,8 @@ class Fee < ApplicationRecord
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   scope :order_by_name, -> { order("LOWER(name)") }
+
+  def amount_with_currency
+    "$#{number_with_precision(amount, precision: 2, delimiter: ',')}" unless amount.blank?
+  end
 end

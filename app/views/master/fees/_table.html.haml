@@ -11,7 +11,7 @@
       - @fees.each do |fee|
         %tr
           %td{scope: "row"}= fee.name
-          %td= amount_with_currency(fee.amount)
+          %td= fee.amount_with_currency
           %td= fee.archived_status
           %td
             = link_to "Edit", edit_master_fee_path(fee), title: "Edit fee", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
