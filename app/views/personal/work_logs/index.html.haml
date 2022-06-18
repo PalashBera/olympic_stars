@@ -1,0 +1,22 @@
+- provide(:page_title, @teacher.full_name)
+- provide(:page_header, @teacher.full_name)
+
+.page-card
+  .card-header.card-nav-header
+    %ul.nav.nav-tabs.card-header-tabs
+      %li.nav-item
+        = link_to "Details", personal_teacher_path(@teacher), class: "nav-link"
+      %li.nav-item
+        = link_to "Work Logs", personal_teacher_work_logs_path(@teacher), class: "nav-link active"
+      %li.nav-item
+        = link_to "Payment Book", "#", class: "nav-link"
+.page-card
+  .page-card-header
+    = link_to "Add New", new_personal_teacher_work_log_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+
+  .page-card-body
+    - if @work_logs.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

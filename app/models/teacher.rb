@@ -12,6 +12,8 @@ class Teacher < ApplicationRecord
 
   belongs_to :account, counter_cache: true
 
+  has_many :work_logs, dependent: :destroy
+
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: URI::MailTo::EMAIL_REGEXP },
                     uniqueness: { case_sensitive: false, scope: :account_id }

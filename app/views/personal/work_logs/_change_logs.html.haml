@@ -1,0 +1,28 @@
+%p
+  Work log has been created by #{@work_log.creator_name} on #{I18n.l(@work_log.created_at)}.
+
+- @versions.each_with_index do |version, index|
+  %hr/
+
+  .secondary-text.mb-2
+    Change Log #{@versions.size - index} – Done by #{version.whodunnit} on #{I18n.l(version.created_at)}
+
+  .table-responsive
+    %table.table.table-sm
+      %thead
+        %th Field Name
+        %th Previous Value
+        %th Current Value
+
+      %tbody
+        - version.changeset.each do |key, value|
+          %tr
+            - if key == "date"
+              %td Date
+              %td= I18n.l(value[0], default: "")
+              %td= I18n.l(value[1], default: "")
+
+            - if key == "hours"
+              %td Hours
+              %td= number_with_precision(value[0], precision: 2)
+              %td= number_with_precision(value[1], precision: 2)

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get :change_logs, on: :member
     end
 
-    resources :teachers, concerns: :change_loggable
+    resources :teachers, concerns: :change_loggable do
+      resources :work_logs, except: :show, concerns: :change_loggable
+    end
   end
 end

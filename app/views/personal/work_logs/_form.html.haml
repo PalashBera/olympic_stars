@@ -1,0 +1,21 @@
+= form_for [:personal, @teacher, @work_log] do |f|
+  .row
+    .col-12.mb-3
+      = f.label :date, class: "form-label"
+      = f.date_field :date, placeholder: "Enter date", class: "form-control", max: Date.today
+      - if resource.errors.include?(:date)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:date).each do |error_message|
+            = "#{error_message}. "
+
+    .col-12.mb-3
+      = f.label :hours, class: "form-label"
+      = f.number_field :hours, value: display_form_amount(resource.hours), placeholder: "Enter hours", class: "form-control", step: 0.01, min: 0
+      - if resource.errors.include?(:hours)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:hours).each do |error_message|
+            = "#{error_message}. "
+
+  .actions.form-btn-group
+    %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"
