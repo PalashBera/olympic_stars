@@ -7,7 +7,7 @@
         %th{scope: "col"} Contact Numbers
         %th{scope: "col"} Wages
         %th{scope: "col"}= sort_link @search, :archived, "Status"
-        %th{scope: "col"} Actions
+        %th.text-center{scope: "col"} Actions
 
     %tbody
       - @teachers.each do |teacher|
@@ -15,7 +15,6 @@
           %td{scope: "row"}= link_to teacher.full_name, personal_teacher_path(teacher), title: "Show details"
           %td
             %a(href="mailto: #{teacher.email}")
-              %i.bi.bi-envelope-fill
               = teacher.email
           %td
             - if teacher.phone_number.present?
@@ -33,7 +32,7 @@
             %div= teacher.wages_per_day_with_currency
             %div= teacher.wages_per_month_with_currency
           %td= teacher.archived_status
-          %td
+          %td.text-center
             = link_to "Edit", edit_personal_teacher_path(teacher), title: "Edit teacher", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
             = link_to "History", change_logs_personal_teacher_path(teacher), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
             = link_to "Delete", personal_teacher_path(teacher), title: "Delete teacher", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the teacher?" }

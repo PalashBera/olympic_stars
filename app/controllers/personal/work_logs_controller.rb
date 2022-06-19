@@ -6,6 +6,7 @@ module Personal
 
     def index
       @search = teacher.work_logs.ransack(params[:q])
+      @search.sorts = "date desc" if @search.sorts.empty?
       @pagy, @work_logs = pagy(@search.result.includes(included_resources))
     end
 

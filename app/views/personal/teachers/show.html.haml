@@ -3,24 +3,16 @@
 
 .page-card
   .card-header.card-nav-header
-    %ul.nav.nav-tabs.card-header-tabs
-      %li.nav-item
-        = link_to "Details", personal_teacher_path(@teacher), class: "nav-link active"
-      %li.nav-item
-        = link_to "Work Logs", personal_teacher_work_logs_path(@teacher), class: "nav-link"
-      %li.nav-item
-        = link_to "Payment Book", "#", class: "nav-link"
+    = render "personal/shared/teacher_tabs", active_nav: "details"
 
   .page-card-body
+    .secondary-header.mb-3.mb-lg-4= @teacher.full_name
+
     .row.g-3
       .col-lg-6
         .table-responsive
           %table.table.table-sm.details-table
             %tbody
-              %tr
-                %td Name
-                %td= @teacher.full_name
-
               %tr
                 %td Email
                 %td
@@ -59,3 +51,23 @@
               %tr
                 %td Status
                 %td= @teacher.archived_status
+
+      .col-lg-6
+        .table-responsive
+          %table.table.table-sm.details-table
+            %tbody
+              %tr
+                %td This Week Work Hours
+                %td= @teacher.this_week_work_hours
+
+              %tr
+                %td This Month Work Hours
+                %td= @teacher.this_month_work_hours
+
+              %tr
+                %td This Year Work Hours
+                %td= @teacher.this_year_work_hours
+
+              %tr
+                %td Total Work Hours
+                %td= @teacher.total_work_hours

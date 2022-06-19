@@ -157,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "total_work_hours", precision: 12, scale: 2, default: "0.0", null: false
     t.index ["account_id"], name: "index_teachers_on_account_id"
     t.index ["created_by_id"], name: "index_teachers_on_created_by_id"
     t.index ["updated_by_id"], name: "index_teachers_on_updated_by_id"

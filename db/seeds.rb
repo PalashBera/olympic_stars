@@ -31,6 +31,12 @@ account.fees.create(name: "Summer Coaching 1 week", amount: 1000)
 account.fees.create(name: "Summer Coaching 2 week", amount: 1600)
 account.fees.create(name: "Summer Coaching 3 week", amount: 2600)
 
+account.payment_types.create(name: "Monthly Student Due")
+account.payment_types.create(name: "Registration Fee")
+account.payment_types.create(name: "Yearly Bonus")
+account.payment_types.create(name: "Monthly Staff Salary")
+account.payment_types.create(name: "Monthly Teacher Salary")
+
 100.times do |t|
   account.students.create(
     first_name: Faker::Name.first_name,
@@ -69,6 +75,12 @@ end
     wages_per_month: Faker::Number.decimal(l_digits: 2) * 1000,
     archived: Faker::Boolean.boolean
   )
+end
+
+account.teachers.each do |teacher|
+  [10, 15, 20, 25, 30].sample.times do |t|
+    teacher.work_logs.create(date: Faker::Date.backward(days: Faker::Number.number(digits: 2)), hours: Faker::Number.decimal(l_digits: 1))
+  end
 end
 
 40.times do |t|

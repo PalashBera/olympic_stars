@@ -6,6 +6,7 @@ class Group < ApplicationRecord
 
   strip_attributes only: %i[name quota start_time end_time], collapse_spaces: true,
                    replace_newlines: true
+  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   belongs_to :account, counter_cache: true
   belongs_to :client_type
@@ -18,8 +19,6 @@ class Group < ApplicationRecord
   validates :start_time, :end_time, presence: true, length: { maximum: 255 }
   validates :quota, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, inclusion: { in: [true, false] }
-
-  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   scope :order_by_name, -> { order("LOWER(name)") }
 

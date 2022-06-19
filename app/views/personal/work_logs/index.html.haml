@@ -3,18 +3,14 @@
 
 .page-card
   .card-header.card-nav-header
-    %ul.nav.nav-tabs.card-header-tabs
-      %li.nav-item
-        = link_to "Details", personal_teacher_path(@teacher), class: "nav-link"
-      %li.nav-item
-        = link_to "Work Logs", personal_teacher_work_logs_path(@teacher), class: "nav-link active"
-      %li.nav-item
-        = link_to "Payment Book", "#", class: "nav-link"
-.page-card
-  .page-card-header
-    = link_to "Add New", new_personal_teacher_work_log_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+    = render "personal/shared/teacher_tabs", active_nav: "work_logs"
 
   .page-card-body
+    .card-body-header.d-flex.justify-content-between.align-items-center
+      .secondary-header
+        Total Work Hours: #{@teacher.total_work_hours}
+      = link_to "Add New", new_personal_teacher_work_log_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+
     - if @work_logs.present?
       = render "table"
       = render "shared/pagy"

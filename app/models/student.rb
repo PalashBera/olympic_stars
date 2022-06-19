@@ -8,6 +8,7 @@ class Student < ApplicationRecord
     first_name last_name student_code school_name allergies mother_name
     mother_email mother_phone_number father_name father_email father_phone_number
   ], collapse_spaces: true, replace_newlines: true
+  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   belongs_to :account, counter_cache: true
   belongs_to :client_type
@@ -25,8 +26,6 @@ class Student < ApplicationRecord
   validates :date_of_birth, :registration_date, presence: true
   validates :school_name, :allergies, :mother_phone_number, :father_phone_number, length: { maximum: 255 }
   validates :pro_client, :facebook, inclusion: { in: [true, false] }
-
-  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   scope :order_by_first_name, -> { order("LOWER(first_name)") }
 
