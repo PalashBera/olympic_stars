@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :client_types, except: :show, concerns: :change_loggable
     resources :fees, except: :show, concerns: :change_loggable
     resources :payment_methods, except: :show, concerns: :change_loggable
+    resources :payment_types, except: :show, concerns: :change_loggable
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_125615) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_125615) do
     t.integer "teachers_count", default: 0, null: false
     t.integer "students_count", default: 0, null: false
     t.integer "groups_count", default: 0, null: false
+    t.bigint "payment_types_count", default: 0, null: false
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -93,21 +94,34 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_125615) do
     t.index ["updated_by_id"], name: "index_payment_methods_on_updated_by_id"
   end
 
+  create_table "payment_types", force: :cascade do |t|
+    t.string "name", limit: 255, default: "", null: false
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_payment_types_on_account_id"
+    t.index ["created_by_id"], name: "index_payment_types_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_payment_types_on_updated_by_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "first_name", limit: 255, default: "", null: false
     t.string "last_name", limit: 255, default: "", null: false
-    t.date "date_of_birth"
     t.string "student_code", limit: 255, default: "", null: false
-    t.string "school_name", limit: 255, default: "", null: false
+    t.date "date_of_birth", null: false
+    t.string "school_name", limit: 255, default: ""
+    t.string "allergies", limit: 255, default: ""
     t.date "registration_date", null: false
-    t.text "address", default: ""
-    t.string "allergies", limit: 255
     t.string "mother_name", limit: 255, default: "", null: false
     t.string "mother_email", limit: 255, default: "", null: false
-    t.string "mother_phone", limit: 255
+    t.string "mother_phone_number", limit: 255
     t.string "father_name", limit: 255, default: "", null: false
     t.string "father_email", limit: 255, default: "", null: false
-    t.string "father_phone", limit: 255
+    t.string "father_phone_number", limit: 255
+    t.text "address", default: ""
     t.text "remarks", default: ""
     t.boolean "pro_client", default: false, null: false
     t.boolean "facebook", default: false, null: false
@@ -130,12 +144,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_125615) do
     t.string "first_name", limit: 255, default: "", null: false
     t.string "last_name", limit: 255, default: "", null: false
     t.string "email", limit: 255, default: "", null: false
+    t.date "date_of_birth"
     t.string "phone_number", limit: 255
     t.string "mobile_number", limit: 255
-    t.decimal "wages_per_hour", precision: 12, scale: 2, default: "0.0"
-    t.decimal "wages_per_day", precision: 12, scale: 2, default: "0.0"
-    t.decimal "wages_per_month", precision: 12, scale: 2, default: "0.0"
-    t.date "date_of_birth"
+    t.decimal "wages_per_hour", precision: 12, scale: 2
+    t.decimal "wages_per_day", precision: 12, scale: 2
+    t.decimal "wages_per_month", precision: 12, scale: 2
     t.text "availability"
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
@@ -207,6 +221,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_125615) do
   add_foreign_key "groups", "client_types"
   add_foreign_key "groups", "teachers"
   add_foreign_key "payment_methods", "accounts"
+  add_foreign_key "payment_types", "accounts"
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"
   add_foreign_key "students", "fees"
