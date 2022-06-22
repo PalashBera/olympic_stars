@@ -22,14 +22,14 @@ class Group < ApplicationRecord
 
   scope :order_by_name, -> { order("LOWER(name)") }
 
-  def schedule
-    list = []
-    list << "M" if monday?
-    list << "T" if tuesday?
-    list << "W" if wednesday?
-    list << "Th" if thursday?
-    list << "F" if friday?
-    list << "S" if saturday?
-    list.join
+  def schedule_set
+    [
+      { day: "Monday", short_day: "M", checked: monday? },
+      { day: "Tuesday", short_day: "T", checked: tuesday? },
+      { day: "Wednesday", short_day: "W", checked: wednesday? },
+      { day: "Thursday", short_day: "Th", checked: thursday? },
+      { day: "Friday", short_day: "F", checked: friday? },
+      { day: "Saturday", short_day: "S", checked: saturday? }
+    ]
   end
 end

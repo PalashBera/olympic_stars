@@ -311,3 +311,22 @@
   font-family: "AribauGroteskMedium";
   font-size: 18px;
 }
+
+.schedule-set {
+  display: flex;
+  font-size: 10px;
+
+  .schedule {
+    display: flex;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 2px 5px;
+    border-radius: $default-border-radius;
+    background: $grey-bg-color;
+
+    &.checked {
+      color: $white-color;
+      background: $primary-color;
+    }
+  }
+}

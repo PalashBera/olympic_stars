@@ -18,7 +18,7 @@
           %td= group.teacher_full_name
           %td= group.client_type_name
           %td= group.quota
-          %td= group.schedule
+          %td= display_schedule_set(group)
           %td= "#{group.start_time} - #{group.end_time}"
           %td= group.archived_status
           %td.text-center
