@@ -45,6 +45,10 @@
                 %td= @teacher.wages_per_month_with_currency
 
               %tr
+                %td Assigned groups
+                %td= @teacher.assigned_groups
+
+              %tr
                 %td Availability
                 %td= raw(display_text(@teacher.availability))
 

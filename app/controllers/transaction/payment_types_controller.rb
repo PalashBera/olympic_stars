@@ -47,7 +47,7 @@ module Transaction
     private
 
     def payment_type_params
-      params.require(:payment_type).permit(:name, :archived)
+      params.require(:payment_type).permit(:name, :category, :archived)
     end
 
     def payment_type

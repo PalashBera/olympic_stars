@@ -3,7 +3,8 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
-        %th{scope: "col"}= sort_link @search, :amount, "Amount"
+        %th{scope: "col"}= sort_link @search, :fee, "Fee"
+        %th{scope: "col"} Students Count
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -11,7 +12,8 @@
       - @courses.each do |course|
         %tr
           %td{scope: "row"}= course.name
-          %td= course.amount_with_currency
+          %td= course.fee_with_currency
+          %td= course.students.size
           %td= course.archived_status
           %td.text-center
             = link_to "Edit", edit_coaching_course_path(course), title: "Edit course", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }

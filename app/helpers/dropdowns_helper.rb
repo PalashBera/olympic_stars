@@ -38,4 +38,8 @@ module DropdownsHelper
 
     dropdown_list
   end
+
+  def category_dropdown_list
+    PaymentType::CATEGORY_LIST.map { |el| [el.display, el] }
+  end
 end

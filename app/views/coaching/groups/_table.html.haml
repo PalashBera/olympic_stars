@@ -15,7 +15,7 @@
       - @groups.each do |group|
         %tr
           %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show details"
-          %td= group.teacher_full_name
+          %td= link_to group.teacher_full_name, personal_teacher_path(group.teacher_id), title: "Show teacher"
           %td= group.client_type_name
           %td= group.quota
           %td= display_schedule_set(group)

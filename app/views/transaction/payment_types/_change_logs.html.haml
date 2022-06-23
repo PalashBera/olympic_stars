@@ -22,6 +22,11 @@
               %td= value[0]
               %td= value[1]
 
+            - if key == "category"
+              %td Category
+              %td= value[0].display
+              %td= value[1].display
+
             - if key == "archived"
               %td Status
               %td= archive_status(value[0])

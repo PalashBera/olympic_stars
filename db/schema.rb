@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name", limit: 255, default: "", null: false
-    t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "fee", precision: 12, scale: 2, default: "0.0", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
     t.bigint "created_by_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
 
   create_table "payment_types", force: :cascade do |t|
     t.string "name", limit: 255, default: "", null: false
+    t.string "category", limit: 255, default: "", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
     t.bigint "created_by_id"

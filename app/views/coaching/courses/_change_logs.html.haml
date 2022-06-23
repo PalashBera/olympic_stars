@@ -22,10 +22,10 @@
               %td= value[0]
               %td= value[1]
 
-            - if key == "amount"
-              %td Amount
-              %td= number_with_precision(value[0], precision: 2)
-              %td= number_with_precision(value[1], precision: 2)
+            - if key == "fee"
+              %td Fee
+              %td= display_amount(value[0])
+              %td= display_amount(value[1])
 
             - if key == "archived"
               %td Status

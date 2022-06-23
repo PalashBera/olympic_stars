@@ -7,6 +7,14 @@
         - resource.errors.full_messages_for(:name).each do |error_message|
           = "#{error_message}. "
 
+  .mb-3
+    = f.label :category, class: "form-label required"
+    = f.select :category, category_dropdown_list, { prompt: "Select category" }, { class: "form-control", required: true }
+    - if resource.errors.include?(:category)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:category).each do |error_message|
+          = "#{error_message}. "
+
   .form-check
     = f.check_box :archived, class: "form-check-input"
     = f.label :archived, class: "form-check-label"

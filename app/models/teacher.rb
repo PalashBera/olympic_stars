@@ -14,6 +14,7 @@ class Teacher < ApplicationRecord
   belongs_to :account, counter_cache: true
 
   has_many :work_logs, dependent: :destroy
+  has_many :groups,    dependent: :destroy
 
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: URI::MailTo::EMAIL_REGEXP },
@@ -51,5 +52,9 @@ class Teacher < ApplicationRecord
 
   def wages_per_month_with_currency
     "$#{number_with_precision(wages_per_month, precision: 2, delimiter: ',')}/month" unless wages_per_month.blank?
+  end
+
+  def assigned_groups
+    groups.pluck(:name).join(", ")
   end
 end

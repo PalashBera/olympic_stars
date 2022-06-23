@@ -45,7 +45,7 @@ module Coaching
     private
 
     def course_params
-      params.require(:course).permit(:name, :amount, :archived)
+      params.require(:course).permit(:name, :fee, :archived)
     end
 
     def course

@@ -21,7 +21,7 @@
 
               %tr
                 %td Teacher
-                %td= @group.teacher_full_name
+                %td= link_to @group.teacher_full_name, personal_teacher_path(@group.teacher_id), title: "Show teacher"
 
               %tr
                 %td Client Type

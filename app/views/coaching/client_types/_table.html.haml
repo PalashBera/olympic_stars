@@ -3,6 +3,7 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"} Students Count
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -10,6 +11,7 @@
       - @client_types.each do |client_type|
         %tr
           %td{scope: "row"}= client_type.name
+          %td= client_type.students.size
           %td= client_type.archived_status
           %td.text-center
             = link_to "Edit", edit_coaching_client_type_path(client_type), title: "Edit client type", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
