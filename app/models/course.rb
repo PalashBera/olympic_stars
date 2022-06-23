@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Fee < ApplicationRecord
+class Course < ApplicationRecord
   include ActionView::Helpers::NumberHelper
   include UserTrackable
   include Archivable

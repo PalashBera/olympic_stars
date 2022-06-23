@@ -1,4 +1,4 @@
-= form_for [:master, resource] do |f|
+= form_for [:coaching, resource] do |f|
   .mb-3
     = f.label :name, class: "form-label required"
     = f.text_field :name, autofocus: true, placeholder: "Enter name", class: "form-control", required: true, maxlength: 255
@@ -12,5 +12,5 @@
     = f.label :archived, class: "form-check-label"
 
   .actions.form-btn-group
-    = link_to "Cancel", master_payment_methods_path, title: "Cancel", class: "btn btn-light ms-0"
+    = link_to "Cancel", coaching_client_types_path, title: "Cancel", class: "btn btn-light ms-0"
     = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

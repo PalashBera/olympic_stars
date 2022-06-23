@@ -5,7 +5,7 @@ class Account < ApplicationRecord
   has_paper_trail only: %i[name time_zone]
 
   has_many :client_types, dependent: :destroy
-  has_many :fees, dependent: :destroy
+  has_many :courses, dependent: :destroy
   has_many :payment_methods, dependent: :destroy
   has_many :teachers, dependent: :destroy
   has_many :students, dependent: :destroy

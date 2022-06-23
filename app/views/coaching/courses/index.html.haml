@@ -1,0 +1,13 @@
+- provide(:page_title, "Courses")
+- provide(:page_header, "Courses")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_coaching_course_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new course"
+
+  .page-card-body
+    - if @courses.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

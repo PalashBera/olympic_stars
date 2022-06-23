@@ -6,7 +6,7 @@
         %th{scope: "col"}= sort_link @search, :student_code, "Student Code"
         %th{scope: "col"}= sort_link @search, :date_of_birth, "Date of Birth"
         %th{scope: "col"}= sort_link @search, :client_type_name, "Client Type"
-        %th{scope: "col"}= sort_link @search, :fee_amount, "Fee Amount"
+        %th{scope: "col"}= sort_link @search, :course_amount, "Course Amount"
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -17,7 +17,7 @@
           %td= student.student_code
           %td= I18n.l(student.date_of_birth)
           %td= student.client_type_name
-          %td= student.fee_amount_with_currency
+          %td= student.course_amount_with_currency
           %td= student.archived_status
           %td.text-center
             = link_to "Edit", edit_coaching_student_path(student), title: "Edit student", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }

@@ -22,14 +22,14 @@ account.client_types.create(name: "Kids")
 account.client_types.create(name: "Kids Advance")
 account.client_types.create(name: "Teens")
 
-account.fees.create(name: "2 days a week", amount: 1500)
-account.fees.create(name: "3 days a week", amount: 1950)
-account.fees.create(name: "4 days a week", amount: 2350)
-account.fees.create(name: "5 days a week", amount: 2700)
-account.fees.create(name: "6 days a week", amount: 2900)
-account.fees.create(name: "Summer Coaching 1 week", amount: 1000)
-account.fees.create(name: "Summer Coaching 2 week", amount: 1600)
-account.fees.create(name: "Summer Coaching 3 week", amount: 2600)
+account.courses.create(name: "2 days a week", amount: 1500)
+account.courses.create(name: "3 days a week", amount: 1950)
+account.courses.create(name: "4 days a week", amount: 2350)
+account.courses.create(name: "5 days a week", amount: 2700)
+account.courses.create(name: "6 days a week", amount: 2900)
+account.courses.create(name: "Summer Coaching 1 week", amount: 1000)
+account.courses.create(name: "Summer Coaching 2 week", amount: 1600)
+account.courses.create(name: "Summer Coaching 3 week", amount: 2600)
 
 account.payment_types.create(name: "Monthly Student Due")
 account.payment_types.create(name: "Registration Fee")
@@ -58,7 +58,7 @@ account.payment_types.create(name: "Monthly Teacher Salary")
     facebook: Faker::Boolean.boolean,
     archived: Faker::Boolean.boolean,
     client_type_id: account.client_types.sample.id,
-    fee_id: account.fees.sample.id
+    course_id: account.courses.sample.id
   )
 end
 

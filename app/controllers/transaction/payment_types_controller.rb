@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Master
-  class PaymentTypesController < Master::HomeController
+module Transaction
+  class PaymentTypesController < Transaction::HomeController
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("payment_types") }
@@ -19,7 +19,8 @@ module Master
       @payment_type = current_account.payment_types.new(payment_type_params)
 
       if @payment_type.save
-        redirect_to master_payment_types_path, flash: { success: t("flash_messages.created", name: "Payment type") }
+        redirect_to transaction_payment_types_path,
+                    flash: { success: t("flash_messages.created", name: "Payment type") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -31,7 +32,8 @@ module Master
 
     def update
       if payment_type.update(payment_type_params)
-        redirect_to master_payment_types_path, flash: { success: t("flash_messages.updated", name: "Payment type") }
+        redirect_to transaction_payment_types_path,
+                    flash: { success: t("flash_messages.updated", name: "Payment type") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -39,7 +41,7 @@ module Master
 
     def destroy
       payment_type.destroy
-      redirect_to master_payment_types_path, flash: { danger: t("flash_messages.deleted", name: "Payment type") }
+      redirect_to transaction_payment_types_path, flash: { danger: t("flash_messages.deleted", name: "Payment type") }
     end
 
     private

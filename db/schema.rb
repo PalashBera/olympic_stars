@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.bigint "client_types_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "fees_count", default: 0, null: false
+    t.bigint "courses_count", default: 0, null: false
     t.integer "payment_methods_count", default: 0, null: false
     t.integer "teachers_count", default: 0, null: false
     t.integer "students_count", default: 0, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.index ["updated_by_id"], name: "index_client_types_on_updated_by_id"
   end
 
-  create_table "fees", force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
     t.string "name", limit: 255, default: "", null: false
     t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
     t.boolean "archived", default: false, null: false
@@ -50,9 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_fees_on_account_id"
-    t.index ["created_by_id"], name: "index_fees_on_created_by_id"
-    t.index ["updated_by_id"], name: "index_fees_on_updated_by_id"
+    t.index ["account_id"], name: "index_courses_on_account_id"
+    t.index ["created_by_id"], name: "index_courses_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_courses_on_updated_by_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -128,15 +128,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
     t.bigint "client_type_id", null: false
-    t.bigint "fee_id", null: false
+    t.bigint "course_id", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_students_on_account_id"
     t.index ["client_type_id"], name: "index_students_on_client_type_id"
+    t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["created_by_id"], name: "index_students_on_created_by_id"
-    t.index ["fee_id"], name: "index_students_on_fee_id"
     t.index ["updated_by_id"], name: "index_students_on_updated_by_id"
   end
 
@@ -217,7 +217,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
   end
 
   add_foreign_key "client_types", "accounts"
-  add_foreign_key "fees", "accounts"
+  add_foreign_key "courses", "accounts"
   add_foreign_key "groups", "accounts"
   add_foreign_key "groups", "client_types"
   add_foreign_key "groups", "teachers"
@@ -225,7 +225,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
   add_foreign_key "payment_types", "accounts"
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"
-  add_foreign_key "students", "fees"
+  add_foreign_key "students", "courses"
   add_foreign_key "teachers", "accounts"
   add_foreign_key "work_logs", "teachers"
 end

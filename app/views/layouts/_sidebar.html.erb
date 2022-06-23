@@ -27,6 +27,16 @@
           <span class="indicator"></span>
           <%= link_to "Groups", coaching_groups_path, class: "link" %>
         </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("client_types") %>">
+          <span class="indicator"></span>
+          <%= link_to "Client Types", coaching_client_types_path, class: "link" %>
+        </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("courses") %>">
+          <span class="indicator"></span>
+          <%= link_to "Courses", coaching_courses_path, class: "link" %>
+        </div>
       </div>
     </div>
 
@@ -45,30 +55,20 @@
     </div>
 
     <div class="sidebar-item-group">
-      <div class="sidebar-item <%= active_sidebar_item("master") %>">
+      <div class="sidebar-item <%= active_sidebar_item("transaction") %>">
         <span class="indicator"></span>
-        <span class="link">Master</span>
+        <span class="link">Transaction</span>
       </div>
 
       <div class="sidebar-sub-item-group hide">
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("client_types") %>">
-          <span class="indicator"></span>
-          <%= link_to "Client Types", master_client_types_path, class: "link" %>
-        </div>
-
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("fees") %>">
-          <span class="indicator"></span>
-          <%= link_to "Fees", master_fees_path, class: "link" %>
-        </div>
-
         <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
           <span class="indicator"></span>
-          <%= link_to "Payment Methods", master_payment_methods_path, class: "link" %>
+          <%= link_to "Payment Methods", transaction_payment_methods_path, class: "link" %>
         </div>
 
         <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_types") %>">
           <span class="indicator"></span>
-          <%= link_to "Payment Types", master_payment_types_path, class: "link" %>
+          <%= link_to "Payment Types", transaction_payment_types_path, class: "link" %>
         </div>
       </div>
     </div>

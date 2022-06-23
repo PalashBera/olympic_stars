@@ -13,13 +13,13 @@ module DropdownsHelper
     dropdown_list
   end
 
-  def fee_list(fee_id)
-    dropdown_list = current_account.fees.non_archived.order_by_name.pluck(:name, :id)
-    fee_ids = dropdown_list.map { |e| e[1] }
+  def course_list(course_id)
+    dropdown_list = current_account.courses.non_archived.order_by_name.pluck(:name, :id)
+    course_ids = dropdown_list.map { |e| e[1] }
 
-    if fee_id && !fee_ids.include?(fee_id)
-      fee = current_account.fees.find(fee_id)
-      dropdown_list.prepend([fee.name, fee.id])
+    if course_id && !course_ids.include?(course_id)
+      course = current_account.courses.find(course_id)
+      dropdown_list.prepend([course.name, course.id])
     end
 
     dropdown_list

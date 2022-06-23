@@ -65,11 +65,11 @@
             = "#{error_message}. "
 
     .col-md-6.col-lg-4.mb-3
-      = f.label :fee_id, class: "form-label required"
-      = f.select :fee_id, fee_list(@student.fee_id), { prompt: "Select fee" }, { class: "form-control", required: true }
-      - if resource.errors.include?(:fee_id)
+      = f.label :course_id, class: "form-label required"
+      = f.select :course_id, course_list(@student.course_id), { prompt: "Select course" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:course_id)
         .secondary-text.text-danger
-          - resource.errors.full_messages_for(:fee_id).each do |error_message|
+          - resource.errors.full_messages_for(:course_id).each do |error_message|
             = "#{error_message}. "
 
     .col-md-6.col-lg-4.mb-3

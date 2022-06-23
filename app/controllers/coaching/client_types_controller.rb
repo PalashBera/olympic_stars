@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Master
-  class ClientTypesController < Master::HomeController
+module Coaching
+  class ClientTypesController < Coaching::HomeController
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("client_types") }
@@ -19,7 +19,7 @@ module Master
       @client_type = current_account.client_types.new(client_type_params)
 
       if @client_type.save
-        redirect_to master_client_types_path, flash: { success: t("flash_messages.created", name: "Client type") }
+        redirect_to coaching_client_types_path, flash: { success: t("flash_messages.created", name: "Client type") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -31,7 +31,7 @@ module Master
 
     def update
       if client_type.update(client_type_params)
-        redirect_to master_client_types_path, flash: { success: t("flash_messages.updated", name: "Client type") }
+        redirect_to coaching_client_types_path, flash: { success: t("flash_messages.updated", name: "Client type") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -39,7 +39,7 @@ module Master
 
     def destroy
       client_type.destroy
-      redirect_to master_client_types_path, flash: { danger: t("flash_messages.deleted", name: "Client type") }
+      redirect_to coaching_client_types_path, flash: { danger: t("flash_messages.deleted", name: "Client type") }
     end
 
     private

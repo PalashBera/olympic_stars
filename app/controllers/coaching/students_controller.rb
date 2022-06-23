@@ -51,7 +51,7 @@ module Coaching
     def student_params
       params.require(:student).permit(:first_name, :last_name, :father_name, :mother_name, :father_email, :mother_email,
                                       :address, :father_phone_number, :mother_phone_number, :date_of_birth,
-                                      :registration_date, :archived, :facebook, :pro_client, :remarks, :fee_id,
+                                      :registration_date, :archived, :facebook, :pro_client, :remarks, :course_id,
                                       :client_type_id, :student_code, :allergies, :school_name)
     end
 
@@ -60,7 +60,7 @@ module Coaching
     end
 
     def included_resources
-      %i[fee client_type]
+      %i[course client_type]
     end
   end
 end

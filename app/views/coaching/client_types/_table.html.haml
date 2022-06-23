@@ -1,0 +1,17 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
+        %th.text-center{scope: "col"} Actions
+
+    %tbody
+      - @client_types.each do |client_type|
+        %tr
+          %td{scope: "row"}= client_type.name
+          %td= client_type.archived_status
+          %td.text-center
+            = link_to "Edit", edit_coaching_client_type_path(client_type), title: "Edit client type", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to "History", change_logs_coaching_client_type_path(client_type), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete", coaching_client_type_path(client_type), title: "Delete client type", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the client type?" }

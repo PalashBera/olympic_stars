@@ -1,6 +1,6 @@
-class CreateFees < ActiveRecord::Migration[7.0]
+class CreateCourses < ActiveRecord::Migration[7.0]
   def change
-    create_table :fees do |t|
+    create_table :courses do |t|
       t.string     :name,          null: false, default: "",   limit: 255
       t.decimal    :amount,        null: false, default: 0,    precision: 12, scale: 2
       t.boolean    :archived,      null: false, default: false
@@ -11,6 +11,6 @@ class CreateFees < ActiveRecord::Migration[7.0]
       t.timestamps null: false
     end
 
-    add_column :accounts, :fees_count, :bigint, default: 0, null: false
+    add_column :accounts, :courses_count, :bigint, default: 0, null: false
   end
 end
