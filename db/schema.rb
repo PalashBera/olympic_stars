@@ -144,7 +144,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_180056) do
   create_table "subscribers", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "group_id", null: false
-    t.string "state", limit: 255, default: "–"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false

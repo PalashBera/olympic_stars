@@ -5,6 +5,7 @@
         %th{scope: "col"}= sort_link @search, :first_name, "Name"
         %th{scope: "col"}= sort_link @search, :student_code, "Student Code"
         %th{scope: "col"}= sort_link @search, :date_of_birth, "Date of Birth"
+        %th{scope: "col"}= sort_link @search, :group_name, "Group"
         %th{scope: "col"}= sort_link @search, :client_type_name, "Client Type"
         %th{scope: "col"}= sort_link @search, :course_fee, "Course Fee"
         %th{scope: "col"}= sort_link @search, :archived, "Status"
@@ -16,6 +17,7 @@
           %td{scope: "row"}= link_to student.full_name, coaching_student_path(student), title: "Show details"
           %td= student.student_code
           %td= I18n.l(student.date_of_birth)
+          %td= student_group_link(student)
           %td= student.client_type_name
           %td= student.course_fee_with_currency
           %td= student.archived_status

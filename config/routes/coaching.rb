@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :courses,      except: :show, concerns: :change_loggable
 
     resources :groups, concerns: :change_loggable do
-      resources :subscribers, except: %i[show edit update], concerns: :change_loggable
+      resources :subscribers, except: %i[show edit update]
     end
   end
 end

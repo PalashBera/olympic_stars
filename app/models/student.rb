@@ -14,12 +14,13 @@ class Student < ApplicationRecord
   belongs_to :client_type
   belongs_to :course
 
-  has_many :subscribers, dependent: :destroy
-  has_many :groups, through: :subscribers
+  has_one :subscriber, dependent: :destroy
+  has_one :group, through: :subscriber
 
   delegate :name,              to: :client_type, prefix: true
   delegate :name,              to: :course,      prefix: true
   delegate :fee_with_currency, to: :course,      prefix: true
+  delegate :name,              to: :group,       prefix: true, allow_nil: true
 
   validates :first_name, :last_name, :mother_name, :father_name, presence: true, length: { maximum: 255 }
   validates :student_code, presence: true, length: { maximum: 255 },
@@ -31,7 +32,7 @@ class Student < ApplicationRecord
   validates :pro_client, :facebook, inclusion: { in: [true, false] }
 
   scope :order_by_first_name, -> { order("LOWER(first_name)") }
-  scope :available_for_subscription, -> { left_joins(:subscribers).where(subscribers: { id: nil }) }
+  scope :available_for_subscription, -> { left_joins(:subscriber).where(subscribers: { id: nil }) }
 
   def full_name
     [first_name, last_name].join(" ")

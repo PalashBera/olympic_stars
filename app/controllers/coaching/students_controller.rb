@@ -60,7 +60,7 @@ module Coaching
     end
 
     def included_resources
-      %i[course client_type]
+      %i[course client_type group]
     end
   end
 end

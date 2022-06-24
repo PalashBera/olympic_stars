@@ -5,7 +5,7 @@ module Coaching
     before_action { active_sidebar_sub_item_option("groups") }
 
     def index
-      @search = group.subscribers.joins({ student: :client_type }).ransack(params[:q])
+      @search = group.subscribers.ransack(params[:q])
       @pagy, @subscribers = pagy(@search.result.includes(included_resources))
     end
 
@@ -25,14 +25,9 @@ module Coaching
     end
 
     def destroy
-      subscriber.discard
+      subscriber.destroy
       redirect_to coaching_group_subscribers_path(group),
                   flash: { danger: t("flash_messages.deleted", name: "Subscriber") }
-    end
-
-    def change_logs
-      @versions = subscriber.versions.includes(:item).reverse
-      render "shared/change_logs"
     end
 
     private
@@ -50,7 +45,7 @@ module Coaching
     end
 
     def included_resources
-      [{ student: :client_type }]
+      [{ student: :client_type }, :created_by]
     end
   end
 end

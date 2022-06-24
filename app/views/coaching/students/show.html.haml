@@ -28,6 +28,10 @@
                 %td= I18n.l(@student.date_of_birth, default: "")
 
               %tr
+                %td Group
+                %td= student_group_link(@student)
+
+              %tr
                 %td Client Type
                 %td= @student.client_type_name
 

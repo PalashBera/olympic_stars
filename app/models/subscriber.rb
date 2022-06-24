@@ -2,7 +2,6 @@
 
 class Subscriber < ApplicationRecord
   include UserTrackable
-  include Discardable
 
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
