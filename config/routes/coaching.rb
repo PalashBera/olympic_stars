@@ -7,8 +7,11 @@ Rails.application.routes.draw do
     end
 
     resources :students,                    concerns: :change_loggable
-    resources :groups,                      concerns: :change_loggable
     resources :client_types, except: :show, concerns: :change_loggable
     resources :courses,      except: :show, concerns: :change_loggable
+
+    resources :groups, concerns: :change_loggable do
+      resources :subscribers, except: %i[show edit update], concerns: :change_loggable
+    end
   end
 end

@@ -12,6 +12,9 @@ class Group < ApplicationRecord
   belongs_to :client_type
   belongs_to :teacher
 
+  has_many :subscribers, dependent: :destroy
+  has_many :students, through: :subscribers
+
   delegate :name,      to: :client_type, prefix: true
   delegate :full_name, to: :teacher,     prefix: true
 

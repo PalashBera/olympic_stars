@@ -10,7 +10,5 @@ class CreatePaymentTypes < ActiveRecord::Migration[7.0]
 
       t.timestamps null: false
     end
-
-    add_column :accounts, :payment_types_count, :bigint, default: 0, null: false
   end
 end

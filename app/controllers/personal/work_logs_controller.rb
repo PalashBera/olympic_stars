@@ -2,7 +2,7 @@
 
 module Personal
   class WorkLogsController < Personal::HomeController
-    before_action { active_sidebar_sub_item_option("work_logs") }
+    before_action { active_sidebar_sub_item_option("teachers") }
 
     def index
       @search = teacher.work_logs.ransack(params[:q])
@@ -42,8 +42,7 @@ module Personal
     end
 
     def change_logs
-      @work_log = teacher.work_logs.find(params[:id])
-      @versions = @work_log.versions.includes(:item).reverse
+      @versions = work_log.versions.includes(:item).reverse
       render "shared/change_logs"
     end
 

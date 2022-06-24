@@ -1,0 +1,18 @@
+- provide(:page_title, @group.name)
+- provide(:page_header, @group.name)
+
+.page-card
+  .card-header.card-nav-header
+    = render "coaching/shared/group_tabs", active_nav: "subscribers"
+
+  .page-card-body
+    .card-body-header.d-flex.justify-content-between.align-items-center
+      .secondary-header
+        Total Subscribers: #{@group.subscribers.count}
+      = link_to "Add New", new_coaching_group_subscriber_path(@group), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+
+    - if @subscribers.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

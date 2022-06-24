@@ -20,7 +20,5 @@ class CreateGroups < ActiveRecord::Migration[7.0]
 
       t.timestamps null: false
     end
-
-    add_column :accounts, :groups_count, :integer, default: 0, null: false
   end
 end

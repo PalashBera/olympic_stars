@@ -14,6 +14,9 @@ class Student < ApplicationRecord
   belongs_to :client_type
   belongs_to :course
 
+  has_many :subscribers, dependent: :destroy
+  has_many :groups, through: :subscribers
+
   delegate :name,              to: :client_type, prefix: true
   delegate :name,              to: :course,      prefix: true
   delegate :fee_with_currency, to: :course,      prefix: true
@@ -28,6 +31,7 @@ class Student < ApplicationRecord
   validates :pro_client, :facebook, inclusion: { in: [true, false] }
 
   scope :order_by_first_name, -> { order("LOWER(first_name)") }
+  scope :available_for_subscription, -> { left_joins(:subscribers).where(subscribers: { id: nil }) }
 
   def full_name
     [first_name, last_name].join(" ")

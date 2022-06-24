@@ -42,4 +42,10 @@ module DropdownsHelper
   def category_dropdown_list
     PaymentType::CATEGORY_LIST.map { |el| [el.display, el] }
   end
+
+  def available_student_dropdown_list
+    current_account.students.available_for_subscription.non_archived.order_by_first_name.map do |el|
+      [el.full_name, el.id]
+    end
+  end
 end

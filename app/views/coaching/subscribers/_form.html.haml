@@ -1,0 +1,13 @@
+= form_for [:coaching, @group, @subscriber] do |f|
+  .row
+    .col-12.mb-3
+      = f.label :student_id, class: "form-label required"
+      = f.select :student_id, available_student_dropdown_list, { prompt: "Select student" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:student_id)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:student_id).each do |error_message|
+            = "#{error_message}. "
+
+  .actions.form-btn-group
+    %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

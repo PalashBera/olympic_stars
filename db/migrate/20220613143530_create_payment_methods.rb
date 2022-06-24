@@ -9,7 +9,5 @@ class CreatePaymentMethods < ActiveRecord::Migration[7.0]
 
       t.timestamps null: false
     end
-
-    add_column :accounts, :payment_methods_count, :integer, default: 0, null: false
   end
 end

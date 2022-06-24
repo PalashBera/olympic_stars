@@ -9,7 +9,5 @@ class CreateWorkLogs < ActiveRecord::Migration[7.0]
 
       t.timestamps null: false
     end
-
-    add_column :teachers, :total_work_hours, :decimal, null: false, default: 0, precision: 12, scale: 2
   end
 end

@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs.card-header-tabs
+  %li.nav-item
+    = link_to "Details", coaching_group_path(@group), class: "nav-link #{"active" if active_nav == "details"}"
+  %li.nav-item
+    = link_to "Subscribers", coaching_group_subscribers_path(@group), class: "nav-link #{"active" if active_nav == "subscribers"}"
+  %li.nav-item
+    = link_to "Attendance", "#", class: "nav-link"

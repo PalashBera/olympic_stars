@@ -9,7 +9,7 @@
     .card-body-header.d-flex.justify-content-between.align-items-center
       .secondary-header
         Total Work Hours: #{@teacher.total_work_hours}
-      = link_to "Add New", new_personal_teacher_work_log_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+      = link_to "Add New", new_personal_teacher_work_log_path(@teacher), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
 
     - if @work_logs.present?
       = render "table"

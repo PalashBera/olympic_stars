@@ -3,22 +3,16 @@
 
 .page-card
   .card-header.card-nav-header
-    %ul.nav.nav-tabs.card-header-tabs
-      %li.nav-item
-        = link_to "Details", coaching_group_path(@group), class: "nav-link active"
-      %li.nav-item
-        = link_to "Attendance", "#", class: "nav-link"
+    = render "coaching/shared/group_tabs", active_nav: "details"
 
   .page-card-body
+    .secondary-header.mb-3.mb-lg-4= @group.name
+
     .row.g-3
       .col-lg-6
         .table-responsive
           %table.table.table-sm.details-table
             %tbody
-              %tr
-                %td Name
-                %td= @group.name
-
               %tr
                 %td Teacher
                 %td= link_to @group.teacher_full_name, personal_teacher_path(@group.teacher_id), title: "Show teacher"

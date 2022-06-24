@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_23_180056) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,14 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.string "name", limit: 255, default: "", null: false
     t.string "time_zone", limit: 50, default: "UTC", null: false
     t.bigint "client_types_count", default: 0, null: false
+    t.bigint "courses_count", default: 0, null: false
+    t.bigint "payment_methods_count", default: 0, null: false
+    t.bigint "teachers_count", default: 0, null: false
+    t.bigint "students_count", default: 0, null: false
+    t.bigint "groups_count", default: 0, null: false
+    t.bigint "payment_types_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "courses_count", default: 0, null: false
-    t.integer "payment_methods_count", default: 0, null: false
-    t.integer "teachers_count", default: 0, null: false
-    t.integer "students_count", default: 0, null: false
-    t.integer "groups_count", default: 0, null: false
-    t.bigint "payment_types_count", default: 0, null: false
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -141,6 +141,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.index ["updated_by_id"], name: "index_students_on_updated_by_id"
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "group_id", null: false
+    t.string "state", limit: 255, default: "–"
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_subscribers_on_created_by_id"
+    t.index ["group_id"], name: "index_subscribers_on_group_id"
+    t.index ["student_id"], name: "index_subscribers_on_student_id"
+    t.index ["updated_by_id"], name: "index_subscribers_on_updated_by_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string "first_name", limit: 255, default: "", null: false
     t.string "last_name", limit: 255, default: "", null: false
@@ -153,12 +167,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
     t.decimal "wages_per_month", precision: 12, scale: 2
     t.text "availability"
     t.boolean "archived", default: false, null: false
+    t.decimal "total_work_hours", precision: 12, scale: 2, default: "0.0", null: false
     t.bigint "account_id", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "total_work_hours", precision: 12, scale: 2, default: "0.0", null: false
     t.index ["account_id"], name: "index_teachers_on_account_id"
     t.index ["created_by_id"], name: "index_teachers_on_created_by_id"
     t.index ["updated_by_id"], name: "index_teachers_on_updated_by_id"
@@ -227,6 +241,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_052006) do
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"
   add_foreign_key "students", "courses"
+  add_foreign_key "subscribers", "groups"
+  add_foreign_key "subscribers", "students"
   add_foreign_key "teachers", "accounts"
   add_foreign_key "work_logs", "teachers"
 end

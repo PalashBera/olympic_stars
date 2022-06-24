@@ -83,7 +83,7 @@ account.teachers.each do |teacher|
   end
 end
 
-40.times do |t|
+20.times do |t|
   number = Faker::Number.between(from: 7, to: 20)
   duration = Faker::Number.between(from: 1, to: 3)
 
@@ -102,4 +102,11 @@ end
     teacher_id: account.teachers.sample.id,
     client_type_id: account.client_types.sample.id
   )
+end
+
+account.groups.each do |group|
+  5.times do |t|
+    student = account.students.available_for_subscription.sample
+    group.subscribers.create(student_id: student&.id)
+  end
 end

@@ -1,0 +1,21 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :student_first_name, "Name"
+        %th{scope: "col"}= sort_link @search, :student_student_code, "Student Code"
+        %th{scope: "col"}= sort_link @search, :student_date_of_birth, "Date of Birth"
+        %th{scope: "col"}= sort_link @search, :student_client_type_name, "Client Type"
+        %th.text-center{scope: "col"} Actions
+
+    %tbody
+      - @subscribers.each do |subscriber|
+        %tr
+          %td{scope: "row"}= link_to subscriber.student_full_name, coaching_student_path(subscriber.student_id), title: "Show details"
+          %td= subscriber.student_student_code
+          %td= I18n.l(subscriber.student_date_of_birth)
+          %td= subscriber.student_client_type_name
+
+          %td.text-center
+            = link_to "History", change_logs_coaching_group_subscriber_path(subscriber.group_id, subscriber), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+            = link_to "Delete",  coaching_group_subscriber_path(subscriber.group_id, subscriber), title: "Delete subscriber", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the subscriber?" }
