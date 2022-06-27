@@ -8,7 +8,7 @@
   .page-card-body
     .secondary-header.mb-3.mb-lg-4= @group.name
 
-    .row.g-3
+    .row.g-5
       .col-lg-6
         .table-responsive
           %table.table.table-sm.details-table
@@ -36,3 +36,15 @@
               %tr
                 %td Status
                 %td= @group.archived_status
+
+      .col-lg-6
+        .table-responsive
+          %table.table.table-sm.details-table
+            %tbody
+              %tr
+                %td Subscribers
+                %td= @group.subscribers.size
+
+              %tr
+                %td Last Attendance Taken On
+                %td= I18n.l(@group.last_attendance&.date, default: "")

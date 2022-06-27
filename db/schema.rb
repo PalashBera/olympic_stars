@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_23_180056) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_27_125452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_180056) do
     t.bigint "payment_types_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.date "date", null: false
+    t.bigint "group_id", null: false
+    t.bigint "subscriber_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_attendances_on_created_by_id"
+    t.index ["group_id"], name: "index_attendances_on_group_id"
+    t.index ["subscriber_id"], name: "index_attendances_on_subscriber_id"
+    t.index ["updated_by_id"], name: "index_attendances_on_updated_by_id"
   end
 
   create_table "client_types", force: :cascade do |t|
@@ -230,6 +244,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_180056) do
     t.index ["updated_by_id"], name: "index_work_logs_on_updated_by_id"
   end
 
+  add_foreign_key "attendances", "groups"
+  add_foreign_key "attendances", "subscribers"
   add_foreign_key "client_types", "accounts"
   add_foreign_key "courses", "accounts"
   add_foreign_key "groups", "accounts"

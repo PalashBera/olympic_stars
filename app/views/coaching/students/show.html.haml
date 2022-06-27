@@ -10,7 +10,7 @@
         = link_to "Payments", "#", class: "nav-link"
 
   .page-card-body
-    .row.g-3
+    .row.g-5
       .col-lg-6
         .table-responsive
           %table.table.table-sm.details-table
@@ -106,3 +106,7 @@
               %tr
                 %td Status
                 %td= @student.archived_status
+
+              %tr
+                %td Last Attended On
+                %td= I18n.l(@student.last_attendance&.date, default: "")

@@ -14,6 +14,8 @@ class Group < ApplicationRecord
 
   has_many :subscribers, dependent: :destroy
   has_many :students, through: :subscribers
+  has_many :attendances, dependent: :destroy
+  has_one :last_attendance, -> { order(date: :desc) }, class_name: "Attendance"
 
   delegate :name,      to: :client_type, prefix: true
   delegate :full_name, to: :teacher,     prefix: true
@@ -35,4 +37,21 @@ class Group < ApplicationRecord
       { day: "Saturday", short_day: "S", checked: saturday? }
     ]
   end
+
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def schedule_dates(month, year)
+    start_date = Date.new(year.to_i, month.to_i, 1)
+    end_date = start_date.end_of_month
+
+    (start_date..end_date).select do |date|
+      (date.monday? && monday?) || (date.tuesday? && tuesday?) ||
+        (date.wednesday? && wednesday?) || (date.thursday? && thursday?) ||
+        (date.friday? && friday?) || (date.saturday? && saturday?)
+    end
+  end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end

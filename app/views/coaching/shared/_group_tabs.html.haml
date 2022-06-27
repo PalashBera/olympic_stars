@@ -4,4 +4,4 @@
   %li.nav-item
     = link_to "Subscribers", coaching_group_subscribers_path(@group), class: "nav-link #{"active" if active_nav == "subscribers"}"
   %li.nav-item
-    = link_to "Attendance", "#", class: "nav-link"
+    = link_to "Attendance", coaching_group_attendances_path(@group), class: "nav-link #{"active" if active_nav == "attendances"}"

@@ -16,6 +16,7 @@ class Student < ApplicationRecord
 
   has_one :subscriber, dependent: :destroy
   has_one :group, through: :subscriber
+  has_one :last_attendance, through: :subscriber
 
   delegate :name,              to: :client_type, prefix: true
   delegate :name,              to: :course,      prefix: true

@@ -1,0 +1,16 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} Student Name
+
+        - @group.schedule_dates(@month, @year).each do |date|
+          %th.text-center.small-col{scope: "col"}= date.day.ordinalize
+
+    %tbody
+      - @subscribers.each do |subscriber|
+        %tr
+          %td{scope: "row"}= link_to subscriber.student_full_name, coaching_student_path(subscriber.student_id), title: "Show details"
+
+          - @group.schedule_dates(@month, @year).each do |date|
+            %td.text-center.small-col= attendance_link(subscriber, date, @attendances)

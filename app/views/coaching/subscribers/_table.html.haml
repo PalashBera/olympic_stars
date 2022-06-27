@@ -4,7 +4,7 @@
       %tr
         %th{scope: "col"}= sort_link @search, :student_first_name, "Name"
         %th{scope: "col"}= sort_link @search, :student_student_code, "Student Code"
-        %th{scope: "col"}= sort_link @search, :student_date_of_birth, "Date of Birth"
+        %th{scope: "col"}= sort_link @search, :student_course_name, "Course"
         %th{scope: "col"}= sort_link @search, :student_client_type_name, "Client Type"
         %th{scope: "col"}= sort_link @search, :created_by_first_name, "Added By"
         %th{scope: "col"}= sort_link @search, :created_at, "Added At"
@@ -15,7 +15,7 @@
         %tr
           %td{scope: "row"}= link_to subscriber.student_full_name, coaching_student_path(subscriber.student_id), title: "Show details"
           %td= subscriber.student_student_code
-          %td= I18n.l(subscriber.student_date_of_birth)
+          %td= subscriber.student_course_name
           %td= subscriber.student_client_type_name
           %td= subscriber.creator_name
           %td= I18n.l(subscriber.created_at)

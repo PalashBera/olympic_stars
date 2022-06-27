@@ -48,4 +48,16 @@ module DropdownsHelper
       [el.full_name, el.id]
     end
   end
+
+  def month_dropdown_list
+    [
+      ["January", 1], ["February", 2], ["March", 3], ["April", 4],
+      ["May", 5], ["June", 6], ["July", 7], ["August", 8],
+      ["September", 9], ["October", 10], ["November", 11], ["December", 12]
+    ]
+  end
+
+  def year_dropdown_list
+    (2010..Date.current.year).to_a.reverse
+  end
 end

@@ -1,0 +1,26 @@
+- provide(:page_title, @group.name)
+- provide(:page_header, @group.name)
+
+.page-card
+  .card-header.card-nav-header
+    = render "coaching/shared/group_tabs", active_nav: "attendances"
+
+  .page-card-body
+    .card-body-header
+      = form_tag coaching_group_attendances_path(@group), method: :get, class: "search-form" do
+        .row.g-3
+          .col-3
+            = label_tag :month, "Month", class: "form-label"
+            = select_tag :month, options_for_select(month_dropdown_list, @month.to_i), class:"form-control"
+
+          .col-3
+            = label_tag :year, "Year", class: "form-label"
+            = select_tag :year, options_for_select(year_dropdown_list, @year.to_i), class:"form-control"
+
+          .col-3.d-flex.align-items-end
+            = submit_tag "Filter", class: "btn btn-primary"
+
+    - if @subscribers.present?
+      = render "table"
+    - else
+      = render "shared/empty_record"

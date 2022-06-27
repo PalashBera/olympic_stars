@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :groups, concerns: :change_loggable do
       resources :subscribers, except: %i[show edit update]
+      resources :attendances, only: %i[index create destroy]
     end
   end
 end

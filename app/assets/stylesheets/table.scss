@@ -14,6 +14,15 @@
     max-width: 300px;
     border-bottom: 2px solid $primary-color;
     font-family: "AribauGroteskBold";
+
+    &.small-col {
+      min-width: 40px;
+      padding-left: 3px;
+      padding-right: 3px;
+      // width: 40px;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
   }
 
   tbody {
@@ -27,6 +36,15 @@
     vertical-align: middle;
     border: 0;
     font-family: "AribauGroteskRegular";
+
+    &.small-col {
+      min-width: 40px;
+      padding-left: 3px;
+      padding-right: 3px;
+      // width: 40px;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
   }
 
   tr td:first-child {

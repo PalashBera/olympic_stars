@@ -45,7 +45,7 @@ module Coaching
     end
 
     def included_resources
-      [{ student: :client_type }, :created_by]
+      [{ student: %i[client_type course] }, :created_by]
     end
   end
 end
