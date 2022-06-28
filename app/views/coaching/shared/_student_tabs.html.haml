@@ -1,0 +1,5 @@
+%ul.nav.nav-tabs.card-header-tabs
+  %li.nav-item
+    = link_to "Details", coaching_student_path(@student), class: "nav-link #{"active" if active_nav == "details"}"
+  %li.nav-item
+    = link_to "Payments", coaching_student_payments_path(@student), class: "nav-link #{"active" if active_nav == "payments"}"

@@ -31,11 +31,11 @@ account.courses.create(name: "Summer Coaching 1 week", fee: 1000)
 account.courses.create(name: "Summer Coaching 2 week", fee: 1600)
 account.courses.create(name: "Summer Coaching 3 week", fee: 2600)
 
-account.payment_types.create(name: "Monthly Student Due")
-account.payment_types.create(name: "Registration Fee")
-account.payment_types.create(name: "Yearly Bonus")
-account.payment_types.create(name: "Monthly Staff Salary")
-account.payment_types.create(name: "Monthly Teacher Salary")
+account.payment_types.create(name: "Monthly Student Due", category: PaymentType::CATEGORY_LIST.sample)
+account.payment_types.create(name: "Registration Fee", category: PaymentType::CATEGORY_LIST.sample)
+account.payment_types.create(name: "Yearly Bonus", category: PaymentType::CATEGORY_LIST.sample)
+account.payment_types.create(name: "Monthly Staff Salary", category: PaymentType::CATEGORY_LIST.sample)
+account.payment_types.create(name: "Monthly Teacher Salary", category: PaymentType::CATEGORY_LIST.sample)
 
 100.times do |t|
   account.students.create(

@@ -39,7 +39,35 @@ module DropdownsHelper
     dropdown_list
   end
 
-  def category_dropdown_list
+  def payment_type_list(payment_type_id)
+    dropdown_list = current_account.payment_types.non_archived.order_by_name.pluck(:name, :id)
+    payment_type_ids = dropdown_list.map { |e| e[1] }
+
+    if payment_type_id && !payment_type_ids.include?(payment_type_id)
+      payment_type = current_account.payment_types.find(payment_type_id)
+      dropdown_list.prepend([payment_type.name, payment_type.id])
+    end
+
+    dropdown_list
+  end
+
+  def payment_method_list(payment_method_id)
+    dropdown_list = current_account.payment_methods.non_archived.order_by_name.pluck(:name, :id)
+    payment_method_ids = dropdown_list.map { |e| e[1] }
+
+    if payment_method_id && !payment_method_ids.include?(payment_method_id)
+      payment_method = current_account.payment_methods.find(payment_method_id)
+      dropdown_list.prepend([payment_method.name, payment_method.id])
+    end
+
+    dropdown_list
+  end
+
+  def payment_status_dropdown_list
+    Payment::STATUS_LIST.map { |el| [el.display, el] }
+  end
+
+  def payment_type_category_dropdown_list
     PaymentType::CATEGORY_LIST.map { |el| [el.display, el] }
   end
 

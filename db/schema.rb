@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_125452) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_122815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_125452) do
     t.index ["updated_by_id"], name: "index_groups_on_updated_by_id"
   end
 
+  create_table "incomes", force: :cascade do |t|
+    t.date "date", null: false
+    t.decimal "amount", precision: 12, scale: 2, null: false
+    t.string "income_resourcable_type", null: false
+    t.bigint "income_resourcable_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_incomes_on_created_by_id"
+    t.index ["income_resourcable_type", "income_resourcable_id"], name: "index_incomes_on_income_resourcable"
+    t.index ["updated_by_id"], name: "index_incomes_on_updated_by_id"
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "name", limit: 255, default: "", null: false
     t.boolean "archived", default: false, null: false
@@ -120,6 +134,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_125452) do
     t.index ["account_id"], name: "index_payment_types_on_account_id"
     t.index ["created_by_id"], name: "index_payment_types_on_created_by_id"
     t.index ["updated_by_id"], name: "index_payment_types_on_updated_by_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.date "date", null: false
+    t.decimal "amount", precision: 12, scale: 2, null: false
+    t.decimal "discount", precision: 12, scale: 2
+    t.string "details", limit: 255
+    t.string "status", limit: 255, default: "created", null: false
+    t.string "payable_type", null: false
+    t.bigint "payable_id", null: false
+    t.bigint "payment_type_id", null: false
+    t.bigint "payment_method_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_payments_on_created_by_id"
+    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable"
+    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
+    t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
+    t.index ["updated_by_id"], name: "index_payments_on_updated_by_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -253,6 +288,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_125452) do
   add_foreign_key "groups", "teachers"
   add_foreign_key "payment_methods", "accounts"
   add_foreign_key "payment_types", "accounts"
+  add_foreign_key "payments", "payment_methods"
+  add_foreign_key "payments", "payment_types"
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"
   add_foreign_key "students", "courses"

@@ -9,7 +9,7 @@
 
   .mb-3
     = f.label :category, class: "form-label required"
-    = f.select :category, category_dropdown_list, { prompt: "Select category" }, { class: "form-control", required: true }
+    = f.select :category, payment_type_category_dropdown_list, { prompt: "Select category" }, { class: "form-control", required: true }
     - if resource.errors.include?(:category)
       .secondary-text.text-danger
         - resource.errors.full_messages_for(:category).each do |error_message|
