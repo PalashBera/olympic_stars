@@ -11,6 +11,10 @@ module Coaching
       @pagy, @courses = pagy(@search.result)
     end
 
+    def show
+      course
+    end
+
     def new
       @course = current_account.courses.new
     end

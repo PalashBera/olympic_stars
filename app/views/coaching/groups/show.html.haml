@@ -19,7 +19,7 @@
 
               %tr
                 %td Client Type
-                %td= @group.client_type_name
+                %td= link_to @group.client_type_name, coaching_client_type_path(@group.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
                 %td Quota

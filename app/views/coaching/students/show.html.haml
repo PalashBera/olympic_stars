@@ -27,11 +27,11 @@
 
               %tr
                 %td Client Type
-                %td= @student.client_type_name
+                %td= link_to @student.client_type_name, coaching_client_type_path(@student.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
                 %td Course
-                %td= @student.course_name
+                %td= link_to @student.course_name, coaching_course_path(@student.course_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
                 %td Course Fee

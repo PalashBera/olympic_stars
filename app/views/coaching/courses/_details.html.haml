@@ -1,0 +1,18 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Name
+        %td= @course.name
+
+      %tr
+        %td Fee
+        %td= @course.fee_with_currency
+
+      %tr
+        %td Students Count
+        %td= @course.students.size
+
+      %tr
+        %td Status
+        %td= @course.archived_status

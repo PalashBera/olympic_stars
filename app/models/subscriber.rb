@@ -14,7 +14,9 @@ class Subscriber < ApplicationRecord
   delegate :full_name,        to: :student, prefix: true
   delegate :student_code,     to: :student, prefix: true
   delegate :client_type_name, to: :student, prefix: true
+  delegate :client_type_id,   to: :student, prefix: true
   delegate :course_name,      to: :student, prefix: true
+  delegate :course_id,        to: :student, prefix: true
 
   validates :student_id, uniqueness: { scope: :group_id }
 

@@ -15,8 +15,8 @@
         %tr
           %td{scope: "row"}= link_to subscriber.student_full_name, coaching_student_path(subscriber.student_id), title: "Show details"
           %td= subscriber.student_student_code
-          %td= subscriber.student_course_name
-          %td= subscriber.student_client_type_name
+          %td= link_to subscriber.student_course_name, coaching_course_path(subscriber.student_course_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= link_to subscriber.student_client_type_name, coaching_client_type_path(subscriber.student_client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= subscriber.creator_name
           %td= I18n.l(subscriber.created_at)
           %td.text-center= link_to "Delete",  coaching_group_subscriber_path(subscriber.group_id, subscriber), title: "Delete subscriber", class: "btn btn-danger-light btn-sm me-0", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the subscriber?" }

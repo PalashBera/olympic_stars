@@ -11,7 +11,7 @@ module LinksHelper
     if attendance
       absent_link(subscriber, attendance)
     else
-      present_link(subscriber)
+      present_link(subscriber, date)
     end
   end
 
@@ -25,10 +25,10 @@ module LinksHelper
             }
   end
 
-  def present_link(subscriber)
+  def present_link(subscriber, attend_date)
     link_to raw("<i class='text-danger bi bi-x-circle-fill'></i>"),
             coaching_group_attendances_path(group_id: subscriber.group_id, attendance: {
-                                              date:, subscriber_id: subscriber.id
+                                              date: attend_date, subscriber_id: subscriber.id
                                             }),
             title: "Mark present",
             data: {

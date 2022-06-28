@@ -11,6 +11,10 @@ module Coaching
       @pagy, @client_types = pagy(@search.result)
     end
 
+    def show
+      client_type
+    end
+
     def new
       @client_type = current_account.client_types.new
     end

@@ -17,7 +17,7 @@
         %tr
           %td{scope: "row"}= link_to group.name, coaching_group_path(group), title: "Show details"
           %td= link_to group.teacher_full_name, personal_teacher_path(group.teacher_id), title: "Show teacher"
-          %td= group.client_type_name
+          %td= link_to group.client_type_name, coaching_client_type_path(group.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= group.quota
           %td= group.subscribers.size
           %td= display_schedule_set(group)
