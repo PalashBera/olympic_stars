@@ -53,6 +53,18 @@
                 %td Remarks
                 %td= raw(display_text(@student.remarks))
 
+              %tr
+                %td Facebook
+                %td= @student.facebook.display
+
+              %tr
+                %td Pro Client
+                %td= @student.pro_client.display
+
+              %tr
+                %td Status
+                %td= @student.archived_status
+
       .col-lg-6
         .table-responsive
           %table.table.table-sm.details-table
@@ -90,20 +102,12 @@
                 %td= raw(display_text(@student.address))
 
               %tr
-                %td Facebook
-                %td= @student.facebook.display
-
-              %tr
-                %td Pro Client
-                %td= @student.pro_client.display
-
-              %tr
-                %td Status
-                %td= @student.archived_status
-
-              %tr
                 %td Last Attended On
                 %td= I18n.l(@student.last_attendance&.date, default: "")
+
+              %tr
+                %td Last Paid Amount
+                %td= amount_with_currency(@student.last_paid_payment&.total_amount)
 
               %tr
                 %td Last Paid On

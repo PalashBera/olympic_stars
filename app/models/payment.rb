@@ -9,9 +9,14 @@ class Payment < ApplicationRecord
   strip_attributes only: :details, collapse_spaces: true, replace_newlines: true
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
+  after_save :update_income_and_expense
+
   belongs_to :payment_type
   belongs_to :payment_method
   belongs_to :payable, polymorphic: true
+
+  has_one :income,  as: :income_resourcable,  dependent: :destroy
+  has_one :expense, as: :expense_resourcable, dependent: :destroy
 
   delegate :name, to: :payment_type,   prefix: true
   delegate :name, to: :payment_method, prefix: true
@@ -33,4 +38,35 @@ class Payment < ApplicationRecord
   def serial
     "P - #{id}"
   end
+
+  def associate_income
+    income || build_income
+  end
+
+  def associate_expense
+    expense || build_expense
+  end
+
+  def payment_date
+    date
+  end
+
+  private
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def update_income_and_expense
+    if paid? && payment_type.income?
+      expense&.destroy
+      associate_income.update(date: payment_date, amount: total_amount)
+    elsif paid? && payment_type.expense?
+      income&.destroy
+      associate_expense.update(date: payment_date, amount: total_amount)
+    else
+      income&.destroy
+      expense&.destroy
+    end
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end

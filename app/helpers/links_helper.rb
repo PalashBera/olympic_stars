@@ -36,4 +36,22 @@ module LinksHelper
               turbo_confirm: "Are you sure you want to mark present for #{subscriber.student_full_name}?"
             }
   end
+
+  def income_resource_link(resouce)
+    return unless resouce.is_a?(Payment)
+
+    link_to resouce.serial,
+            coaching_student_payment_path(resouce.payable_id, resouce.id),
+            title: "Show details",
+            data: { turbo_frame: "remote_modal_form" }
+  end
+
+  def expense_resource_link(resouce)
+    return unless resouce.is_a?(Payment)
+
+    link_to resouce.serial,
+            coaching_student_payment_path(resouce.payable_id, resouce.id),
+            title: "Show details",
+            data: { turbo_frame: "remote_modal_form" }
+  end
 end

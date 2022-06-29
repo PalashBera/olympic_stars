@@ -1,0 +1,26 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :date, "Date"
+        %th{scope: "col"}= sort_link @search, :amount, "Amount"
+        %th{scope: "col"} Payment Method
+        %th{scope: "col"} Resource
+        %th{scope: "col"} Payment Type
+        %th{scope: "col"}= sort_link @search, :created_by_first_name, "Created By"
+        %th{scope: "col"}= sort_link @search, :updated_by_first_name, "Updated By"
+        %th.text-center{scope: "col"} Actions
+
+    %tbody
+      - @expenses.each do |expense|
+        %tr
+          %td{scope: "row"}= I18n.l(expense.date, default: "")
+          %td= amount_with_currency(expense.amount)
+          %td= link_to expense.payment_method_name, transaction_payment_method_path(expense.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= expense_resource_link(expense.expense_resourcable)
+          %td= link_to expense.payment_type_name, transaction_payment_type_path(expense.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= expense.creator_name
+          %td= expense.updator_name
+
+          %td.text-center
+            = link_to "History", change_logs_transaction_expense_path(expense), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }

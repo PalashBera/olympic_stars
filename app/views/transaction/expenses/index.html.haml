@@ -1,0 +1,23 @@
+- provide(:page_title, "Expense Ledger")
+- provide(:page_header, "Expense Ledger")
+
+.page-card
+  .page-card-body
+    .card-body-header
+      = search_form_for @search, url: transaction_expenses_path, class: "filter-form" do |f|
+        .row.g-3
+          .col-3
+            = f.label :date_gteq, "Start Date", class: "form-label required"
+            = f.date_field :date_gteq, class: "form-control", required: true
+
+          .col-3
+            = f.label :date_lteq, "Start Date", class: "form-label required"
+            = f.date_field :date_lteq, class: "form-control", required: true
+
+          .col-3.d-flex.align-items-end
+            = submit_tag "Filter", class: "btn btn-primary m-0"
+
+    - if @expenses.present?
+      = render "table"
+    - else
+      = render "shared/empty_record"
