@@ -1,0 +1,14 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Name
+        %td= @payment_method.name
+
+      %tr
+        %td Payments Count
+        %td= @payment_method.payments.size
+
+      %tr
+        %td Status
+        %td= @payment_method.archived_status

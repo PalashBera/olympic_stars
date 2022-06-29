@@ -3,6 +3,7 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"} Payments Count
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -10,6 +11,7 @@
       - @payment_methods.each do |payment_method|
         %tr
           %td{scope: "row"}= payment_method.name
+          %td= payment_method.payments.size
           %td= payment_method.archived_status
           %td.text-center
             = link_to "Edit", edit_transaction_payment_method_path(payment_method), title: "Edit payment method", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }

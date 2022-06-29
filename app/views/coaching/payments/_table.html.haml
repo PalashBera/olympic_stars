@@ -15,9 +15,9 @@
         %tr
           %td{scope: "row"}= link_to payment.serial, coaching_student_payment_path(payment.payable_id, payment), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= I18n.l(payment.date, default: "")
-          %td= payment.payment_type_name
+          %td= link_to payment.payment_type_name, transaction_payment_type_path(payment.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= amount_with_currency(payment.total_amount)
-          %td= payment.payment_method_name
+          %td= link_to payment.payment_method_name, transaction_payment_method_path(payment.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= payment.status.display
 
           %td.text-center

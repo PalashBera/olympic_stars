@@ -8,7 +8,11 @@ module Transaction
 
     def index
       @search = current_account.payment_methods.ransack(params[:q])
-      @pagy, @payment_methods = pagy(@search.result)
+      @pagy, @payment_methods = pagy(@search.result.includes(included_resources))
+    end
+
+    def show
+      payment_method
     end
 
     def new
@@ -53,6 +57,10 @@ module Transaction
 
     def payment_method
       @payment_method ||= current_account.payment_methods.find(params[:id])
+    end
+
+    def included_resources
+      [:payments]
     end
   end
 end

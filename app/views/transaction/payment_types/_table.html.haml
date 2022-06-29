@@ -4,6 +4,7 @@
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
         %th{scope: "col"}= sort_link @search, :category, "Category"
+        %th{scope: "col"} Payments Count
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -12,6 +13,7 @@
         %tr
           %td{scope: "row"}= payment_type.name
           %td= payment_type.category.display
+          %td= payment_type.payments.size
           %td= payment_type.archived_status
           %td.text-center
             = link_to "Edit", edit_transaction_payment_type_path(payment_type), title: "Edit payment type", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }

@@ -1,0 +1,18 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Name
+        %td= @payment_type.name
+
+      %tr
+        %td Category
+        %td= @payment_type.category.display
+
+      %tr
+        %td Payments Count
+        %td= @payment_type.payments.size
+
+      %tr
+        %td Status
+        %td= @payment_type.archived_status

@@ -104,3 +104,7 @@
               %tr
                 %td Last Attended On
                 %td= I18n.l(@student.last_attendance&.date, default: "")
+
+              %tr
+                %td Last Paid On
+                %td= I18n.l(@student.last_paid_payment&.date, default: "")
