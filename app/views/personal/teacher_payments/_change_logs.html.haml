@@ -1,5 +1,5 @@
 %p
-  Payment has been created by #{@payment.creator_name} on #{I18n.l(@payment.created_at)}.
+  Payment has been created by #{@teacher_payment.creator_name} on #{I18n.l(@teacher_payment.created_at)}.
 
 - @versions.each_with_index do |version, index|
   %hr/
@@ -27,8 +27,13 @@
               %td= PaymentType.find(value[0]).name
               %td= PaymentType.find(value[1]).name
 
-            - if key == "amount"
-              %td Amount
+            - if key == "work_hours"
+              %td Work Hours
+              %td= amount_with_currency(value[0])
+              %td= amount_with_currency(value[1])
+
+            - if key == "wage_per_hour"
+              %td Wage per hour
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 

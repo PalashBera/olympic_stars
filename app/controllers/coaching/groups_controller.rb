@@ -24,7 +24,7 @@ module Coaching
       @group = current_account.groups.new(group_params)
 
       if @group.save
-        redirect_to coaching_groups_path, flash: { success: t("flash_messages.created", name: "Group") }
+        redirect_to coaching_group_path(@group), flash: { success: t("flash_messages.created", name: "Group") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Coaching
 
     def update
       if group.update(group_params)
-        redirect_to coaching_groups_path, flash: { success: t("flash_messages.updated", name: "Group") }
+        redirect_to coaching_group_path(group), flash: { success: t("flash_messages.updated", name: "Group") }
       else
         render :form_update, status: :unprocessable_entity
       end

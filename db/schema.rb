@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_29_044626) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_30_042728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -150,25 +150,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_044626) do
     t.index ["updated_by_id"], name: "index_payment_types_on_updated_by_id"
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "student_payments", force: :cascade do |t|
     t.date "date", null: false
     t.decimal "amount", precision: 12, scale: 2, null: false
     t.decimal "discount", precision: 12, scale: 2
     t.string "details", limit: 255
     t.string "status", limit: 255, default: "created", null: false
-    t.string "payable_type", null: false
-    t.bigint "payable_id", null: false
+    t.bigint "student_id", null: false
     t.bigint "payment_type_id", null: false
     t.bigint "payment_method_id", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["created_by_id"], name: "index_payments_on_created_by_id"
-    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable"
-    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
-    t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
-    t.index ["updated_by_id"], name: "index_payments_on_updated_by_id"
+    t.index ["created_by_id"], name: "index_student_payments_on_created_by_id"
+    t.index ["payment_method_id"], name: "index_student_payments_on_payment_method_id"
+    t.index ["payment_type_id"], name: "index_student_payments_on_payment_type_id"
+    t.index ["student_id"], name: "index_student_payments_on_student_id"
+    t.index ["updated_by_id"], name: "index_student_payments_on_updated_by_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -215,6 +214,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_044626) do
     t.index ["group_id"], name: "index_subscribers_on_group_id"
     t.index ["student_id"], name: "index_subscribers_on_student_id"
     t.index ["updated_by_id"], name: "index_subscribers_on_updated_by_id"
+  end
+
+  create_table "teacher_payments", force: :cascade do |t|
+    t.date "date", null: false
+    t.decimal "work_hours", precision: 12, scale: 2, null: false
+    t.decimal "wage_per_hour", precision: 12, scale: 2, null: false
+    t.decimal "discount", precision: 12, scale: 2
+    t.string "details", limit: 255
+    t.string "status", limit: 255, default: "created", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "payment_type_id", null: false
+    t.bigint "payment_method_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_teacher_payments_on_created_by_id"
+    t.index ["payment_method_id"], name: "index_teacher_payments_on_payment_method_id"
+    t.index ["payment_type_id"], name: "index_teacher_payments_on_payment_type_id"
+    t.index ["teacher_id"], name: "index_teacher_payments_on_teacher_id"
+    t.index ["updated_by_id"], name: "index_teacher_payments_on_updated_by_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -302,13 +322,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_044626) do
   add_foreign_key "groups", "teachers"
   add_foreign_key "payment_methods", "accounts"
   add_foreign_key "payment_types", "accounts"
-  add_foreign_key "payments", "payment_methods"
-  add_foreign_key "payments", "payment_types"
+  add_foreign_key "student_payments", "payment_methods"
+  add_foreign_key "student_payments", "payment_types"
+  add_foreign_key "student_payments", "students"
   add_foreign_key "students", "accounts"
   add_foreign_key "students", "client_types"
   add_foreign_key "students", "courses"
   add_foreign_key "subscribers", "groups"
   add_foreign_key "subscribers", "students"
+  add_foreign_key "teacher_payments", "payment_methods"
+  add_foreign_key "teacher_payments", "payment_types"
+  add_foreign_key "teacher_payments", "teachers"
   add_foreign_key "teachers", "accounts"
   add_foreign_key "work_logs", "teachers"
 end

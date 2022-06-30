@@ -9,7 +9,8 @@ class PaymentMethod < ApplicationRecord
 
   belongs_to :account, counter_cache: true
 
-  has_many :payments, dependent: :destroy
+  has_many :student_payments, dependent: :destroy
+  has_many :teacher_payments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false, scope: :account_id }
 

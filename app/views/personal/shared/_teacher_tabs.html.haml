@@ -4,4 +4,4 @@
   %li.nav-item
     = link_to "Work Logs", personal_teacher_work_logs_path(@teacher), class: "nav-link #{"active" if active_nav == "work_logs"}"
   %li.nav-item
-    = link_to "Payments", "#", class: "nav-link"
+    = link_to "Payments", personal_teacher_teacher_payments_path(@teacher), class: "nav-link #{"active" if active_nav == "teacher_payments"}"

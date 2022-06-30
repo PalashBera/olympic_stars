@@ -24,7 +24,7 @@ module Coaching
       @student = current_account.students.new(student_params)
 
       if @student.save
-        redirect_to coaching_students_path, flash: { success: t("flash_messages.created", name: "Student") }
+        redirect_to coaching_student_path(@student), flash: { success: t("flash_messages.created", name: "Student") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Coaching
 
     def update
       if student.update(student_params)
-        redirect_to coaching_students_path, flash: { success: t("flash_messages.updated", name: "Student") }
+        redirect_to coaching_student_path(student), flash: { success: t("flash_messages.updated", name: "Student") }
       else
         render :form_update, status: :unprocessable_entity
       end

@@ -6,8 +6,12 @@
         %td= @payment_method.name
 
       %tr
-        %td Payments Count
-        %td= @payment_method.payments.size
+        %td Student Payments
+        %td= @payment_method.student_payments.size
+
+      %tr
+        %td Teacher Payments
+        %td= @payment_method.teacher_payments.size
 
       %tr
         %td Status

@@ -63,8 +63,12 @@ module DropdownsHelper
     dropdown_list
   end
 
-  def payment_status_dropdown_list
-    Payment::STATUS_LIST.map { |el| [el.display, el] }
+  def student_payment_status_dropdown_list
+    StudentPayment::STATUS_LIST.map { |el| [el.display, el] }
+  end
+
+  def teacher_payment_status_dropdown_list
+    TeacherPayment::STATUS_LIST.map { |el| [el.display, el] }
   end
 
   def payment_type_category_dropdown_list

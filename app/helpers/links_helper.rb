@@ -38,21 +38,16 @@ module LinksHelper
             }
   end
 
-  def income_resource_link(resouce)
-    return unless resouce.is_a?(Payment)
-
-    link_to resouce.serial,
-            coaching_student_payment_path(resouce.payable_id, resouce.id),
-            title: "Show details",
-            data: { turbo_frame: "remote_modal_form" }
-  end
-
-  def expense_resource_link(resouce)
-    return unless resouce.is_a?(Payment)
-
-    link_to resouce.serial,
-            coaching_student_payment_path(resouce.payable_id, resouce.id),
-            title: "Show details",
-            data: { turbo_frame: "remote_modal_form" }
+  def income_expense_resource_link(resouce)
+    case resouce
+    when StudentPayment
+      link_to resouce.serial,
+              coaching_student_student_payment_path(resouce.student_id, resouce.id),
+              title: "Show details", data: { turbo_frame: "remote_modal_form" }
+    when TeacherPayment
+      link_to resouce.serial,
+              personal_teacher_teacher_payment_path(resouce.teacher_id, resouce.id),
+              title: "Show details", data: { turbo_frame: "remote_modal_form" }
+    end
   end
 end

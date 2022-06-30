@@ -14,8 +14,8 @@ class Student < ApplicationRecord
   belongs_to :client_type
   belongs_to :course
 
-  has_many :payments, as: :payable, dependent: :destroy
-  has_one :last_paid_payment, -> { paid.order(id: :desc) }, as: :payable, class_name: "Payment"
+  has_many :student_payments, dependent: :destroy
+  has_one :last_student_payment, -> { paid.order(id: :desc) }, class_name: "StudentPayment"
   has_one :subscriber, dependent: :destroy
   has_one :group, through: :subscriber
   has_one :last_attendance, through: :subscriber

@@ -1,0 +1,38 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Serial
+        %td= @student_payment.serial
+
+      %tr
+        %td Date
+        %td= I18n.l(@student_payment.date, default: "")
+
+      %tr
+        %td Payment Type
+        %td= @student_payment.payment_type_name
+
+      %tr
+        %td Amount
+        %td= amount_with_currency(@student_payment.amount)
+
+      %tr
+        %td Discount
+        %td= amount_with_currency(@student_payment.discount)
+
+      %tr
+        %td Total Amount
+        %td= amount_with_currency(@student_payment.total_amount)
+
+      %tr
+        %td Details
+        %td= @student_payment.details
+
+      %tr
+        %td Payment Method
+        %td= @student_payment.payment_method_name
+
+      %tr
+        %td Status
+        %td= @student_payment.status.display

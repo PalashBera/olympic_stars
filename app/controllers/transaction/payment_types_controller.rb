@@ -62,7 +62,7 @@ module Transaction
     end
 
     def included_resources
-      [:payments]
+      %i[student_payments teacher_payments]
     end
   end
 end

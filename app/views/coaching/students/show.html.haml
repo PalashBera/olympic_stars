@@ -112,8 +112,8 @@
 
               %tr
                 %td Last Paid Amount
-                %td= amount_with_currency(@student.last_paid_payment&.total_amount)
+                %td= amount_with_currency(@student.last_student_payment&.total_amount)
 
               %tr
                 %td Last Paid On
-                %td= I18n.l(@student.last_paid_payment&.date, default: "")
+                %td= I18n.l(@student.last_student_payment&.date, default: "")

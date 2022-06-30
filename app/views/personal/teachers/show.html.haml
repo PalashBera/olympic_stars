@@ -67,16 +67,32 @@
 
               %tr
                 %td This Week Work Hours
-                %td= @teacher.this_week_work_hours
+                %td= display_amount(@teacher.this_week_work_hours)
 
               %tr
                 %td This Month Work Hours
-                %td= @teacher.this_month_work_hours
+                %td= display_amount(@teacher.this_month_work_hours)
 
               %tr
                 %td This Year Work Hours
-                %td= @teacher.this_year_work_hours
+                %td= display_amount(@teacher.this_year_work_hours)
 
               %tr
                 %td Total Work Hours
-                %td= @teacher.total_work_hours
+                %td= display_amount(@teacher.total_work_hours)
+
+              %tr
+                %td Total Billed Work Hours
+                %td= display_amount(@teacher.total_billed_work_hours)
+
+              %tr
+                %td Total Unbilled Work Hours
+                %td= display_amount(@teacher.total_unbilled_work_hours)
+
+              %tr
+                %td Total Paid Amount
+                %td= amount_with_currency(@teacher.total_paid_amount)
+
+              %tr
+                %td Total Unpaid Amount
+                %td= amount_with_currency(@teacher.total_unpaid_amount)

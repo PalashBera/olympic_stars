@@ -24,7 +24,7 @@ module Personal
       @teacher = current_account.teachers.new(teacher_params)
 
       if @teacher.save
-        redirect_to personal_teachers_path, flash: { success: t("flash_messages.created", name: "Teacher") }
+        redirect_to personal_teacher_path(@teacher), flash: { success: t("flash_messages.created", name: "Teacher") }
       else
         render :form_update, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Personal
 
     def update
       if teacher.update(teacher_params)
-        redirect_to personal_teachers_path, flash: { success: t("flash_messages.updated", name: "Teacher") }
+        redirect_to personal_teacher_path(teacher), flash: { success: t("flash_messages.updated", name: "Teacher") }
       else
         render :form_update, status: :unprocessable_entity
       end

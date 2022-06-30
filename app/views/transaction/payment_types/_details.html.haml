@@ -10,8 +10,12 @@
         %td= @payment_type.category.display
 
       %tr
-        %td Payments Count
-        %td= @payment_type.payments.size
+        %td Student Payments
+        %td= @payment_type.student_payments.size
+
+      %tr
+        %td Teacher Payments
+        %td= @payment_type.teacher_payments.size
 
       %tr
         %td Status

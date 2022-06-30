@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
 
     resources :students, concerns: :change_loggable do
-      resources :payments, except: :destroy, concerns: :change_loggable
+      resources :student_payments, except: :destroy, concerns: :change_loggable
     end
   end
 end

@@ -19,7 +19,7 @@ module Transaction
     private
 
     def included_resources
-      [{ income_resourcable: %i[payment_method payment_type] }, :created_by, :updated_by]
+      [{ income_resourcable: %i[payment_method payment_type] }]
     end
   end
 end

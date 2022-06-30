@@ -15,6 +15,8 @@ class Teacher < ApplicationRecord
 
   has_many :work_logs, dependent: :destroy
   has_many :groups,    dependent: :destroy
+  has_many :teacher_payments, dependent: :destroy
+  has_one :last_teacher_payment, -> { paid.order(id: :desc) }, class_name: "TeacherPayment"
 
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: URI::MailTo::EMAIL_REGEXP },
@@ -40,6 +42,22 @@ class Teacher < ApplicationRecord
 
   def this_year_work_hours
     work_logs.this_year.sum(&:hours)
+  end
+
+  def total_billed_work_hours
+    teacher_payments.paid.sum(&:work_hours)
+  end
+
+  def total_unbilled_work_hours
+    total_work_hours - total_billed_work_hours
+  end
+
+  def total_paid_amount
+    teacher_payments.paid.sum(&:total_amount)
+  end
+
+  def total_unpaid_amount
+    teacher_payments.unpaid_payments.sum(&:total_amount)
   end
 
   def hourly_wage

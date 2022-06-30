@@ -1,0 +1,42 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Serial
+        %td= @teacher_payment.serial
+
+      %tr
+        %td Date
+        %td= I18n.l(@teacher_payment.date, default: "")
+
+      %tr
+        %td Payment Type
+        %td= @teacher_payment.payment_type_name
+
+      %tr
+        %td Work hours
+        %td= display_amount(@teacher_payment.work_hours)
+
+      %tr
+        %td Wage per hour
+        %td= amount_with_currency(@teacher_payment.wage_per_hour)
+
+      %tr
+        %td Discount
+        %td= amount_with_currency(@teacher_payment.discount)
+
+      %tr
+        %td Total Amount
+        %td= amount_with_currency(@teacher_payment.total_amount)
+
+      %tr
+        %td Details
+        %td= @teacher_payment.details
+
+      %tr
+        %td Payment Method
+        %td= @teacher_payment.payment_method_name
+
+      %tr
+        %td Status
+        %td= @teacher_payment.status.display

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
 
     resources :teachers, concerns: :change_loggable do
+      resources :teacher_payments, except: :destroy, concerns: :change_loggable
       resources :work_logs, except: :show, concerns: :change_loggable
     end
   end

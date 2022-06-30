@@ -1,4 +1,4 @@
-= form_for [:coaching, @student, @payment] do |f|
+= form_for [:personal, @teacher, @teacher_payment] do |f|
   .row
     .col-md-6.mb-3
       = f.label :date, class: "form-label required"
@@ -10,18 +10,26 @@
 
     .col-md-6.mb-3
       = f.label :payment_type_id, class: "form-label required"
-      = f.select :payment_type_id, payment_type_list(@payment.payment_type_id), { prompt: "Select payment type" }, { class: "form-control", required: true }
+      = f.select :payment_type_id, payment_type_list(@teacher_payment.payment_type_id), { prompt: "Select payment type" }, { class: "form-control", required: true }
       - if resource.errors.include?(:payment_type_id)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:payment_type_id).each do |error_message|
             = "#{error_message}. "
 
     .col-md-6.mb-3
-      = f.label :amount, class: "form-label"
-      = f.number_field :amount, value: display_form_amount(resource.amount), placeholder: "Enter amount", class: "form-control", required: true, step: 0.01, min: 0
-      - if resource.errors.include?(:amount)
+      = f.label :work_hours, class: "form-label required"
+      = f.number_field :work_hours, value: display_form_amount(resource.work_hours), placeholder: "Enter work hours", class: "form-control", required: true, step: 0.01, min: 0
+      - if resource.errors.include?(:work_hours)
         .secondary-text.text-danger
-          - resource.errors.full_messages_for(:amount).each do |error_message|
+          - resource.errors.full_messages_for(:work_hours).each do |error_message|
+            = "#{error_message}. "
+
+    .col-md-6.mb-3
+      = f.label :wage_per_hour, class: "form-label required"
+      = f.number_field :wage_per_hour, value: display_form_amount(resource.wage_per_hour), placeholder: "Enter wage per hour", class: "form-control", required: true, step: 0.01, min: 0
+      - if resource.errors.include?(:wage_per_hour)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:wage_per_hour).each do |error_message|
             = "#{error_message}. "
 
     .col-md-6.mb-3
@@ -30,6 +38,14 @@
       - if resource.errors.include?(:discount)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:discount).each do |error_message|
+            = "#{error_message}. "
+
+    .col-md-6.mb-3
+      = f.label :payment_method_id, class: "form-label required"
+      = f.select :payment_method_id, payment_method_list(@teacher_payment.payment_method_id), { prompt: "Select payment method" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:payment_method_id)
+        .secondary-text.text-danger
+          - resource.errors.full_messages_for(:payment_method_id).each do |error_message|
             = "#{error_message}. "
 
     .col-md-12.mb-3
@@ -41,21 +57,12 @@
             = "#{error_message}. "
 
     .col-md-6.mb-3
-      = f.label :payment_method_id, class: "form-label required"
-      = f.select :payment_method_id, payment_method_list(@payment.payment_method_id), { prompt: "Select payment method" }, { class: "form-control", required: true }
-      - if resource.errors.include?(:payment_method_id)
+      = f.label :status, class: "form-label required"
+      = f.select :status, teacher_payment_status_dropdown_list, { prompt: "Select status" }, { class: "form-control", required: true }
+      - if resource.errors.include?(:status)
         .secondary-text.text-danger
-          - resource.errors.full_messages_for(:payment_method_id).each do |error_message|
+          - resource.errors.full_messages_for(:status).each do |error_message|
             = "#{error_message}. "
-
-    - if @payment.persisted?
-      .col-md-6.mb-3
-        = f.label :status, class: "form-label required"
-        = f.select :status, payment_status_dropdown_list, { prompt: "Select status" }, { class: "form-control", required: true }
-        - if resource.errors.include?(:status)
-          .secondary-text.text-danger
-            - resource.errors.full_messages_for(:status).each do |error_message|
-              = "#{error_message}. "
 
   .actions.form-btn-group
     %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel

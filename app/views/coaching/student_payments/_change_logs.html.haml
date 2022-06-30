@@ -1,0 +1,53 @@
+%p
+  Payment has been created by #{@student_payment.creator_name} on #{I18n.l(@student_payment.created_at)}.
+
+- @versions.each_with_index do |version, index|
+  %hr/
+
+  .secondary-text.mb-2
+    Change Log #{@versions.size - index} – Done by #{version.whodunnit} on #{I18n.l(version.created_at)}
+
+  .table-responsive
+    %table.table.table-sm
+      %thead
+        %th Field Name
+        %th Previous Value
+        %th Current Value
+
+      %tbody
+        - version.changeset.each do |key, value|
+          %tr
+            - if key == "date"
+              %td Date
+              %td= I18n.l(value[0], default: "")
+              %td= I18n.l(value[1], default: "")
+
+            - if key == "payment_type_id"
+              %td Payment Type
+              %td= PaymentType.find(value[0]).name
+              %td= PaymentType.find(value[1]).name
+
+            - if key == "amount"
+              %td Amount
+              %td= amount_with_currency(value[0])
+              %td= amount_with_currency(value[1])
+
+            - if key == "discount"
+              %td Discount
+              %td= amount_with_currency(value[0])
+              %td= amount_with_currency(value[1])
+
+            - if key == "details"
+              %td Details
+              %td= value[0]
+              %td= value[1]
+
+            - if key == "payment_method_id"
+              %td Payment Method
+              %td= PaymentMethod.find(value[0]).name
+              %td= PaymentMethod.find(value[1]).name
+
+            - if key == "status"
+              %td Status
+              %td= value[0].display
+              %td= value[1].display
