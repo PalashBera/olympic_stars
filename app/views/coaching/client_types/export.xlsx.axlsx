@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Client Types") do |sheet|
+    sheet.add_row ["Name", "Students Count", "Groups Count", "Status", "Created By",
+                   "Created At", "Last Updated By", "Last Updated At"], style: header_style
+
+    @client_types.each do |client_type|
+      sheet.add_row [
+        client_type.name,
+        client_type.students.size,
+        client_type.groups.size,
+        client_type.archived_status,
+        client_type.creator_name,
+        I18n.l(client_type.created_at),
+        client_type.updator_name,
+        I18n.l(client_type.updated_at)
+      ], style: row_style
+    end
+  end
+end

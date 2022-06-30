@@ -9,7 +9,7 @@ module Coaching
     def index
       @search = current_account.client_types.ransack(params[:q])
       @search.sorts = "id desc" if @search.sorts.empty?
-      @pagy, @client_types = pagy(@search.result)
+      @pagy, @client_types = pagy(@search.result.includes(included_resources))
     end
 
     def show
@@ -49,6 +49,18 @@ module Coaching
                   flash: { danger: t("flash_messages.deleted", name: "Client type") }
     end
 
+    def export
+      search = current_account.client_types.ransack(params[:q])
+      search.sorts = "id desc" if search.sorts.empty?
+      @client_types = search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=client_types.xlsx"
+        end
+      end
+    end
+
     private
 
     def client_type_params
@@ -57,6 +69,14 @@ module Coaching
 
     def client_type
       @client_type ||= current_account.client_types.find(params[:id])
+    end
+
+    def included_resources
+      %i[students groups]
+    end
+
+    def export_included_resources
+      included_resources << :created_by << :updated_by
     end
   end
 end

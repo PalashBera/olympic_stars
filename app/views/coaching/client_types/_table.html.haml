@@ -4,6 +4,7 @@
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
         %th{scope: "col"} Students Count
+        %th{scope: "col"} Groups Count
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 
@@ -12,6 +13,7 @@
         %tr
           %td{scope: "row"}= link_to client_type.name, coaching_client_type_path(client_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= client_type.students.size
+          %td= client_type.groups.size
           %td= client_type.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), coaching_client_type_path(client_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }

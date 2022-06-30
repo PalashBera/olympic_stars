@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 gem "bootsnap", "~> 1.12", require: false
+gem "caxlsx_rails", "~> 0.6.3"
 gem "devise", "~> 4.8", ">= 4.8.1"
 gem "dotenv-rails", "~> 2.7", ">= 2.7.6"
 gem "haml", "~> 5.2", ">= 5.2.2"
