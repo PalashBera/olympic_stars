@@ -38,7 +38,9 @@ module Personal
 
     def destroy
       work_log.destroy
-      redirect_to personal_teacher_work_logs_path, flash: { danger: t("flash_messages.deleted", name: "Work log") }
+      redirect_to personal_teacher_work_logs_path,
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted", name: "Work log") }
     end
 
     def change_logs

@@ -21,6 +21,9 @@
           %td= payment.status.display
 
           %td.text-center
-            = link_to "Show", coaching_student_payment_path(payment.payable_id, payment), title: "Show details", class: "btn btn-primary btn-sm ms-0", data: { turbo_frame: "remote_modal_form" }
-            = link_to "Edit", edit_coaching_student_payment_path(payment.payable_id, payment), title: "Edit payment", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
-            = link_to "History", change_logs_coaching_student_payment_path(payment.payable_id, payment), title: "Show history", class: "btn btn-light btn-sm me-0", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-eye-fill'></i>"), coaching_student_payment_path(payment.payable_id, payment), title: "Show details", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-pencil-fill'></i>"), edit_coaching_student_payment_path(payment.payable_id, payment), title: "Edit payment", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_coaching_student_payment_path(payment.payable_id, payment), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-printer-fill'></i>"), "#", title: "Print", class: "icon-btn"
+            = link_to raw("<i class='bi bi-cloud-download-fill'></i>"), "#", title: "Download", class: "icon-btn"
+            = link_to raw("<i class='bi bi-send-fill'></i>"), "#", title: "Send to parents", class: "icon-btn"

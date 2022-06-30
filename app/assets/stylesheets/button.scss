@@ -72,3 +72,16 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.icon-btn {
+  color: $primary-color;
+  padding: 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  .bi {
+    height: 13px;
+    width: 13px;
+  }
+}

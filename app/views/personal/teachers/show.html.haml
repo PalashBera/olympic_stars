@@ -6,7 +6,12 @@
     = render "personal/shared/teacher_tabs", active_nav: "details"
 
   .page-card-body
-    .secondary-header.mb-3.mb-lg-4= @teacher.full_name
+    .d-flex.align-items-center.justify-content-between
+      .secondary-header.mb-3.mb-lg-4= @teacher.full_name
+      .actions-block
+        = link_to raw("<i class='bi bi-pencil-fill'></i>"), edit_personal_teacher_path(@teacher), title: "Edit teacher", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+        = link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_personal_teacher_path(@teacher), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+        = link_to raw("<i class='bi bi-trash3-fill'></i>"), personal_teacher_path(@teacher), title: "Delete teacher", class: "icon-btn text-danger", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the teacher?" }
 
     .row.g-3
       .col-lg-6
@@ -34,19 +39,15 @@
 
               %tr
                 %td Wages per hour
-                %td= @teacher.wages_per_hour_with_currency
+                %td= @teacher.hourly_wage
 
               %tr
                 %td Wages per day
-                %td= @teacher.wages_per_day_with_currency
+                %td= @teacher.daily_wage
 
               %tr
                 %td Wages per month
-                %td= @teacher.wages_per_month_with_currency
-
-              %tr
-                %td Assigned groups
-                %td= @teacher.assigned_groups
+                %td= @teacher.monthly_wage
 
               %tr
                 %td Availability
@@ -60,6 +61,10 @@
         .table-responsive
           %table.table.table-sm.details-table
             %tbody
+              %tr
+                %td Assigned groups
+                %td= @teacher.assigned_groups
+
               %tr
                 %td This Week Work Hours
                 %td= @teacher.this_week_work_hours

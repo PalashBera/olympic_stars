@@ -8,6 +8,7 @@ module Personal
 
     def index
       @search = current_account.teachers.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @teachers = pagy(@search.result)
     end
 
@@ -43,7 +44,9 @@ module Personal
 
     def destroy
       teacher.destroy
-      redirect_to personal_teachers_path, flash: { danger: t("flash_messages.deleted", name: "Teacher") }
+      redirect_to personal_teachers_path,
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted", name: "Teacher") }
     end
 
     private

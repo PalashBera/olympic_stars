@@ -21,6 +21,4 @@
           %td= link_to income.payment_type_name, transaction_payment_type_path(income.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= income.creator_name
           %td= income.updator_name
-
-          %td.text-center
-            = link_to "History", change_logs_transaction_income_path(income), title: "Show history", class: "btn btn-light btn-sm", data: { turbo_frame: "remote_modal_form" }
+          %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_transaction_income_path(income), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }

@@ -8,6 +8,7 @@ module Transaction
 
     def index
       @search = current_account.payment_methods.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @payment_methods = pagy(@search.result.includes(included_resources))
     end
 
@@ -46,7 +47,9 @@ module Transaction
     def destroy
       payment_method.destroy
       redirect_to transaction_payment_methods_path,
-                  flash: { danger: t("flash_messages.deleted", name: "Payment method") }
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted",
+                                     name: "Payment method") }
     end
 
     private

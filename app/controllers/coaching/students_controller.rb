@@ -8,6 +8,7 @@ module Coaching
 
     def index
       @search = current_account.students.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @students = pagy(@search.result.includes(included_resources))
     end
 
@@ -43,7 +44,9 @@ module Coaching
 
     def destroy
       student.destroy
-      redirect_to coaching_students_path, flash: { danger: t("flash_messages.deleted", name: "Student") }
+      redirect_to coaching_students_path,
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted", name: "Student") }
     end
 
     private

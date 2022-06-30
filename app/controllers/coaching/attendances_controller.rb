@@ -25,7 +25,9 @@ module Coaching
     def destroy
       attendance.destroy
       redirect_to coaching_group_attendances_path(group),
-                  flash: { danger: t("flash_messages.deleted", name: "Attendance") }
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted",
+                                     name: "Attendance") }
     end
 
     private

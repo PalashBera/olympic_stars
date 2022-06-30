@@ -8,6 +8,7 @@ module Coaching
 
     def index
       @search = current_account.groups.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @groups = pagy(@search.result.includes(included_resources))
     end
 
@@ -43,7 +44,9 @@ module Coaching
 
     def destroy
       group.destroy
-      redirect_to coaching_groups_path, flash: { danger: t("flash_messages.deleted", name: "Group") }
+      redirect_to coaching_groups_path,
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted", name: "Group") }
     end
 
     private

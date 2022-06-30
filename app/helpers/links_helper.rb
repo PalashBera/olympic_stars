@@ -2,7 +2,7 @@
 
 module LinksHelper
   def student_group_link(student)
-    link_to student.group_name, coaching_group_path(student.group), title: "Show group" if student.group.present?
+    link_to student.group_name, coaching_group_path(student.group), title: "Show details" if student.group.present?
   end
 
   def attendance_link(subscriber, date, attendances)
@@ -26,11 +26,12 @@ module LinksHelper
   end
 
   def present_link(subscriber, attend_date)
-    link_to raw("<i class='text-danger bi bi-x-circle-fill'></i>"),
+    link_to raw("<i class='bi bi-x-circle-fill'></i>"),
             coaching_group_attendances_path(group_id: subscriber.group_id, attendance: {
                                               date: attend_date, subscriber_id: subscriber.id
                                             }),
             title: "Mark present",
+            class: attend_date < Date.current ? "text-danger" : "text-grey",
             data: {
               "turbo-method": :post,
               turbo_confirm: "Are you sure you want to mark present for #{subscriber.student_full_name}?"

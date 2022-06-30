@@ -6,6 +6,7 @@ module Coaching
 
     def index
       @search = group.subscribers.ransack(params[:q])
+      @search.sorts = "student_first_name asc" if @search.sorts.empty?
       @pagy, @subscribers = pagy(@search.result.includes(included_resources))
     end
 
@@ -27,7 +28,9 @@ module Coaching
     def destroy
       subscriber.destroy
       redirect_to coaching_group_subscribers_path(group),
-                  flash: { danger: t("flash_messages.deleted", name: "Subscriber") }
+                  status: :see_other,
+                  flash: { danger: t("flash_messages.deleted",
+                                     name: "Subscriber") }
     end
 
     private

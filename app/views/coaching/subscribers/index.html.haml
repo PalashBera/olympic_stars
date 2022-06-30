@@ -9,7 +9,7 @@
     .card-body-header.d-flex.justify-content-between.align-items-center
       .secondary-header
         Total Subscribers: #{@group.subscribers.count}
-      = link_to "Add New", new_coaching_group_subscriber_path(@group), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+      = link_to "Add New", new_coaching_group_subscriber_path(@group), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new subscriber"
 
     - if @subscribers.present?
       = render "table"
