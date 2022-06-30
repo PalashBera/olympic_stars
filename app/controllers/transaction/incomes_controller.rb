@@ -19,7 +19,7 @@ module Transaction
     private
 
     def included_resources
-      [{ income_resourcable: %i[payment_method payment_type] }]
+      [{ income_resourcable: %i[payment_method payment_type student teacher] }]
     end
   end
 end

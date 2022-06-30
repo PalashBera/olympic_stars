@@ -38,7 +38,7 @@ module LinksHelper
             }
   end
 
-  def income_expense_resource_link(resouce)
+  def ledger_payment_link(resouce)
     case resouce
     when StudentPayment
       link_to resouce.serial,
@@ -48,6 +48,15 @@ module LinksHelper
       link_to resouce.serial,
               personal_teacher_teacher_payment_path(resouce.teacher_id, resouce.id),
               title: "Show details", data: { turbo_frame: "remote_modal_form" }
+    end
+  end
+
+  def payment_resource_link(resouce)
+    case resouce
+    when StudentPayment
+      link_to resouce.student_full_name, coaching_student_path(resouce.student_id), title: "Show details"
+    when TeacherPayment
+      link_to resouce.teacher_full_name, personal_teacher_path(resouce.teacher_id), title: "Show details"
     end
   end
 end

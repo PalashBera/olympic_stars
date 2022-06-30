@@ -2,19 +2,21 @@
   %table.table
     %thead
       %tr
+        %th{scope: "col"} Payment ID
+        %th{scope: "col"} Payment Type
         %th{scope: "col"}= sort_link @search, :date, "Date"
         %th{scope: "col"}= sort_link @search, :amount, "Amount"
         %th{scope: "col"} Payment Method
         %th{scope: "col"} Resource
-        %th{scope: "col"} Payment Type
         %th.text-center{scope: "col"} Actions
 
     %tbody
       - @incomes.each do |income|
         %tr
-          %td{scope: "row"}= I18n.l(income.date, default: "")
+          %td{scope: "row"}= ledger_payment_link(income.income_resourcable)
+          %td= link_to income.payment_type_name, transaction_payment_type_path(income.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= I18n.l(income.date, default: "")
           %td= amount_with_currency(income.amount)
           %td= link_to income.payment_method_name, transaction_payment_method_path(income.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= income_expense_resource_link(income.income_resourcable)
-          %td= link_to income.payment_type_name, transaction_payment_type_path(income.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= payment_resource_link(income.income_resourcable)
           %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_transaction_income_path(income), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }

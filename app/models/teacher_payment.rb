@@ -19,8 +19,9 @@ class TeacherPayment < ApplicationRecord
   has_one :income,  as: :income_resourcable,  dependent: :destroy
   has_one :expense, as: :expense_resourcable, dependent: :destroy
 
-  delegate :name, to: :payment_type,   prefix: true
-  delegate :name, to: :payment_method, prefix: true
+  delegate :name,      to: :payment_type,   prefix: true
+  delegate :name,      to: :payment_method, prefix: true
+  delegate :full_name, to: :teacher,        prefix: true
 
   validates :date, presence: true
   validates :work_hours, :wage_per_hour, presence: true, format: { with: VALID_DECIMAL_REGEX },
