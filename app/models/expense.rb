@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Expense < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
   include UserTrackable
 
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
@@ -17,4 +18,19 @@ class Expense < ApplicationRecord
                      numericality: { greater_than_or_equal_to: 0 }
 
   scope :order_desc, -> { order(id: :desc) }
+
+  def amount_with_currency
+    "$#{number_with_precision(amount, precision: 2, delimiter: ',')}"
+  end
+
+  def resouce_name
+    case expense_resourcable
+    when TeacherPayment
+      expense_resourcable.teacher_full_name
+    when StudentPayment
+      expense_resourcable.student_full_name
+    else
+      "Unknown"
+    end
+  end
 end

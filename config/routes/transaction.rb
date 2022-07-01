@@ -8,7 +8,5 @@ Rails.application.routes.draw do
 
     resources :payment_methods, concerns: :change_loggable
     resources :payment_types,   concerns: :change_loggable
-    resources :incomes,  only: :index, concerns: :change_loggable
-    resources :expenses, only: :index, concerns: :change_loggable
   end
 end

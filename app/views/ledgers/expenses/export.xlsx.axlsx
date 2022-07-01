@@ -1,0 +1,29 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Expenses") do |sheet|
+    sheet.add_row ["Payment ID", "Payment Type", "Date", "Amount", "Payment Method",
+                   "Resource", "Created By", "Created At", "Last Updated By",
+                   "Last Updated At"], style: header_style
+
+    @expenses.each do |expense|
+      sheet.add_row [
+        expense.expense_resourcable.serial,
+        expense.payment_type_name,
+        I18n.l(expense.date, default: ""),
+        expense.amount_with_currency,
+        expense.payment_method_name,
+        expense.resouce_name,
+        expense.creator_name,
+        I18n.l(expense.created_at),
+        expense.updator_name,
+        I18n.l(expense.updated_at)
+      ], style: row_style
+    end
+  end
+end

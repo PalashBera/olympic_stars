@@ -3,7 +3,8 @@
 
 .page-card
   .page-card-header
-    = link_to "Add New", new_coaching_course_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new course"
+    = link_to "Add New", new_coaching_course_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new course"
+    = link_to "Export", export_coaching_courses_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export courses", class: "btn btn-light me-0"
 
   .page-card-body
     - if @courses.present?

@@ -61,16 +61,6 @@
       </div>
 
       <div class="sidebar-sub-item-group hide">
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("incomes") %>">
-          <span class="indicator"></span>
-          <%= link_to "Income Ledger", transaction_incomes_path(q: { date_gteq: month_start_date, date_lteq: month_end_date }), class: "link" %>
-        </div>
-
-        <div class="sidebar-sub-item <%= active_sidebar_sub_item("expenses") %>">
-          <span class="indicator"></span>
-          <%= link_to "Expense Ledger", transaction_expenses_path(q: { date_gteq: month_start_date, date_lteq: month_end_date }), class: "link" %>
-        </div>
-
         <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
           <span class="indicator"></span>
           <%= link_to "Payment Methods", transaction_payment_methods_path, class: "link" %>
@@ -79,6 +69,25 @@
         <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_types") %>">
           <span class="indicator"></span>
           <%= link_to "Payment Types", transaction_payment_types_path, class: "link" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-item-group">
+      <div class="sidebar-item <%= active_sidebar_item("ledgers") %>">
+        <span class="indicator"></span>
+        <span class="link">Ledgers</span>
+      </div>
+
+      <div class="sidebar-sub-item-group hide">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("incomes") %>">
+          <span class="indicator"></span>
+          <%= link_to "Income Ledger", ledgers_incomes_path(q: { date_gteq: month_start_date, date_lteq: month_end_date }), class: "link" %>
+        </div>
+
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("expenses") %>">
+          <span class="indicator"></span>
+          <%= link_to "Expense Ledger", ledgers_expenses_path(q: { date_gteq: month_start_date, date_lteq: month_end_date }), class: "link" %>
         </div>
       </div>
     </div>

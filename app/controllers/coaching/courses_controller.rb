@@ -5,11 +5,10 @@ module Coaching
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("courses") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.courses.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
-      @pagy, @courses = pagy(@search.result)
+      @pagy, @courses = pagy(@search.result.includes(included_resources))
     end
 
     def show
@@ -49,6 +48,16 @@ module Coaching
                   flash: { danger: t("flash_messages.deleted", name: "Course") }
     end
 
+    def export
+      @courses = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=courses.xlsx"
+        end
+      end
+    end
+
     private
 
     def course_params
@@ -57,6 +66,19 @@ module Coaching
 
     def course
       @course ||= current_account.courses.find(params[:id])
+    end
+
+    def set_search_object
+      @search = current_account.courses.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
+    def included_resources
+      %i[students]
+    end
+
+    def export_included_resources
+      included_resources << :created_by << :updated_by
     end
   end
 end

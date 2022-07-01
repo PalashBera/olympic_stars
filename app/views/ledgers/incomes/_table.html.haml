@@ -16,7 +16,7 @@
           %td{scope: "row"}= ledger_payment_link(income.income_resourcable)
           %td= link_to income.payment_type_name, transaction_payment_type_path(income.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= I18n.l(income.date, default: "")
-          %td= amount_with_currency(income.amount)
+          %td= income.amount_with_currency
           %td= link_to income.payment_method_name, transaction_payment_method_path(income.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= payment_resource_link(income.income_resourcable)
-          %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_transaction_income_path(income), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+          %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_ledgers_income_path(income), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }

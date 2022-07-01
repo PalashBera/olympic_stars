@@ -16,7 +16,7 @@
           %td{scope: "row"}= ledger_payment_link(expense.expense_resourcable)
           %td= link_to expense.payment_type_name, transaction_payment_type_path(expense.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= I18n.l(expense.date, default: "")
-          %td= amount_with_currency(expense.amount)
+          %td= expense.amount_with_currency
           %td= link_to expense.payment_method_name, transaction_payment_method_path(expense.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= payment_resource_link(expense.expense_resourcable)
-          %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_transaction_expense_path(expense), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+          %td.text-center= link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_ledgers_expense_path(expense), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }

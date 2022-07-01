@@ -5,10 +5,9 @@ module Coaching
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("client_types") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.client_types.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @client_types = pagy(@search.result.includes(included_resources))
     end
 
@@ -50,9 +49,7 @@ module Coaching
     end
 
     def export
-      search = current_account.client_types.ransack(params[:q])
-      search.sorts = "id desc" if search.sorts.empty?
-      @client_types = search.result.includes(export_included_resources)
+      @client_types = @search.result.includes(export_included_resources)
 
       respond_to do |format|
         format.xlsx do
@@ -69,6 +66,11 @@ module Coaching
 
     def client_type
       @client_type ||= current_account.client_types.find(params[:id])
+    end
+
+    def set_search_object
+      @search = current_account.client_types.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
     end
 
     def included_resources

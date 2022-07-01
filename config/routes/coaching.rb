@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :client_types, concerns: %i[exportable change_loggable]
-    resources :courses,      concerns: :change_loggable
+    resources :courses,      concerns: %i[exportable change_loggable]
 
     resources :groups, concerns: :change_loggable do
       resources :subscribers, except: %i[show edit update]
