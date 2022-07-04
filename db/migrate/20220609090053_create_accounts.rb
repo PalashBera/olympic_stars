@@ -10,6 +10,7 @@ class CreateAccounts < ActiveRecord::Migration[7.0]
       t.bigint :students_count,        null: false, default: 0
       t.bigint :groups_count,          null: false, default: 0
       t.bigint :payment_types_count,   null: false, default: 0
+      t.bigint :cash_books_count,      null: false, default: 0
 
       t.timestamps null: false
     end

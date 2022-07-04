@@ -3408,7 +3408,7 @@ Style/GuardClause:
   VersionChanged: '0.22'
   # `MinBodyLength` defines the number of lines of the a body of an `if` or `unless`
   # needs to have to trigger this cop
-  MinBodyLength: 1
+  MinBodyLength: 4
 
 Style/HashAsLastArrayItem:
   Description: >-

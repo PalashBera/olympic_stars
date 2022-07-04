@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       get :change_logs, on: :member
     end
 
+    concern :exportable do
+      get :export, on: :collection
+    end
+
+    resources :cash_books,      concerns: %i[exportable change_loggable]
     resources :payment_methods, concerns: :change_loggable
     resources :payment_types,   concerns: :change_loggable
   end

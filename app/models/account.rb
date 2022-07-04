@@ -11,6 +11,7 @@ class Account < ApplicationRecord
   has_many :students, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :payment_types, dependent: :destroy
+  has_many :cash_books, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :time_zone, presence: true, length: { maximum: 50 }

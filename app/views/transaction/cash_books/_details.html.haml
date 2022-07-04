@@ -1,0 +1,22 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Date
+        %td= I18n.l(@cash_book.date, default: "")
+
+      %tr
+        %td Cash
+        %td= amount_with_currency(@cash_book.cash_amount)
+
+      %tr
+        %td Card
+        %td= amount_with_currency(@cash_book.card_amount)
+
+      %tr
+        %td Withdrawn
+        %td= amount_with_currency(@cash_book.withdrawn_amount)
+
+      %tr
+        %td Leftover
+        %td= amount_with_currency(@cash_book.leftover_amount)

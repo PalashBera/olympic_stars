@@ -110,3 +110,17 @@ account.groups.each do |group|
     group.subscribers.create(student_id: student&.id)
   end
 end
+
+50.times do |t|
+  card = Faker::Number.number(digits: 5)
+  cash = Faker::Number.number(digits: 5)
+  leftover = Faker::Number.number(digits: 4)
+
+  account.cash_books.create(
+    date: Date.current - (t + 1).day,
+    cash_amount: cash,
+    card_amount: card,
+    leftover_amount: leftover,
+    withdrawn_amount: cash - leftover
+  )
+end

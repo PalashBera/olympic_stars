@@ -1,0 +1,14 @@
+- provide(:page_title, "Cash Books")
+- provide(:page_header, "Cash Books")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_transaction_cash_book_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new cash book"
+    = link_to "Export", export_transaction_cash_books_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export cash books", class: "btn btn-light me-0"
+
+  .page-card-body
+    - if @cash_books.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

@@ -1,0 +1,44 @@
+= form_for [:transaction, resource] do |f|
+  .mb-3
+    = f.label :date, class: "form-label"
+    = f.text_field :date, class: "form-control", value: I18n.l(resource.date || Date.current), readonly: true
+    - if resource.errors.include?(:date)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:date).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :cash_amount, class: "form-label required"
+    = f.number_field :cash_amount, value: display_form_amount(resource.cash_amount), placeholder: "Enter cash amount", class: "form-control", required: true, step: 0.01, min: 0
+    - if resource.errors.include?(:cash_amount)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:cash_amount).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :card_amount, class: "form-label required"
+    = f.number_field :card_amount, value: display_form_amount(resource.card_amount), placeholder: "Enter card amount", class: "form-control", required: true, step: 0.01, min: 0
+    - if resource.errors.include?(:card_amount)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:card_amount).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :withdrawn_amount, class: "form-label required"
+    = f.number_field :withdrawn_amount, value: display_form_amount(resource.withdrawn_amount), placeholder: "Enter withdrawn amount", class: "form-control", required: true, step: 0.01, min: 0
+    - if resource.errors.include?(:withdrawn_amount)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:withdrawn_amount).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :leftover_amount, class: "form-label required"
+    = f.number_field :leftover_amount, value: display_form_amount(resource.leftover_amount), placeholder: "Enter leftover amount", class: "form-control", required: true, step: 0.01, min: 0
+    - if resource.errors.include?(:leftover_amount)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:leftover_amount).each do |error_message|
+          = "#{error_message}. "
+
+  .actions.form-btn-group
+    = link_to "Cancel", transaction_cash_books_path, title: "Cancel", class: "btn btn-light ms-0"
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

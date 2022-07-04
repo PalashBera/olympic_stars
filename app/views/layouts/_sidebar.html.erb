@@ -61,6 +61,11 @@
       </div>
 
       <div class="sidebar-sub-item-group hide">
+        <div class="sidebar-sub-item <%= active_sidebar_sub_item("cash_books") %>">
+          <span class="indicator"></span>
+          <%= link_to "Cash Books", transaction_cash_books_path, class: "link" %>
+        </div>
+
         <div class="sidebar-sub-item <%= active_sidebar_sub_item("payment_methods") %>">
           <span class="indicator"></span>
           <%= link_to "Payment Methods", transaction_payment_methods_path, class: "link" %>
