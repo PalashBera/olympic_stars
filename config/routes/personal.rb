@@ -6,9 +6,13 @@ Rails.application.routes.draw do
       get :change_logs, on: :member
     end
 
-    resources :teachers, concerns: :change_loggable do
-      resources :teacher_payments, except: :destroy, concerns: :change_loggable
-      resources :work_logs, except: :show, concerns: :change_loggable
+    concern :exportable do
+      get :export, on: :collection
+    end
+
+    resources :teachers, concerns: %i[exportable change_loggable] do
+      resources :teacher_payments, except: :destroy, concerns: %i[exportable change_loggable]
+      resources :work_logs,        except: :show,    concerns: %i[exportable change_loggable]
     end
   end
 end

@@ -43,9 +43,8 @@ module Coaching
 
     def destroy
       course.destroy
-      redirect_to coaching_courses_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Course") }
+      redirect_to coaching_courses_path, status: :see_other,
+                                         flash: { danger: t("flash_messages.deleted", name: "Course") }
     end
 
     def export
@@ -78,7 +77,7 @@ module Coaching
     end
 
     def export_included_resources
-      included_resources << :created_by << :updated_by
+      included_resources + %i[created_by updated_by]
     end
   end
 end

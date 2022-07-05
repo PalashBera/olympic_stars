@@ -20,24 +20,24 @@ module Ledgers
 
       respond_to do |format|
         format.xlsx do
-          response.headers["Content-Disposition"] = "attachment; filename=expense_ledger.xlsx"
+          response.headers["Content-Disposition"] = "attachment; filename=expenses_ledger.xlsx"
         end
       end
     end
 
     private
 
+    def set_search_object
+      @search = Expense.ransack(params[:q])
+      @search.sorts = "date desc" if @search.sorts.empty?
+    end
+
     def included_resources
       [{ expense_resourcable: %i[payment_method payment_type student teacher] }]
     end
 
     def export_included_resources
-      included_resources << :created_by << :updated_by
-    end
-
-    def set_search_object
-      @search = Expense.ransack(params[:q])
-      @search.sorts = "date desc" if @search.sorts.empty?
+      included_resources + %i[created_by updated_by]
     end
   end
 end

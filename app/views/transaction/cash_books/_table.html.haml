@@ -3,16 +3,16 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Date"
-        %th{scope: "col"}= sort_link @search, :cash_amount, "Cash"
-        %th{scope: "col"}= sort_link @search, :card_amount, "Card"
-        %th{scope: "col"}= sort_link @search, :withdrawn_amount, "Withdrawn"
-        %th{scope: "col"}= sort_link @search, :leftover_amount, "Leftover"
+        %th{scope: "col"}= sort_link @search, :cash_amount, "Cash Amount"
+        %th{scope: "col"}= sort_link @search, :card_amount, "Card Amount"
+        %th{scope: "col"}= sort_link @search, :withdrawn_amount, "Withdrawn Amount"
+        %th{scope: "col"}= sort_link @search, :leftover_amount, "Leftover Amount"
         %th.text-center{scope: "col"} Actions
 
     %tbody
       - @cash_books.each do |cash_book|
         %tr
-          %td{scope: "row"}= link_to I18n.l(cash_book.date, default: ""), transaction_cash_book_path(cash_book), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td{scope: "row"}= link_to I18n.l(cash_book.date), transaction_cash_book_path(cash_book), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= amount_with_currency(cash_book.cash_amount)
           %td= amount_with_currency(cash_book.card_amount)
           %td= amount_with_currency(cash_book.withdrawn_amount)

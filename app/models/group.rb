@@ -38,6 +38,21 @@ class Group < ApplicationRecord
     ]
   end
 
+  def duration
+    "#{start_time} - #{end_time}"
+  end
+
+  def schedule_days
+    days = []
+    days << "Monday" if monday?
+    days << "Tuesday" if tuesday?
+    days << "Wednesday" if wednesday?
+    days << "Thrusday" if thursday?
+    days << "Friday" if friday?
+    days << "Saturday" if saturday?
+    days.join(", ")
+  end
+
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity

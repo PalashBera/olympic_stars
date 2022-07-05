@@ -7,19 +7,19 @@ wb.styles do |style|
   row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
 
   wb.add_worksheet(name: "Cash Books") do |sheet|
-    sheet.add_row ["Date", "Cash", "Card", "Withdrawn", "Leftover", "Created By",
-                   "Created At", "Last Updated By", "Last Updated At"], style: header_style
+    sheet.add_row ["Date", "Cash amount", "Card amount", "Withdrawn amount", "Leftover amount", "Created by",
+                   "Created at", "Last updated by", "Last updated at"], style: header_style
 
     @cash_books.each do |cash_book|
       sheet.add_row [
-        I18n.l(cash_book.date, default: ""),
+        I18n.l(cash_book.date),
         amount_with_currency(cash_book.cash_amount),
         amount_with_currency(cash_book.card_amount),
         amount_with_currency(cash_book.withdrawn_amount),
         amount_with_currency(cash_book.leftover_amount),
         cash_book.creator_name,
         I18n.l(cash_book.created_at),
-        cash_book.updator_name,
+        cash_book.updater_name,
         I18n.l(cash_book.updated_at)
       ], style: row_style
     end

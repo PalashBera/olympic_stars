@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Work Logs") do |sheet|
+    sheet.add_row ["Date", "Hours", "Created by", "Created at", "Last updated by", "Last updated at"],
+                  style: header_style
+
+    @work_logs.each do |work_log|
+      sheet.add_row [
+        I18n.l(work_log.date),
+        display_amount(work_log.hours),
+        work_log.creator_name,
+        I18n.l(work_log.created_at),
+        work_log.updater_name,
+        I18n.l(work_log.updated_at)
+      ], style: row_style
+    end
+  end
+end

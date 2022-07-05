@@ -3,10 +3,9 @@
 module Coaching
   class StudentPaymentsController < Coaching::HomeController
     before_action { active_sidebar_sub_item_option("students") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = student.student_payments.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @student_payments = pagy(@search.result.includes(included_resources))
     end
 
@@ -47,6 +46,16 @@ module Coaching
       render "shared/change_logs"
     end
 
+    def export
+      @student_payments = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=student_payments.xlsx"
+        end
+      end
+    end
+
     private
 
     def student_payment_params
@@ -62,8 +71,17 @@ module Coaching
       @student_payment ||= student.student_payments.find(params[:id])
     end
 
+    def set_search_object
+      @search = student.student_payments.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
     def included_resources
       %i[payment_type payment_method]
+    end
+
+    def export_included_resources
+      included_resources + %i[created_by updated_by]
     end
   end
 end

@@ -18,62 +18,62 @@
         - version.changeset.each do |key, value|
           %tr
             - if key == "first_name"
-              %td First Name
+              %td First name
               %td= value[0]
               %td= value[1]
 
             - if key == "last_name"
-              %td Last Name
+              %td Last name
               %td= value[0]
               %td= value[1]
 
             - if key == "father_name"
-              %td Father Name
+              %td Father name
               %td= value[0]
               %td= value[1]
 
             - if key == "mother_name"
-              %td Mother Name
+              %td Mother name
               %td= value[0]
               %td= value[1]
 
             - if key == "father_email"
-              %td Father Email
+              %td Father email
               %td= value[0]
               %td= value[1]
 
             - if key == "mother_email"
-              %td Mother Email
+              %td Mother email
               %td= value[0]
               %td= value[1]
 
             - if key == "father_phone_number"
-              %td Father Phone Number
+              %td Father phone number
               %td= value[0]
               %td= value[1]
 
             - if key == "mother_phone_number"
-              %td Mother Phone Number
+              %td Mother phone number
               %td= value[0]
               %td= value[1]
 
             - if key == "date_of_birth"
-              %td Date of Birth
-              %td= I18n.l(value[0], default: "")
-              %td= I18n.l(value[1], default: "")
+              %td Date of birth
+              %td= I18n.l(value[0])
+              %td= I18n.l(value[1])
 
             - if key == "registration_date"
-              %td Registration Date
-              %td= I18n.l(value[0], default: "")
-              %td= I18n.l(value[1], default: "")
+              %td Registration date
+              %td= I18n.l(value[0])
+              %td= I18n.l(value[1])
 
             - if key == "school_name"
-              %td School Name
+              %td School name
               %td= value[0]
               %td= value[1]
 
             - if key == "student_code"
-              %td Student Code
+              %td Student code
               %td= value[0]
               %td= value[1]
 
@@ -88,7 +88,7 @@
               %td= raw(display_text(value[1]))
 
             - if key == "client_type_id"
-              %td Client Type
+              %td Client type
               %td= ClientType.find_by(id: value[0]).name
               %td= ClientType.find_by(id: value[1]).name
 
@@ -103,7 +103,7 @@
               %td= archive_status(value[1])
 
             - if key == "pro_client"
-              %td Pro Client
+              %td Pro client
               %td= value[0].display
               %td= value[1].display
 

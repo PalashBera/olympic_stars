@@ -14,7 +14,7 @@
       - @teacher_payments.each do |teacher_payment|
         %tr
           %td{scope: "row"}= link_to teacher_payment.serial, personal_teacher_teacher_payment_path(teacher_payment.teacher_id, teacher_payment), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= I18n.l(teacher_payment.date, default: "")
+          %td= I18n.l(teacher_payment.date)
           %td= link_to teacher_payment.payment_type_name, transaction_payment_type_path(teacher_payment.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= amount_with_currency(teacher_payment.total_amount)
           %td= link_to teacher_payment.payment_method_name, transaction_payment_method_path(teacher_payment.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }

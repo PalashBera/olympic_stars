@@ -5,10 +5,9 @@ module Transaction
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("payment_types") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.payment_types.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @payment_types = pagy(@search.result.includes(included_resources))
     end
 
@@ -46,9 +45,18 @@ module Transaction
 
     def destroy
       payment_type.destroy
-      redirect_to transaction_payment_types_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Payment type") }
+      redirect_to transaction_payment_types_path, status: :see_other,
+                                                  flash: { danger: t("flash_messages.deleted", name: "Payment type") }
+    end
+
+    def export
+      @payment_types = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=payment_types.xlsx"
+        end
+      end
     end
 
     private
@@ -61,8 +69,17 @@ module Transaction
       @payment_type ||= current_account.payment_types.find(params[:id])
     end
 
+    def set_search_object
+      @search = current_account.payment_types.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
     def included_resources
       %i[student_payments teacher_payments]
+    end
+
+    def export_included_resources
+      included_resources + %i[created_by updated_by]
     end
   end
 end

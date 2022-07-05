@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Subscribers") do |sheet|
+    sheet.add_row ["Name", "Student code", "Course", "Client type", "Added by", "Added at"], style: header_style
+
+    @subscribers.each do |subscriber|
+      sheet.add_row [
+        subscriber.student_full_name,
+        subscriber.student_student_code,
+        subscriber.student_course_name,
+        subscriber.student_client_type_name,
+        subscriber.creator_name,
+        I18n.l(subscriber.created_at)
+      ], style: row_style
+    end
+  end
+end

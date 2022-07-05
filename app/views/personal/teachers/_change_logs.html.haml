@@ -18,12 +18,12 @@
         - version.changeset.each do |key, value|
           %tr
             - if key == "first_name"
-              %td First Name
+              %td First name
               %td= value[0]
               %td= value[1]
 
             - if key == "last_name"
-              %td Last Name
+              %td Last name
               %td= value[0]
               %td= value[1]
 
@@ -33,32 +33,32 @@
               %td= value[1]
 
             - if key == "date_of_birth"
-              %td Date of Birth
+              %td Date of birth
               %td= I18n.l(value[0], default: "")
               %td= I18n.l(value[1], default: "")
 
             - if key == "phone_number"
-              %td Phone Number
+              %td Phone number
               %td= value[0]
               %td= value[1]
 
             - if key == "mobile_number"
-              %td Mobile Number
+              %td Mobile number
               %td= value[0]
               %td= value[1]
 
             - if key == "wages_per_day"
-              %td Wages Per Day
+              %td Wages per day
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
             - if key == "wages_per_hour"
-              %td Wages Per Hour
+              %td Wages per hour
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
             - if key == "wages_per_month"
-              %td Wages Per Month
+              %td Wages per month
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 

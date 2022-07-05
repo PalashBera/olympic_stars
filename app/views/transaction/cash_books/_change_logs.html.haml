@@ -19,25 +19,25 @@
           %tr
             - if key == "date"
               %td Date
-              %td= I18n.l(value[0], default: "")
-              %td= I18n.l(value[1], default: "")
+              %td= I18n.l(value[0])
+              %td= I18n.l(value[1])
 
             - if key == "cash_amount"
-              %td Cash
+              %td Cash amount
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
             - if key == "card_amount"
-              %td Card
+              %td Card amount
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
             - if key == "withdrawn_amount"
-              %td Withdrawn
+              %td Withdrawn amount
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
             - if key == "leftover_amount"
-              %td Leftover
+              %td Leftover amount
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])

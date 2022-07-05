@@ -19,19 +19,19 @@
           %table.table.table-sm.details-table
             %tbody
               %tr
-                %td Student Code
+                %td Student code
                 %td= @student.student_code
 
               %tr
-                %td Date of Birth
-                %td= I18n.l(@student.date_of_birth, default: "")
+                %td Date of birth
+                %td= I18n.l(@student.date_of_birth)
 
               %tr
                 %td Group
                 %td= student_group_link(@student)
 
               %tr
-                %td Client Type
+                %td Client type
                 %td= link_to @student.client_type_name, coaching_client_type_path(@student.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
@@ -39,15 +39,15 @@
                 %td= link_to @student.course_name, coaching_course_path(@student.course_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
-                %td Course Fee
+                %td Course fee
                 %td= @student.course_fee_with_currency
 
               %tr
-                %td Registration Date
-                %td= I18n.l(@student.registration_date, default: "")
+                %td Registration date
+                %td= I18n.l(@student.registration_date)
 
               %tr
-                %td School Name
+                %td School name
                 %td= @student.school_name
 
               %tr
@@ -63,7 +63,7 @@
                 %td= @student.facebook.display
 
               %tr
-                %td Pro Client
+                %td Pro client
                 %td= @student.pro_client.display
 
               %tr
@@ -75,30 +75,30 @@
           %table.table.table-sm.details-table
             %tbody
               %tr
-                %td Mother Name
+                %td Mother name
                 %td= @student.mother_name
 
               %tr
-                %td Mother Email
+                %td Mother email
                 %td
                   %a(href="mailto: #{@student.mother_email}")= @student.mother_email
 
               %tr
-                %td Mother Phone Number
+                %td Mother phone number
                 %td
                   %a(href="tel:#{@student.mother_phone_number}")= @student.mother_phone_number
 
               %tr
-                %td Father Name
+                %td Father name
                 %td= @student.father_name
 
               %tr
-                %td Father Email
+                %td Father email
                 %td
                   %a(href="mailto: #{@student.father_email}")= @student.father_email
 
               %tr
-                %td Father Phone Number
+                %td Father phone number
                 %td
                   %a(href="tel:#{@student.father_phone_number}")= @student.father_phone_number
 
@@ -107,13 +107,13 @@
                 %td= raw(display_text(@student.address))
 
               %tr
-                %td Last Attended On
+                %td Last attended on
                 %td= I18n.l(@student.last_attendance&.date, default: "")
 
               %tr
-                %td Last Paid Amount
+                %td Last paid amount
                 %td= amount_with_currency(@student.last_student_payment&.total_amount)
 
               %tr
-                %td Last Paid On
+                %td Last paid on
                 %td= I18n.l(@student.last_student_payment&.date, default: "")

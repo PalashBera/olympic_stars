@@ -21,7 +21,7 @@
           %td= group.quota
           %td= group.subscribers.size
           %td= display_schedule_set(group)
-          %td= "#{group.start_time} - #{group.end_time}"
+          %td= group.duration
           %td= group.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), coaching_group_path(group), title: "Show details", class: "icon-btn"

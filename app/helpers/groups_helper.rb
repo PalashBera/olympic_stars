@@ -9,4 +9,9 @@ module GroupsHelper
       end.join.html_safe
     end
   end
+
+  def attendance_state(subscriber, date, attendances)
+    attendance = attendances.detect { |a| a.attended?(subscriber, date) }
+    attendance ? "Present" : "Absent"
+  end
 end

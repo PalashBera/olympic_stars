@@ -15,7 +15,7 @@
         %tr
           %td{scope: "row"}= ledger_payment_link(expense.expense_resourcable)
           %td= link_to expense.payment_type_name, transaction_payment_type_path(expense.payment_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= I18n.l(expense.date, default: "")
+          %td= I18n.l(expense.date)
           %td= expense.amount_with_currency
           %td= link_to expense.payment_method_name, transaction_payment_method_path(expense.payment_method_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= payment_resource_link(expense.expense_resourcable)

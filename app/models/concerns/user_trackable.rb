@@ -18,7 +18,7 @@ module UserTrackable
     created_by_id ? created_by.full_name : "System User"
   end
 
-  def updator_name
+  def updater_name
     updated_by_id ? updated_by.full_name : "System User"
   end
 

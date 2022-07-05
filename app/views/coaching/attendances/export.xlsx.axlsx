@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+  date_headers = @group.schedule_dates(@month, @year).map { |date| date.day.ordinalize }
+
+  wb.add_worksheet(name: "Attendances") do |sheet|
+    sheet.add_row ["Student name", date_headers].flatten, style: header_style
+
+    @subscribers.each do |subscriber|
+      attendances = @group.schedule_dates(@month, @year).map { |date| attendance_state(subscriber, date, @attendances) }
+
+      sheet.add_row [
+        subscriber.student_full_name,
+        attendances
+      ].flatten, style: row_style
+    end
+  end
+end

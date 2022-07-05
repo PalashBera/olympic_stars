@@ -1,0 +1,52 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+# rubocop:disable Metrics/BlockLength
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Students") do |sheet|
+    sheet.add_row ["Name", "Student code", "Date of birth", "Group", "Client type", "Course",
+                   "Course fee", "Registration date", "School name", "Allergies", "Mother name",
+                   "Mother email", "Mother phone number", "Father name", "Father email",
+                   "Father phone number", "Address", "Remarks", "Facebook", "Pro client", "Status",
+                   "Last attended on", "Last paid amount", "Last paid on", "Created by", "Created at",
+                   "Last updated by", "Last updated at"], style: header_style
+
+    @students.each do |student|
+      sheet.add_row [
+        student.full_name,
+        student.student_code,
+        I18n.l(student.date_of_birth),
+        student.group_name,
+        student.client_type_name,
+        student.course_name,
+        student.course_fee_with_currency,
+        I18n.l(student.registration_date),
+        student.school_name,
+        student.allergies,
+        student.mother_name,
+        student.mother_email,
+        student.mother_phone_number,
+        student.father_name,
+        student.father_email,
+        student.father_phone_number,
+        student.address,
+        student.remarks,
+        student.facebook.display,
+        student.pro_client.display,
+        student.archived_status,
+        I18n.l(student.last_attendance&.date, default: ""),
+        amount_with_currency(student.last_student_payment&.total_amount),
+        I18n.l(student.last_student_payment&.date, default: ""),
+        student.creator_name,
+        I18n.l(student.created_at),
+        student.updater_name,
+        I18n.l(student.updated_at)
+      ], style: row_style
+    end
+  end
+end
+# rubocop:enable Metrics/BlockLength

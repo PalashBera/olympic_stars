@@ -5,10 +5,9 @@ module Coaching
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("students") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.students.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @students = pagy(@search.result.includes(included_resources))
     end
 
@@ -44,9 +43,18 @@ module Coaching
 
     def destroy
       student.destroy
-      redirect_to coaching_students_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Student") }
+      redirect_to coaching_students_path, status: :see_other,
+                                          flash: { danger: t("flash_messages.deleted", name: "Student") }
+    end
+
+    def export
+      @students = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=students.xlsx"
+        end
+      end
     end
 
     private
@@ -62,8 +70,17 @@ module Coaching
       @student ||= current_account.students.find(params[:id])
     end
 
+    def set_search_object
+      @search = current_account.students.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
     def included_resources
       %i[course client_type group]
+    end
+
+    def export_included_resources
+      included_resources + %i[last_attendance last_student_payment created_by updated_by]
     end
   end
 end

@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Groups") do |sheet|
+    sheet.add_row ["Name", "Teacher", "Client type", "Quota", "Subscribers", "Schedule",
+                   "Duration", "Status", "Last attendance taken on", "Created by", "Created at",
+                   "Last updated by", "Last updated at"], style: header_style
+
+    @groups.each do |group|
+      sheet.add_row [
+        group.name,
+        group.teacher_full_name,
+        group.client_type_name,
+        group.quota,
+        group.subscribers.size,
+        group.schedule_days,
+        group.duration,
+        group.archived_status,
+        I18n.l(group.last_attendance&.date, default: ""),
+        group.creator_name,
+        I18n.l(group.created_at),
+        group.updater_name,
+        I18n.l(group.updated_at)
+      ], style: row_style
+    end
+  end
+end

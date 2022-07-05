@@ -28,12 +28,12 @@
               %td= value[1]
 
             - if key == "start_time"
-              %td Start Time
+              %td Start time
               %td= value[0]
               %td= value[1]
 
             - if key == "end_time"
-              %td End Time
+              %td End time
               %td= value[0]
               %td= value[1]
 
@@ -68,7 +68,7 @@
               %td= value[1].display
 
             - if key == "client_type_id"
-              %td Client Type
+              %td Client type
               %td= ClientType.find_by(id: value[0]).name
               %td= ClientType.find_by(id: value[1]).name
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :cash_books,      concerns: %i[exportable change_loggable]
-    resources :payment_methods, concerns: :change_loggable
-    resources :payment_types,   concerns: :change_loggable
+    resources :payment_methods, concerns: %i[exportable change_loggable]
+    resources :payment_types,   concerns: %i[exportable change_loggable]
   end
 end

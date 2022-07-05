@@ -4,17 +4,17 @@
       %tr
         %th{scope: "col"}= sort_link @search, :date, "Date"
         %th{scope: "col"}= sort_link @search, :hours, "Hours"
-        %th{scope: "col"}= sort_link @search, :created_by_first_name, "Created By"
-        %th{scope: "col"}= sort_link @search, :created_at, "Created At"
+        %th{scope: "col"}= sort_link @search, :created_by_first_name, "Added By"
+        %th{scope: "col"}= sort_link @search, :created_at, "Added At"
         %th.text-center{scope: "col"} Actions
 
     %tbody
       - @work_logs.each do |work_log|
         %tr
-          %td{scope: "row"}= I18n.l(work_log.date, default: "")
+          %td{scope: "row"}= I18n.l(work_log.date)
           %td= display_amount(work_log.hours)
           %td= work_log.creator_name
-          %td= I18n.l(work_log.created_at, default: "")
+          %td= I18n.l(work_log.created_at)
 
           %td.text-center
             = link_to raw("<i class='bi bi-pencil-fill'></i>"), edit_personal_teacher_work_log_path(work_log.teacher_id, work_log), title: "Edit work log", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }

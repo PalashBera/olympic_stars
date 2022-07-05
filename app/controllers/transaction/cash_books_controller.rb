@@ -74,12 +74,8 @@ module Transaction
       @search.sorts = "date desc" if @search.sorts.empty?
     end
 
-    def included_resources
-      []
-    end
-
     def export_included_resources
-      included_resources << :created_by << :updated_by
+      %i[created_by updated_by]
     end
   end
 end

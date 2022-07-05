@@ -43,9 +43,8 @@ module Coaching
 
     def destroy
       client_type.destroy
-      redirect_to coaching_client_types_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Client type") }
+      redirect_to coaching_client_types_path, status: :see_other,
+                                              flash: { danger: t("flash_messages.deleted", name: "Client type") }
     end
 
     def export
@@ -78,7 +77,7 @@ module Coaching
     end
 
     def export_included_resources
-      included_resources << :created_by << :updated_by
+      included_resources + %i[created_by updated_by]
     end
   end
 end

@@ -6,8 +6,9 @@
     = render "personal/shared/teacher_tabs", active_nav: "teacher_payments"
 
   .page-card-body
-    .card-body-header.d-flex.justify-content-between.align-items-center
-      = link_to "Add New", new_personal_teacher_teacher_payment_path(@teacher), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new payment"
+    .card-body-header
+      = link_to "Add New", new_personal_teacher_teacher_payment_path(@teacher), class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new payment"
+      = link_to "Export", export_personal_teacher_teacher_payments_path(teacher_id: @teacher.id, q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export teacher payments", class: "btn btn-light me-0"
 
     - if @teacher_payments.present?
       = render "table"

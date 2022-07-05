@@ -3,9 +3,9 @@
 module Coaching
   class AttendancesController < Coaching::HomeController
     before_action { active_sidebar_sub_item_option("groups") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = group.attendances.by_date_range(month, year).ransack(params[:q])
       @attendances = @search.result
       @subscribers = group.subscribers.includes(included_resources).order_by_name
     end
@@ -26,8 +26,18 @@ module Coaching
       attendance.destroy
       redirect_to coaching_group_attendances_path(group),
                   status: :see_other,
-                  flash: { danger: t("flash_messages.deleted",
-                                     name: "Attendance") }
+                  flash: { danger: t("flash_messages.deleted", name: "Attendance") }
+    end
+
+    def export
+      @attendances = @search.result
+      @subscribers = group.subscribers.includes(included_resources).order_by_name
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=attendances.xlsx"
+        end
+      end
     end
 
     private
@@ -54,6 +64,10 @@ module Coaching
 
     def year
       @year ||= params[:year].presence || Date.current.year
+    end
+
+    def set_search_object
+      @search = group.attendances.by_date_range(month, year).ransack(params[:q])
     end
   end
 end

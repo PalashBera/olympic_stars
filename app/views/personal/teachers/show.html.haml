@@ -24,17 +24,17 @@
                   %a(href="mailto: #{@teacher.email}")= @teacher.email
 
               %tr
-                %td Phone Number
+                %td Phone number
                 %td
                   %a(href="tel:#{@teacher.phone_number}")= @teacher.phone_number
 
               %tr
-                %td Mobile Number
+                %td Mobile number
                 %td
                   %a(href="tel:#{@teacher.mobile_number}")= @teacher.mobile_number
 
               %tr
-                %td Date of Birth
+                %td Date of birth
                 %td= I18n.l(@teacher.date_of_birth, default: "")
 
               %tr
@@ -66,33 +66,33 @@
                 %td= @teacher.assigned_groups
 
               %tr
-                %td This Week Work Hours
+                %td This week work hours
                 %td= display_amount(@teacher.this_week_work_hours)
 
               %tr
-                %td This Month Work Hours
+                %td This month work hours
                 %td= display_amount(@teacher.this_month_work_hours)
 
               %tr
-                %td This Year Work Hours
+                %td This year work hours
                 %td= display_amount(@teacher.this_year_work_hours)
 
               %tr
-                %td Total Work Hours
+                %td Total work hours
                 %td= display_amount(@teacher.total_work_hours)
 
               %tr
-                %td Total Billed Work Hours
+                %td Total billed work hours
                 %td= display_amount(@teacher.total_billed_work_hours)
 
               %tr
-                %td Total Unbilled Work Hours
+                %td Total unbilled work hours
                 %td= display_amount(@teacher.total_unbilled_work_hours)
 
               %tr
-                %td Total Paid Amount
+                %td Total paid amount
                 %td= amount_with_currency(@teacher.total_paid_amount)
 
               %tr
-                %td Total Unpaid Amount
+                %td Total unpaid amount
                 %td= amount_with_currency(@teacher.total_unpaid_amount)

@@ -3,10 +3,9 @@
 module Personal
   class TeacherPaymentsController < Personal::HomeController
     before_action { active_sidebar_sub_item_option("teachers") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = teacher.teacher_payments.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @teacher_payments = pagy(@search.result.includes(included_resources))
     end
 
@@ -47,6 +46,16 @@ module Personal
       render "shared/change_logs"
     end
 
+    def export
+      @teacher_payments = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=teacher_payments.xlsx"
+        end
+      end
+    end
+
     private
 
     def teacher_payment_params
@@ -62,8 +71,17 @@ module Personal
       @teacher_payment ||= teacher.teacher_payments.find(params[:id])
     end
 
+    def set_search_object
+      @search = teacher.teacher_payments.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
     def included_resources
       %i[payment_type payment_method]
+    end
+
+    def export_included_resources
+      included_resources + %i[created_by updated_by]
     end
   end
 end

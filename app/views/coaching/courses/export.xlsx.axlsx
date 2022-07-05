@@ -7,8 +7,8 @@ wb.styles do |style|
   row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
 
   wb.add_worksheet(name: "Courses") do |sheet|
-    sheet.add_row ["Name", "Fee", "Students Count", "Status", "Created By",
-                   "Created At", "Last Updated By", "Last Updated At"], style: header_style
+    sheet.add_row ["Name", "Fee", "Students count", "Status", "Created by", "Created at",
+                   "Last updated by", "Last updated at"], style: header_style
 
     @courses.each do |course|
       sheet.add_row [
@@ -18,7 +18,7 @@ wb.styles do |style|
         course.archived_status,
         course.creator_name,
         I18n.l(course.created_at),
-        course.updator_name,
+        course.updater_name,
         I18n.l(course.updated_at)
       ], style: row_style
     end

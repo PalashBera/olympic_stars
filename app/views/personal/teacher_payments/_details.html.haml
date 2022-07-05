@@ -7,10 +7,10 @@
 
       %tr
         %td Date
-        %td= I18n.l(@teacher_payment.date, default: "")
+        %td= I18n.l(@teacher_payment.date)
 
       %tr
-        %td Payment Type
+        %td Payment type
         %td= @teacher_payment.payment_type_name
 
       %tr
@@ -26,7 +26,7 @@
         %td= amount_with_currency(@teacher_payment.discount)
 
       %tr
-        %td Total Amount
+        %td Total amount
         %td= amount_with_currency(@teacher_payment.total_amount)
 
       %tr
@@ -34,7 +34,7 @@
         %td= @teacher_payment.details
 
       %tr
-        %td Payment Method
+        %td Payment method
         %td= @teacher_payment.payment_method_name
 
       %tr

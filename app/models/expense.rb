@@ -23,7 +23,7 @@ class Expense < ApplicationRecord
     "$#{number_with_precision(amount, precision: 2, delimiter: ',')}"
   end
 
-  def resouce_name
+  def resource_name
     case expense_resourcable
     when TeacherPayment
       expense_resourcable.teacher_full_name

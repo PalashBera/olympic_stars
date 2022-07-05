@@ -23,7 +23,7 @@
                 %td= link_to @group.teacher_full_name, personal_teacher_path(@group.teacher_id), title: "Show teacher"
 
               %tr
-                %td Client Type
+                %td Client type
                 %td= link_to @group.client_type_name, coaching_client_type_path(@group.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
 
               %tr
@@ -36,7 +36,7 @@
 
               %tr
                 %td Duration
-                %td= "#{@group.start_time} - #{@group.end_time}"
+                %td= @group.duration
 
               %tr
                 %td Status
@@ -51,5 +51,5 @@
                 %td= @group.subscribers.size
 
               %tr
-                %td Last Attendance Taken On
+                %td Last attendance taken on
                 %td= I18n.l(@group.last_attendance&.date, default: "")

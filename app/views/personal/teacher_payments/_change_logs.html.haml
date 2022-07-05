@@ -19,16 +19,16 @@
           %tr
             - if key == "date"
               %td Date
-              %td= I18n.l(value[0], default: "")
-              %td= I18n.l(value[1], default: "")
+              %td= I18n.l(value[0])
+              %td= I18n.l(value[1])
 
             - if key == "payment_type_id"
-              %td Payment Type
+              %td Payment type
               %td= PaymentType.find(value[0]).name
               %td= PaymentType.find(value[1]).name
 
             - if key == "work_hours"
-              %td Work Hours
+              %td Work hours
               %td= amount_with_currency(value[0])
               %td= amount_with_currency(value[1])
 
@@ -48,7 +48,7 @@
               %td= value[1]
 
             - if key == "payment_method_id"
-              %td Payment Method
+              %td Payment method
               %td= PaymentMethod.find(value[0]).name
               %td= PaymentMethod.find(value[1]).name
 

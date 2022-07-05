@@ -5,10 +5,9 @@ module Personal
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("teachers") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.teachers.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @teachers = pagy(@search.result)
     end
 
@@ -44,9 +43,18 @@ module Personal
 
     def destroy
       teacher.destroy
-      redirect_to personal_teachers_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Teacher") }
+      redirect_to personal_teachers_path, status: :see_other,
+                                          flash: { danger: t("flash_messages.deleted", name: "Teacher") }
+    end
+
+    def export
+      @teachers = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=teachers.xlsx"
+        end
+      end
     end
 
     private
@@ -58,6 +66,15 @@ module Personal
 
     def teacher
       @teacher ||= current_account.teachers.find(params[:id])
+    end
+
+    def set_search_object
+      @search = current_account.teachers.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
+    def export_included_resources
+      %i[created_by updated_by]
     end
   end
 end

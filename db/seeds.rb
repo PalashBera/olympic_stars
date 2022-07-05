@@ -62,6 +62,20 @@ account.payment_types.create(name: "Monthly Teacher Salary", category: PaymentTy
   )
 end
 
+account.students.each do |student|
+  rand(10..30).times do |t|
+    student.student_payments.create(
+      date: Faker::Date.backward(days: t + 1),
+      amount: Faker::Number.number(digits: 3),
+      discount: Faker::Number.number(digits: 2),
+      details: Faker::ChuckNorris.fact,
+      status: StudentPayment::STATUS_LIST.sample,
+      payment_type: account.payment_types.sample,
+      payment_method: account.payment_methods.sample
+    )
+  end
+end
+
 50.times do |t|
   account.teachers.create(
     first_name: Faker::Name.first_name,
@@ -73,13 +87,27 @@ end
     wages_per_hour: Faker::Number.number(digits: 2) * 10,
     wages_per_day: Faker::Number.number(digits: 2) * 100,
     wages_per_month: Faker::Number.decimal(l_digits: 2) * 1000,
+    availability: Faker::ChuckNorris.fact,
     archived: Faker::Boolean.boolean
   )
 end
 
 account.teachers.each do |teacher|
-  [10, 15, 20, 25, 30].sample.times do |t|
-    teacher.work_logs.create(date: Faker::Date.backward(days: Faker::Number.number(digits: 2)), hours: Faker::Number.decimal(l_digits: 1))
+  rand(30..60).times do |t|
+    teacher.work_logs.create(date: Faker::Date.backward(days: t + 1), hours: Faker::Number.number(digits: 2))
+  end
+
+  rand(10..30).times do |t|
+    teacher.teacher_payments.create(
+      date: Faker::Date.backward(days: t + 1),
+      work_hours: Faker::Number.number(digits: 2),
+      wage_per_hour: Faker::Number.number(digits: 2),
+      discount: Faker::Number.number(digits: 2),
+      details: Faker::ChuckNorris.fact,
+      status: StudentPayment::STATUS_LIST.sample,
+      payment_type: account.payment_types.sample,
+      payment_method: account.payment_methods.sample
+    )
   end
 end
 
@@ -117,7 +145,7 @@ end
   leftover = Faker::Number.number(digits: 4)
 
   account.cash_books.create(
-    date: Date.current - (t + 1).day,
+    date: Faker::Date.backward(days: t + 1),
     cash_amount: cash,
     card_amount: card,
     leftover_amount: leftover,

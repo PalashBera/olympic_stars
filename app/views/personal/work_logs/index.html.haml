@@ -9,7 +9,9 @@
     .card-body-header.d-flex.justify-content-between.align-items-center
       .secondary-header
         Total Work Hours: #{display_amount(@teacher.total_work_hours)}
-      = link_to "Add New", new_personal_teacher_work_log_path(@teacher), class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+      %div
+        = link_to "Add New", new_personal_teacher_work_log_path(@teacher), class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+        = link_to "Export", export_personal_teacher_work_logs_path(teacher_id: @teacher.id, q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export work logs", class: "btn btn-light me-0"
 
     - if @work_logs.present?
       = render "table"

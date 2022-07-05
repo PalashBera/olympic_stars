@@ -1,0 +1,47 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+
+# rubocop:disable Metrics/BlockLength
+wb.styles do |style|
+  header_style = style.add_style(bg_color: "EFC376", border: Axlsx::STYLE_THIN_BORDER)
+  row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+  wb.add_worksheet(name: "Teachers") do |sheet|
+    sheet.add_row ["Name", "Email", "Phone number", "Mobile number", "Date of birth",
+                   "Wages per hour", "Wages per day", "Wages per month", "Availability",
+                   "Status", "Assigned groups", "This week work hours", "This month work hours",
+                   "This year work hours", "Total work hours", "Total billed work hours",
+                   "Total unbilled work hours", "Total paid amount", "Total unpaid amount",
+                   "Created by", "Created at", "Last updated by", "Last updated at"], style: header_style
+
+    @teachers.each do |teacher|
+      sheet.add_row [
+        teacher.full_name,
+        teacher.email,
+        teacher.phone_number,
+        teacher.mobile_number,
+        I18n.l(teacher.date_of_birth, default: ""),
+        amount_with_currency(teacher.wages_per_hour),
+        amount_with_currency(teacher.wages_per_day),
+        amount_with_currency(teacher.wages_per_month),
+        teacher.availability,
+        teacher.archived_status,
+        teacher.assigned_groups,
+        display_amount(teacher.this_week_work_hours),
+        display_amount(teacher.this_month_work_hours),
+        display_amount(teacher.this_year_work_hours),
+        display_amount(teacher.total_work_hours),
+        display_amount(teacher.total_billed_work_hours),
+        display_amount(teacher.total_unbilled_work_hours),
+        amount_with_currency(teacher.total_paid_amount),
+        amount_with_currency(teacher.total_unpaid_amount),
+        teacher.creator_name,
+        I18n.l(teacher.created_at),
+        teacher.updater_name,
+        I18n.l(teacher.updated_at)
+      ], style: row_style
+    end
+  end
+end
+# rubocop:enable Metrics/BlockLength

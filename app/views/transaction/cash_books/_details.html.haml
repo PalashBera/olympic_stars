@@ -3,20 +3,20 @@
     %tbody
       %tr
         %td Date
-        %td= I18n.l(@cash_book.date, default: "")
+        %td= I18n.l(@cash_book.date)
 
       %tr
-        %td Cash
+        %td Cash amount
         %td= amount_with_currency(@cash_book.cash_amount)
 
       %tr
-        %td Card
+        %td Card amount
         %td= amount_with_currency(@cash_book.card_amount)
 
       %tr
-        %td Withdrawn
+        %td Withdrawn amount
         %td= amount_with_currency(@cash_book.withdrawn_amount)
 
       %tr
-        %td Leftover
+        %td Leftover amount
         %td= amount_with_currency(@cash_book.leftover_amount)

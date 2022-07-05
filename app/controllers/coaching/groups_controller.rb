@@ -5,10 +5,9 @@ module Coaching
     include ChangeLogable
 
     before_action { active_sidebar_sub_item_option("groups") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = current_account.groups.ransack(params[:q])
-      @search.sorts = "id desc" if @search.sorts.empty?
       @pagy, @groups = pagy(@search.result.includes(included_resources))
     end
 
@@ -44,9 +43,18 @@ module Coaching
 
     def destroy
       group.destroy
-      redirect_to coaching_groups_path,
-                  status: :see_other,
-                  flash: { danger: t("flash_messages.deleted", name: "Group") }
+      redirect_to coaching_groups_path, status: :see_other,
+                                        flash: { danger: t("flash_messages.deleted", name: "Group") }
+    end
+
+    def export
+      @groups = @search.result.includes(export_included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=groups.xlsx"
+        end
+      end
     end
 
     private
@@ -60,8 +68,17 @@ module Coaching
       @group ||= current_account.groups.find(params[:id])
     end
 
+    def set_search_object
+      @search = current_account.groups.ransack(params[:q])
+      @search.sorts = "id desc" if @search.sorts.empty?
+    end
+
     def included_resources
       %i[teacher client_type subscribers]
+    end
+
+    def export_included_resources
+      included_resources + %i[last_attendance created_by updated_by]
     end
   end
 end

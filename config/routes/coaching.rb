@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     resources :client_types, concerns: %i[exportable change_loggable]
     resources :courses,      concerns: %i[exportable change_loggable]
 
-    resources :groups, concerns: :change_loggable do
-      resources :subscribers, except: %i[show edit update]
-      resources :attendances, only: %i[index create destroy]
+    resources :groups, concerns: %i[exportable change_loggable] do
+      resources :subscribers, except: %i[show edit update],   concerns: :exportable
+      resources :attendances, only: %i[index create destroy], concerns: :exportable
     end
 
-    resources :students, concerns: :change_loggable do
-      resources :student_payments, except: :destroy, concerns: :change_loggable
+    resources :students, concerns: %i[exportable change_loggable] do
+      resources :student_payments, except: :destroy, concerns: %i[exportable change_loggable]
     end
   end
 end

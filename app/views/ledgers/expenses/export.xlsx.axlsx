@@ -7,21 +7,21 @@ wb.styles do |style|
   row_style = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
 
   wb.add_worksheet(name: "Expenses") do |sheet|
-    sheet.add_row ["Payment ID", "Payment Type", "Date", "Amount", "Payment Method",
-                   "Resource", "Created By", "Created At", "Last Updated By",
-                   "Last Updated At"], style: header_style
+    sheet.add_row ["Payment ID", "Payment type", "Date", "Amount", "Payment method",
+                   "Resource", "Created by", "Created at", "Last updated by",
+                   "Last updated at"], style: header_style
 
     @expenses.each do |expense|
       sheet.add_row [
         expense.expense_resourcable.serial,
         expense.payment_type_name,
-        I18n.l(expense.date, default: ""),
+        I18n.l(expense.date),
         expense.amount_with_currency,
         expense.payment_method_name,
-        expense.resouce_name,
+        expense.resource_name,
         expense.creator_name,
         I18n.l(expense.created_at),
-        expense.updator_name,
+        expense.updater_name,
         I18n.l(expense.updated_at)
       ], style: row_style
     end

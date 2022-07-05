@@ -3,10 +3,9 @@
 module Coaching
   class SubscribersController < Coaching::HomeController
     before_action { active_sidebar_sub_item_option("groups") }
+    before_action :set_search_object, only: %i[index export]
 
     def index
-      @search = group.subscribers.ransack(params[:q])
-      @search.sorts = "student_first_name asc" if @search.sorts.empty?
       @pagy, @subscribers = pagy(@search.result.includes(included_resources))
     end
 
@@ -29,8 +28,17 @@ module Coaching
       subscriber.destroy
       redirect_to coaching_group_subscribers_path(group),
                   status: :see_other,
-                  flash: { danger: t("flash_messages.deleted",
-                                     name: "Subscriber") }
+                  flash: { danger: t("flash_messages.deleted", name: "Subscriber") }
+    end
+
+    def export
+      @subscribers = @search.result.includes(included_resources)
+
+      respond_to do |format|
+        format.xlsx do
+          response.headers["Content-Disposition"] = "attachment; filename=subscribers.xlsx"
+        end
+      end
     end
 
     private
@@ -49,6 +57,11 @@ module Coaching
 
     def included_resources
       [{ student: %i[client_type course] }, :created_by]
+    end
+
+    def set_search_object
+      @search = group.subscribers.ransack(params[:q])
+      @search.sorts = "student_first_name asc" if @search.sorts.empty?
     end
   end
 end
