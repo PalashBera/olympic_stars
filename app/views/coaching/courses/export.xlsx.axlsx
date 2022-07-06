@@ -13,7 +13,7 @@ wb.styles do |style|
     @courses.each do |course|
       sheet.add_row [
         course.name,
-        course.fee_with_currency,
+        amount_with_currency(course.fee),
         course.students.size,
         course.archived_status,
         course.creator_name,

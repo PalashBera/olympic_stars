@@ -23,7 +23,7 @@ wb.styles do |style|
         student.group_name,
         student.client_type_name,
         student.course_name,
-        student.course_fee_with_currency,
+        amount_with_currency(student.course_fee),
         I18n.l(student.registration_date),
         student.school_name,
         student.allergies,

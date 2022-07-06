@@ -12,7 +12,7 @@
       - @courses.each do |course|
         %tr
           %td{scope: "row"}= link_to course.name, coaching_course_path(course), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= course.fee_with_currency
+          %td= amount_with_currency(course.fee)
           %td= course.students.size
           %td= course.archived_status
           %td.text-center

@@ -7,7 +7,7 @@
 
       %tr
         %td Fee
-        %td= @course.fee_with_currency
+        %td= amount_with_currency(@course.fee)
 
       %tr
         %td Students count

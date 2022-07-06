@@ -16,7 +16,7 @@ wb.styles do |style|
         expense.expense_resourcable.serial,
         expense.payment_type_name,
         I18n.l(expense.date),
-        expense.amount_with_currency,
+        amount_with_currency(expense.amount),
         expense.payment_method_name,
         expense.resource_name,
         expense.creator_name,

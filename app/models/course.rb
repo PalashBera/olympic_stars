@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
-  include ActionView::Helpers::NumberHelper
   include UserTrackable
   include Archivable
 
@@ -17,8 +16,4 @@ class Course < ApplicationRecord
                   numericality: { greater_than_or_equal_to: 0 }
 
   scope :order_by_name, -> { order("LOWER(name)") }
-
-  def fee_with_currency
-    "$#{number_with_precision(fee, precision: 2, delimiter: ',')}" unless fee.blank?
-  end
 end

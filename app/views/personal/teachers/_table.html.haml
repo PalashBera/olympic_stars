@@ -28,9 +28,9 @@
                   %i.bi.bi-phone-fill
                   = teacher.mobile_number
           %td
-            %div= teacher.wages_per_hour_with_currency
-            %div= teacher.wages_per_day_with_currency
-            %div= teacher.wages_per_month_with_currency
+            %div= hourly_wage_with_currency(teacher.wages_per_hour)
+            %div= daily_wage_with_currency(teacher.wages_per_day)
+            %div= monthly_wage_with_currency(teacher.wages_per_month)
           %td= teacher.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), personal_teacher_path(teacher), title: "Show details", class: "icon-btn"

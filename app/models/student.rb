@@ -20,10 +20,10 @@ class Student < ApplicationRecord
   has_one :group, through: :subscriber
   has_one :last_attendance, through: :subscriber
 
-  delegate :name,              to: :client_type, prefix: true
-  delegate :name,              to: :course,      prefix: true
-  delegate :fee_with_currency, to: :course,      prefix: true
-  delegate :name,              to: :group,       prefix: true, allow_nil: true
+  delegate :name, to: :client_type, prefix: true
+  delegate :name, to: :course,      prefix: true
+  delegate :fee,  to: :course,      prefix: true
+  delegate :name, to: :group,       prefix: true, allow_nil: true
 
   validates :first_name, :last_name, :mother_name, :father_name, presence: true, length: { maximum: 255 }
   validates :student_code, presence: true, length: { maximum: 255 },

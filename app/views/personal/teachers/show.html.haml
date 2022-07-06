@@ -39,15 +39,15 @@
 
               %tr
                 %td Wages per hour
-                %td= @teacher.hourly_wage
+                %td= amount_with_currency(@teacher.wages_per_hour)
 
               %tr
                 %td Wages per day
-                %td= @teacher.daily_wage
+                %td= amount_with_currency(@teacher.wages_per_day)
 
               %tr
                 %td Wages per month
-                %td= @teacher.monthly_wage
+                %td= amount_with_currency(@teacher.wages_per_month)
 
               %tr
                 %td Availability

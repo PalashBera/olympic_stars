@@ -19,7 +19,7 @@
           %td= I18n.l(student.date_of_birth)
           %td= student_group_link(student)
           %td= link_to student.client_type_name, coaching_client_type_path(student.client_type_id), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= student.course_fee_with_currency
+          %td= amount_with_currency(student.course_fee)
           %td= student.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), coaching_student_path(student), title: "Show details", class: "icon-btn"

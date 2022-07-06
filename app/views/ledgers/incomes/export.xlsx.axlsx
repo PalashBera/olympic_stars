@@ -16,7 +16,7 @@ wb.styles do |style|
         income.income_resourcable.serial,
         income.payment_type_name,
         I18n.l(income.date),
-        income.amount_with_currency,
+        amount_with_currency(income.amount),
         income.payment_method_name,
         income.resource_name,
         income.creator_name,

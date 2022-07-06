@@ -40,7 +40,7 @@
 
               %tr
                 %td Course fee
-                %td= @student.course_fee_with_currency
+                %td= amount_with_currency(@student.course_fee)
 
               %tr
                 %td Registration date

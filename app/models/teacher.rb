@@ -60,30 +60,6 @@ class Teacher < ApplicationRecord
     teacher_payments.unpaid_payments.sum(&:total_amount)
   end
 
-  def hourly_wage
-    "$#{number_with_precision(wages_per_hour, precision: 2, delimiter: ',')}" unless wages_per_hour.blank?
-  end
-
-  def daily_wage
-    "$#{number_with_precision(wages_per_day, precision: 2, delimiter: ',')}" unless wages_per_day.blank?
-  end
-
-  def monthly_wage
-    "$#{number_with_precision(wages_per_month, precision: 2, delimiter: ',')}" unless wages_per_month.blank?
-  end
-
-  def wages_per_hour_with_currency
-    "#{hourly_wage}/hour" unless wages_per_hour.blank?
-  end
-
-  def wages_per_day_with_currency
-    "#{daily_wage}/day" unless wages_per_day.blank?
-  end
-
-  def wages_per_month_with_currency
-    "#{monthly_wage}/month" unless wages_per_month.blank?
-  end
-
   def assigned_groups
     groups.pluck(:name).join(", ")
   end
