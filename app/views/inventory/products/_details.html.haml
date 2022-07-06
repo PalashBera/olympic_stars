@@ -1,0 +1,18 @@
+.table-responsive
+  %table.table.table-sm.details-table
+    %tbody
+      %tr
+        %td Name
+        %td= @product.name
+
+      %tr
+        %td Price
+        %td= amount_with_currency(@product.price)
+
+      %tr
+        %td SKU
+        %td= @product.sku
+
+      %tr
+        %td Status
+        %td= @product.archived_status

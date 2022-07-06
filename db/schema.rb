@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_02_082341) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_082341) do
     t.bigint "groups_count", default: 0, null: false
     t.bigint "payment_types_count", default: 0, null: false
     t.bigint "cash_books_count", default: 0, null: false
+    t.bigint "products_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -165,6 +166,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_082341) do
     t.index ["account_id"], name: "index_payment_types_on_account_id"
     t.index ["created_by_id"], name: "index_payment_types_on_created_by_id"
     t.index ["updated_by_id"], name: "index_payment_types_on_updated_by_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", limit: 255, default: "", null: false
+    t.decimal "price", precision: 12, scale: 2, null: false
+    t.string "sku", limit: 255, default: "", null: false
+    t.boolean "archived", default: false, null: false
+    t.bigint "account_id", null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_products_on_account_id"
+    t.index ["created_by_id"], name: "index_products_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_products_on_updated_by_id"
   end
 
   create_table "student_payments", force: :cascade do |t|
@@ -340,6 +356,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_082341) do
   add_foreign_key "groups", "teachers"
   add_foreign_key "payment_methods", "accounts"
   add_foreign_key "payment_types", "accounts"
+  add_foreign_key "products", "accounts"
   add_foreign_key "student_payments", "payment_methods"
   add_foreign_key "student_payments", "payment_types"
   add_foreign_key "student_payments", "students"

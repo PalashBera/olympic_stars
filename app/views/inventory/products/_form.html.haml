@@ -1,0 +1,32 @@
+= form_for [:inventory, resource] do |f|
+  .mb-3
+    = f.label :name, class: "form-label required"
+    = f.text_field :name, autofocus: true, placeholder: "Enter name", class: "form-control", required: true, maxlength: 255
+    - if resource.errors.include?(:name)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:name).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :price, class: "form-label required"
+    = f.number_field :price, value: display_form_amount(resource.price), placeholder: "Enter price", class: "form-control", required: true, step: 0.01, min: 0
+    - if resource.errors.include?(:price)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:price).each do |error_message|
+          = "#{error_message}. "
+
+  .mb-3
+    = f.label :sku, class: "form-label required"
+    = f.text_field :sku, autofocus: true, placeholder: "Enter SKU", class: "form-control", required: true, maxlength: 255
+    - if resource.errors.include?(:sku)
+      .secondary-text.text-danger
+        - resource.errors.full_messages_for(:sku).each do |error_message|
+          = "#{error_message}. "
+
+  .form-check
+    = f.check_box :archived, class: "form-check-input"
+    = f.label :archived, class: "form-check-label"
+
+  .actions.form-btn-group
+    = link_to "Cancel", inventory_products_path, title: "Cancel", class: "btn btn-light ms-0"
+    = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"

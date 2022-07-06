@@ -1,0 +1,22 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"}= sort_link @search, :name, "Name"
+        %th{scope: "col"}= sort_link @search, :price, "Price"
+        %th{scope: "col"}= sort_link @search, :sku, "SKU"
+        %th{scope: "col"}= sort_link @search, :archived, "Status"
+        %th.text-center{scope: "col"} Actions
+
+    %tbody
+      - @products.each do |product|
+        %tr
+          %td{scope: "row"}= link_to product.name, inventory_product_path(product), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+          %td= amount_with_currency(product.price)
+          %td= product.sku
+          %td= product.archived_status
+          %td.text-center
+            = link_to raw("<i class='bi bi-eye-fill'></i>"), inventory_product_path(product), title: "Show details", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-pencil-fill'></i>"), edit_inventory_product_path(product), title: "Edit product", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-clock-fill'></i>"), change_logs_inventory_product_path(product), title: "Show history", class: "icon-btn", data: { turbo_frame: "remote_modal_form" }
+            = link_to raw("<i class='bi bi-trash3-fill'></i>"), inventory_product_path(product), title: "Delete product", class: "icon-btn text-danger", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete the product?" }

@@ -1,0 +1,14 @@
+- provide(:page_title, "Products")
+- provide(:page_header, "Products")
+
+.page-card
+  .page-card-header
+    = link_to "Add New", new_inventory_product_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new product"
+    = link_to "Export", export_inventory_products_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export products", class: "btn btn-light me-0"
+
+  .page-card-body
+    - if @products.present?
+      = render "table"
+      = render "shared/pagy"
+    - else
+      = render "shared/empty_record"

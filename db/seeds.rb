@@ -152,3 +152,11 @@ end
     withdrawn_amount: cash - leftover
   )
 end
+
+50.times do |t|
+  account.products.create(
+    name: Faker::Appliance.equipment,
+    sku: Faker::Bank.swift_bic,
+    price: Faker::Number.number(digits: 3)
+  )
+end
