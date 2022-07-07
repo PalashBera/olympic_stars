@@ -4,6 +4,7 @@
 .page-card
   .page-card-header
     = link_to "Add New", new_coaching_client_type_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new client type"
+    %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import client types") Import
     = link_to "Export", export_coaching_client_types_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export client types", class: "btn btn-light me-0"
 
   .page-card-body
@@ -12,3 +13,5 @@
       = render "shared/pagy"
     - else
       = render "shared/empty_record"
+
+= render "shared/import_modal", title: "Import Client Types", path: import_coaching_client_types_path

@@ -57,6 +57,11 @@ module Coaching
       end
     end
 
+    def import
+      ::Importers::ClientTypeImportService.call(params[:file], current_account, current_user)
+      redirect_to coaching_client_types_path, flash: { success: t("flash_messages.imported", name: "Client types") }
+    end
+
     private
 
     def client_type_params

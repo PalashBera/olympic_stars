@@ -60,6 +60,12 @@ module Transaction
       end
     end
 
+    def import
+      ::Importers::PaymentMethodImportService.call(params[:file], current_account, current_user)
+      redirect_to transaction_payment_methods_path,
+                  flash: { success: t("flash_messages.imported", name: "Payment methods") }
+    end
+
     private
 
     def payment_methods_params

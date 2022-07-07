@@ -4,6 +4,7 @@
 .page-card
   .page-card-header
     = link_to "Add New", new_coaching_course_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new course"
+    %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import courses") Import
     = link_to "Export", export_coaching_courses_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export courses", class: "btn btn-light me-0"
 
   .page-card-body
@@ -12,3 +13,5 @@
       = render "shared/pagy"
     - else
       = render "shared/empty_record"
+
+= render "shared/import_modal", title: "Import Courses", path: import_coaching_courses_path

@@ -17,4 +17,8 @@ class ApplicationRecord < ActiveRecord::Base
   def button_name
     new_record? ? "Create" : "Update"
   end
+
+  def full_error_message
+    errors.full_messages.join(", ")
+  end
 end

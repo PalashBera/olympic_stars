@@ -10,15 +10,19 @@ Rails.application.routes.draw do
       get :export, on: :collection
     end
 
-    resources :client_types, concerns: %i[exportable change_loggable]
-    resources :courses,      concerns: %i[exportable change_loggable]
+    concern :importable do
+      post :import, on: :collection
+    end
 
-    resources :groups, concerns: %i[exportable change_loggable] do
+    resources :client_types, concerns: %i[exportable importable change_loggable]
+    resources :courses,      concerns: %i[exportable importable change_loggable]
+
+    resources :groups, concerns: %i[exportable importable change_loggable] do
       resources :subscribers, except: %i[show edit update],   concerns: :exportable
       resources :attendances, only: %i[index create destroy], concerns: :exportable
     end
 
-    resources :students, concerns: %i[exportable change_loggable] do
+    resources :students, concerns: %i[exportable importable change_loggable] do
       resources :student_payments, except: :destroy, concerns: %i[exportable change_loggable]
     end
   end

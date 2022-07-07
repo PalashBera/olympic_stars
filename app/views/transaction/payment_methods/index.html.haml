@@ -4,6 +4,7 @@
 .page-card
   .page-card-header
     = link_to "Add New", new_transaction_payment_method_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new payment method"
+    %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import payment methods") Import
     = link_to "Export", export_transaction_payment_methods_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export payment methods", class: "btn btn-light me-0"
 
   .page-card-body
@@ -12,3 +13,5 @@
       = render "shared/pagy"
     - else
       = render "shared/empty_record"
+
+= render "shared/import_modal", title: "Import Payment Methods", path: import_transaction_payment_methods_path
