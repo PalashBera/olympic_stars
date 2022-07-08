@@ -11,8 +11,8 @@ class StudentPayment < ApplicationRecord
 
   after_save :update_income_and_expense
 
-  belongs_to :payment_type
-  belongs_to :payment_method
+  belongs_to :payment_type,   counter_cache: true
+  belongs_to :payment_method, counter_cache: true
   belongs_to :student
 
   has_one :income,  as: :income_resourcable,  dependent: :destroy

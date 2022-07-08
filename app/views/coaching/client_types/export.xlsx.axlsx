@@ -13,8 +13,8 @@ wb.styles do |style|
     @client_types.each do |client_type|
       sheet.add_row [
         client_type.name,
-        client_type.students.size,
-        client_type.groups.size,
+        client_type.students_count,
+        client_type.groups_count,
         client_type.archived_status,
         client_type.creator_name,
         I18n.l(client_type.created_at),

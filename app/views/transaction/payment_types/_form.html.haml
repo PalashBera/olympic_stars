@@ -9,7 +9,7 @@
 
   .mb-3
     = f.label :category, class: "form-label required"
-    = f.select :category, payment_type_category_dropdown_list, { prompt: "Select category" }, { class: "form-control", required: true }
+    = f.select :category, payment_type_category_dropdown_list, { prompt: "Select category" }, { class: "selectize", required: true }
     - if resource.errors.include?(:category)
       .secondary-text.text-danger
         - resource.errors.full_messages_for(:category).each do |error_message|
@@ -22,3 +22,6 @@
   .actions.form-btn-group
     = link_to "Cancel", transaction_payment_types_path, title: "Cancel", class: "btn btn-light ms-0"
     = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"
+
+:javascript
+  $('.selectize').selectize();

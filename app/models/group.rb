@@ -6,10 +6,10 @@ class Group < ApplicationRecord
 
   strip_attributes only: %i[name quota start_time end_time], collapse_spaces: true,
                    replace_newlines: true
-  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
+  has_paper_trail except: %i[created_by_id updated_by_id updated_at subscribers_count]
 
-  belongs_to :account, counter_cache: true
-  belongs_to :client_type
+  belongs_to :account,     counter_cache: true
+  belongs_to :client_type, counter_cache: true
   belongs_to :teacher
 
   has_many :subscribers, dependent: :destroy

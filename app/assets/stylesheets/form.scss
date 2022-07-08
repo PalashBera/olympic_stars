@@ -10,10 +10,11 @@
 .form-control {
   border-color: $grey-color;
   color: $text-color;
-  padding: 0.6rem 1rem;
+  padding: 9px 16px;
   transition: $default-transition;
-  font-size: 0.9rem;
+  font-size: $font-size;
   border-radius: $default-border-radius;
+  border-color: $grey-color;
 
   &:focus, &:hover {
     box-shadow: none;

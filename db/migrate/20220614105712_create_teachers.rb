@@ -14,8 +14,8 @@ class CreateTeachers < ActiveRecord::Migration[7.0]
       t.boolean    :archived,         null: false, default: false
       t.decimal    :total_work_hours, null: false, default: 0, precision: 12, scale: 2
       t.references :account,          null: false, foreign_key: true
-      t.bigint     :created_by_id,    index: true
-      t.bigint     :updated_by_id,    index: true
+      t.bigint     :created_by_id,                 index: true
+      t.bigint     :updated_by_id,                 index: true
 
       t.timestamps null: false
     end

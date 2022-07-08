@@ -9,7 +9,7 @@ class PaymentType < ApplicationRecord
   enum category: CATEGORY_LIST.to_h { |item| [item, item] }
 
   strip_attributes only: %i[name category], collapse_spaces: true, replace_newlines: true
-  has_paper_trail except: %i[created_by_id updated_by_id updated_at]
+  has_paper_trail except: %i[created_by_id updated_by_id updated_at student_payments_count teacher_payments_count]
 
   belongs_to :account, counter_cache: true
 

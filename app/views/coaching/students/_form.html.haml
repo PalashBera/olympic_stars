@@ -26,7 +26,7 @@
 
     .col-md-6.col-lg-4.mb-3
       = f.label :date_of_birth, class: "form-label required"
-      = f.date_field :date_of_birth, placeholder: "Enter date of birth", class: "form-control", required: true
+      = f.text_field :date_of_birth, value: I18n.l(resource.date_of_birth, default: ""), placeholder: "DD/MM/YYYY", class: "form-control date-picker", autocomplete: :off, required: true, pattern: "(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})"
       - if resource.errors.include?(:date_of_birth)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:date_of_birth).each do |error_message|
@@ -50,7 +50,7 @@
 
     .col-md-6.col-lg-4.mb-3
       = f.label :registration_date, class: "form-label required"
-      = f.date_field :registration_date, placeholder: "Enter registration date", class: "form-control", required: true
+      = f.text_field :registration_date, value: I18n.l(resource.registration_date, default: ""), placeholder: "DD/MM/YYYY", class: "form-control date-picker", autocomplete: :off, required: true, pattern: "(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})"
       - if resource.errors.include?(:registration_date)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:registration_date).each do |error_message|
@@ -58,7 +58,7 @@
 
     .col-md-6.col-lg-4.mb-3
       = f.label :client_type_id, class: "form-label required"
-      = f.select :client_type_id, client_type_list(@student.client_type_id), { prompt: "Select client type" }, { class: "form-control", required: true }
+      = f.select :client_type_id, client_type_list(@student.client_type_id), { prompt: "Select client type" }, { class: "selectize", required: true }
       - if resource.errors.include?(:client_type_id)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:client_type_id).each do |error_message|
@@ -66,7 +66,7 @@
 
     .col-md-6.col-lg-4.mb-3
       = f.label :course_id, class: "form-label required"
-      = f.select :course_id, course_list(@student.course_id), { prompt: "Select course" }, { class: "form-control", required: true }
+      = f.select :course_id, course_list(@student.course_id), { prompt: "Select course" }, { class: "selectize", required: true }
       - if resource.errors.include?(:course_id)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:course_id).each do |error_message|
@@ -154,3 +154,13 @@
   .actions.form-btn-group
     %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
     = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"
+
+:javascript
+  $('.selectize').selectize();
+
+  $('.date-picker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    clearBtn: true,
+    endDate: new Date()
+  });

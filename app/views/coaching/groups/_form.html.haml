@@ -34,7 +34,7 @@
 
     .col-md-6.mb-3
       = f.label :teacher_id, class: "form-label required"
-      = f.select :teacher_id, teacher_list(@group.teacher_id), { prompt: "Select teacher" }, { class: "form-control", required: true }
+      = f.select :teacher_id, teacher_list(@group.teacher_id), { prompt: "Select teacher" }, { class: "selectize", required: true }
       - if resource.errors.include?(:teacher_id)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:teacher_id).each do |error_message|
@@ -42,7 +42,7 @@
 
     .col-md-6.mb-3
       = f.label :client_type_id, class: "form-label required"
-      = f.select :client_type_id, client_type_list(@group.client_type_id), { prompt: "Select client type" }, { class: "form-control", required: true }
+      = f.select :client_type_id, client_type_list(@group.client_type_id), { prompt: "Select client type" }, { class: "selectize", required: true }
       - if resource.errors.include?(:client_type_id)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:client_type_id).each do |error_message|
@@ -86,3 +86,6 @@
   .actions.form-btn-group
     %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
     = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"
+
+:javascript
+  $('.selectize').selectize();

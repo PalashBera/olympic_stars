@@ -15,12 +15,14 @@ account.payment_methods.create(name: "Debit Card")
 account.payment_methods.create(name: "Cash")
 account.payment_methods.create(name: "Demand Draft")
 account.payment_methods.create(name: "Cheque")
+account.payment_methods.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.client_types.create(name: "Adults")
 account.client_types.create(name: "Early Stimulation")
 account.client_types.create(name: "Kids")
 account.client_types.create(name: "Kids Advance")
 account.client_types.create(name: "Teens")
+account.client_types.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.courses.create(name: "2 days a week", fee: 1500)
 account.courses.create(name: "3 days a week", fee: 1950)
@@ -30,12 +32,14 @@ account.courses.create(name: "6 days a week", fee: 2900)
 account.courses.create(name: "Summer Coaching 1 week", fee: 1000)
 account.courses.create(name: "Summer Coaching 2 week", fee: 1600)
 account.courses.create(name: "Summer Coaching 3 week", fee: 2600)
+account.courses.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.payment_types.create(name: "Monthly Student Due", category: PaymentType::CATEGORY_LIST.sample)
 account.payment_types.create(name: "Registration Fee", category: PaymentType::CATEGORY_LIST.sample)
 account.payment_types.create(name: "Yearly Bonus", category: PaymentType::CATEGORY_LIST.sample)
 account.payment_types.create(name: "Monthly Staff Salary", category: PaymentType::CATEGORY_LIST.sample)
 account.payment_types.create(name: "Monthly Teacher Salary", category: PaymentType::CATEGORY_LIST.sample)
+account.payment_types.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 100.times do |t|
   account.students.create(
@@ -61,8 +65,9 @@ account.payment_types.create(name: "Monthly Teacher Salary", category: PaymentTy
     course_id: account.courses.sample.id
   )
 end
+account.students.update_all(created_by_id: user.id, updated_by_id: user.id)
 
-account.students.each do |student|
+account.students.order("RANDOM()").limit(70).each do |student|
   rand(10..30).times do |t|
     student.student_payments.create(
       date: Faker::Date.backward(days: t + 1),
@@ -74,6 +79,8 @@ account.students.each do |student|
       payment_method: account.payment_methods.sample
     )
   end
+
+  student.student_payments.update_all(created_by_id: user.id, updated_by_id: user.id)
 end
 
 50.times do |t|
@@ -91,6 +98,7 @@ end
     archived: Faker::Boolean.boolean
   )
 end
+account.teachers.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.teachers.each do |teacher|
   rand(30..60).times do |t|
@@ -109,6 +117,9 @@ account.teachers.each do |teacher|
       payment_method: account.payment_methods.sample
     )
   end
+
+  teacher.work_logs.update_all(created_by_id: user.id, updated_by_id: user.id)
+  teacher.teacher_payments.update_all(created_by_id: user.id, updated_by_id: user.id)
 end
 
 20.times do |t|
@@ -131,12 +142,14 @@ end
     client_type_id: account.client_types.sample.id
   )
 end
+account.groups.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.groups.each do |group|
   5.times do |t|
     student = account.students.available_for_subscription.sample
     group.subscribers.create(student_id: student&.id)
   end
+  group.subscribers.update_all(created_by_id: user.id, updated_by_id: user.id)
 end
 
 50.times do |t|
@@ -152,6 +165,7 @@ end
     withdrawn_amount: cash - leftover
   )
 end
+account.cash_books.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 50.times do |t|
   account.products.create(
@@ -160,3 +174,4 @@ end
     price: Faker::Number.number(digits: 3)
   )
 end
+account.products.update_all(created_by_id: user.id, updated_by_id: user.id)

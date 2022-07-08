@@ -8,7 +8,7 @@ module Transaction
     before_action :set_search_object, only: %i[index export]
 
     def index
-      @pagy, @payment_types = pagy(@search.result.includes(included_resources))
+      @pagy, @payment_types = pagy(@search.result)
     end
 
     def show
@@ -80,12 +80,8 @@ module Transaction
       @search.sorts = "id desc" if @search.sorts.empty?
     end
 
-    def included_resources
-      %i[student_payments teacher_payments]
-    end
-
     def export_included_resources
-      included_resources + %i[created_by updated_by]
+      %i[created_by updated_by]
     end
   end
 end

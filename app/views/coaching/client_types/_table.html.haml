@@ -12,8 +12,8 @@
       - @client_types.each do |client_type|
         %tr
           %td{scope: "row"}= link_to client_type.name, coaching_client_type_path(client_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= client_type.students.size
-          %td= client_type.groups.size
+          %td= client_type.students_count
+          %td= client_type.groups_count
           %td= client_type.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), coaching_client_type_path(client_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }

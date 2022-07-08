@@ -14,8 +14,8 @@ wb.styles do |style|
       sheet.add_row [
         payment_type.name,
         payment_type.category.display,
-        payment_type.student_payments.size,
-        payment_type.teacher_payments.size,
+        payment_type.student_payments_count,
+        payment_type.teacher_payments_count,
         payment_type.archived_status,
         payment_type.creator_name,
         I18n.l(payment_type.created_at),

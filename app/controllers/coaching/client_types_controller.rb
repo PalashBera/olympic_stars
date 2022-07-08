@@ -8,7 +8,7 @@ module Coaching
     before_action :set_search_object, only: %i[index export]
 
     def index
-      @pagy, @client_types = pagy(@search.result.includes(included_resources))
+      @pagy, @client_types = pagy(@search.result)
     end
 
     def show
@@ -77,12 +77,8 @@ module Coaching
       @search.sorts = "id desc" if @search.sorts.empty?
     end
 
-    def included_resources
-      %i[students groups]
-    end
-
     def export_included_resources
-      included_resources + %i[created_by updated_by]
+      %i[created_by updated_by]
     end
   end
 end

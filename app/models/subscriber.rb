@@ -6,7 +6,7 @@ class Subscriber < ApplicationRecord
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
   belongs_to :student
-  belongs_to :group
+  belongs_to :group, counter_cache: true
 
   has_many :attendances, dependent: :destroy
   has_one :last_attendance, -> { order(date: :desc) }, class_name: "Attendance"

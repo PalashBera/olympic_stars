@@ -2,7 +2,7 @@
   .row
     .col-12.mb-3
       = f.label :date, class: "form-label"
-      = f.date_field :date, placeholder: "Enter date", class: "form-control", max: Date.today
+      = f.text_field :date, value: I18n.l(resource.date || Date.current), placeholder: "DD/MM/YYYY", class: "form-control date-picker", autocomplete: :off, required: true, pattern: "(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})"
       - if resource.errors.include?(:date)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:date).each do |error_message|
@@ -19,3 +19,11 @@
   .actions.form-btn-group
     %button.btn.btn-light.ms-0{type: "button", "data-bs-dismiss": "modal", title: "Cancel"} Cancel
     = f.submit resource.button_name, title: "Save #{resource.class_title.downcase}", class: "btn btn-primary me-0"
+
+:javascript
+  $('.date-picker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    clearBtn: true,
+    endDate: new Date()
+  });

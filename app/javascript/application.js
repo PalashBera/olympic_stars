@@ -18,3 +18,7 @@ $(document).keyup(function(e) {
 $(document).on("click", ".sidebar-item-group", function (event) {
   $(this).find(".sidebar-sub-item-group").slideToggle();
 });
+
+$(document).on("load", function() {
+  $(".selectize").selectize();
+});

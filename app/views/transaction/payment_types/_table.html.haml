@@ -14,8 +14,8 @@
         %tr
           %td{scope: "row"}= link_to payment_type.name, transaction_payment_type_path(payment_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }
           %td= payment_type.category.display
-          %td= payment_type.student_payments.size
-          %td= payment_type.teacher_payments.size
+          %td= payment_type.student_payments_count
+          %td= payment_type.teacher_payments_count
           %td= payment_type.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), transaction_payment_type_path(payment_type), title: "Show details", data: { turbo_frame: "remote_modal_form" }

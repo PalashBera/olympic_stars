@@ -17,7 +17,7 @@ wb.styles do |style|
         group.teacher_full_name,
         group.client_type_name,
         group.quota,
-        group.subscribers.size,
+        group.subscribers_count,
         group.schedule_days,
         group.duration,
         group.archived_status,

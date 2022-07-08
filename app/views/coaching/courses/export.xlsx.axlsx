@@ -14,7 +14,7 @@ wb.styles do |style|
       sheet.add_row [
         course.name,
         amount_with_currency(course.fee),
-        course.students.size,
+        course.students_count,
         course.archived_status,
         course.creator_name,
         I18n.l(course.created_at),

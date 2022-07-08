@@ -10,9 +10,9 @@ class Student < ApplicationRecord
   ], collapse_spaces: true, replace_newlines: true
   has_paper_trail except: %i[created_by_id updated_by_id updated_at]
 
-  belongs_to :account, counter_cache: true
-  belongs_to :client_type
-  belongs_to :course
+  belongs_to :account,     counter_cache: true
+  belongs_to :client_type, counter_cache: true
+  belongs_to :course,      counter_cache: true
 
   has_many :student_payments, dependent: :destroy
   has_one :last_student_payment, -> { paid.order(id: :desc) }, class_name: "StudentPayment"

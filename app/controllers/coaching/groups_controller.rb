@@ -79,7 +79,7 @@ module Coaching
     end
 
     def included_resources
-      %i[teacher client_type subscribers]
+      %i[teacher client_type]
     end
 
     def export_included_resources

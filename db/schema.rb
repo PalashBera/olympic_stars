@@ -64,6 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
     t.string "name", limit: 255, default: "", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
+    t.bigint "students_count", default: 0, null: false
+    t.bigint "groups_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
@@ -78,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
     t.decimal "fee", precision: 12, scale: 2, default: "0.0", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
+    t.bigint "students_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
@@ -116,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
     t.bigint "account_id", null: false
     t.bigint "teacher_id", null: false
     t.bigint "client_type_id", null: false
+    t.bigint "subscribers_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
@@ -145,6 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
     t.string "name", limit: 255, default: "", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
+    t.bigint "student_payments_count", default: 0, null: false
+    t.bigint "teacher_payments_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false
@@ -159,6 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_091729) do
     t.string "category", limit: 255, default: "", null: false
     t.boolean "archived", default: false, null: false
     t.bigint "account_id", null: false
+    t.bigint "student_payments_count", default: 0, null: false
+    t.bigint "teacher_payments_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.datetime "created_at", null: false

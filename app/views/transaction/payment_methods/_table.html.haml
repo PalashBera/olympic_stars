@@ -12,8 +12,8 @@
       - @payment_methods.each do |payment_method|
         %tr
           %td{scope: "row"}= link_to payment_method.name, transaction_payment_method_path(payment_method), title: "Show details", data: { turbo_frame: "remote_modal_form" }
-          %td= payment_method.student_payments.size
-          %td= payment_method.teacher_payments.size
+          %td= payment_method.student_payments_count
+          %td= payment_method.teacher_payments_count
           %td= payment_method.archived_status
           %td.text-center
             = link_to raw("<i class='bi bi-eye-fill'></i>"), transaction_payment_method_path(payment_method), title: "Show details", data: { turbo_frame: "remote_modal_form" }

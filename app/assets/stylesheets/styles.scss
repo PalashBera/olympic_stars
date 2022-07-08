@@ -334,3 +334,10 @@
 .text-grey {
   color: $grey-color !important;
 }
+
+.datepicker {
+  table tr td.active.active,
+  table tr td.active.active:hover {
+    background: $primary-color;
+  }
+}

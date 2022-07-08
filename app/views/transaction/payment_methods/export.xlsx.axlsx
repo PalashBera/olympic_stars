@@ -13,8 +13,8 @@ wb.styles do |style|
     @payment_methods.each do |payment_method|
       sheet.add_row [
         payment_method.name,
-        payment_method.student_payments.size,
-        payment_method.teacher_payments.size,
+        payment_method.student_payments_count,
+        payment_method.teacher_payments_count,
         payment_method.archived_status,
         payment_method.creator_name,
         I18n.l(payment_method.created_at),
