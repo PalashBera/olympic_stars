@@ -56,6 +56,12 @@ module Personal
       end
     end
 
+    def import
+      ::Importers::TeacherPaymentImportService.call(params[:file], current_account, current_user, teacher)
+      redirect_to personal_teacher_teacher_payments_path(teacher),
+                  flash: { success: t("flash_messages.imported", name: "Payments") }
+    end
+
     private
 
     def teacher_payment_params

@@ -56,6 +56,12 @@ module Coaching
       end
     end
 
+    def import
+      ::Importers::StudentPaymentImportService.call(params[:file], current_account, current_user, student)
+      redirect_to coaching_student_student_payments_path(student),
+                  flash: { success: t("flash_messages.imported", name: "Payments") }
+    end
+
     private
 
     def student_payment_params

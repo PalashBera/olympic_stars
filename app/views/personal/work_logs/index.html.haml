@@ -11,6 +11,7 @@
         Total Work Hours: #{display_amount(@teacher.total_work_hours)}
       %div
         = link_to "Add New", new_personal_teacher_work_log_path(@teacher), class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new work log"
+        %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import work logs") Import
         = link_to "Export", export_personal_teacher_work_logs_path(teacher_id: @teacher.id, q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export work logs", class: "btn btn-light me-0"
 
     - if @work_logs.present?
@@ -18,3 +19,5 @@
       = render "shared/pagy"
     - else
       = render "shared/empty_record"
+
+= render "shared/import_modal", title: "Import Work Logs", path: import_personal_teacher_work_logs_path(@teacher)

@@ -1,0 +1,4 @@
+date,payment_type,work_hours,wage_per_hour,discount,payment_method,details,status
+04/06/2022,Monthly Student Dues,3.9,200.8,5,Demand Draft,Chuck Norris' preferred IDE is hexedit,Paid
+04/06/2022,Monthly Student Dues,3.9,200.8,5,Demand Draft,Chuck Norris' preferred IDE is hexedit,Unpaid
+04/06/2022,Monthly Student Dues,3.9,200.8,5,Demand Draft,Chuck Norris' preferred IDE is hexedit,Created

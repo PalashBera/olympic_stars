@@ -56,6 +56,12 @@ module Personal
       end
     end
 
+    def import
+      ::Importers::WorkLogImportService.call(params[:file], current_account, current_user, teacher)
+      redirect_to personal_teacher_work_logs_path(teacher),
+                  flash: { success: t("flash_messages.imported", name: "Work logs") }
+    end
+
     private
 
     def work_log_params

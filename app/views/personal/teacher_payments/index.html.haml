@@ -8,6 +8,7 @@
   .page-card-body
     .card-body-header
       = link_to "Add New", new_personal_teacher_teacher_payment_path(@teacher), class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new payment"
+      %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import teacher payments") Import
       = link_to "Export", export_personal_teacher_teacher_payments_path(teacher_id: @teacher.id, q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export teacher payments", class: "btn btn-light me-0"
 
     - if @teacher_payments.present?
@@ -15,3 +16,5 @@
       = render "shared/pagy"
     - else
       = render "shared/empty_record"
+
+= render "shared/import_modal", title: "Import Teacher Payments", path: import_personal_teacher_teacher_payments_path(@teacher)

@@ -1,0 +1,4 @@
+date,payment_type,amount,discount,payment_method,details,status
+04/06/2022,Monthly Student Dues,200.8,5,Demand Draft,Chuck Norris never gets a syntax error,Paid
+04/06/2022,Monthly Student Dues,200.8,5,Demand Draft,Chuck Norris never gets a syntax error,Created
+04/06/2022,Monthly Student Dues,200.8,5,Demand Draft,Chuck Norris never gets a syntax error,Unpaid

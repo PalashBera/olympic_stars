@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
 
     resources :students, concerns: %i[exportable importable change_loggable] do
-      resources :student_payments, except: :destroy, concerns: %i[exportable change_loggable]
+      resources :student_payments, except: :destroy, concerns: %i[exportable importable change_loggable]
     end
   end
 end

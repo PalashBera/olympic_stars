@@ -10,9 +10,13 @@ Rails.application.routes.draw do
       get :export, on: :collection
     end
 
-    resources :teachers, concerns: %i[exportable change_loggable] do
-      resources :teacher_payments, except: :destroy, concerns: %i[exportable change_loggable]
-      resources :work_logs,        except: :show,    concerns: %i[exportable change_loggable]
+    concern :importable do
+      post :import, on: :collection
+    end
+
+    resources :teachers, concerns: %i[exportable importable change_loggable] do
+      resources :teacher_payments, except: :destroy, concerns: %i[exportable importable change_loggable]
+      resources :work_logs,        except: :show,    concerns: %i[exportable importable change_loggable]
     end
   end
 end

@@ -57,6 +57,11 @@ module Personal
       end
     end
 
+    def import
+      ::Importers::TeacherImportService.call(params[:file], current_account, current_user)
+      redirect_to personal_teachers_path, flash: { success: t("flash_messages.imported", name: "Teachers") }
+    end
+
     private
 
     def teacher_params
