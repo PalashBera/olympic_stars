@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Student < ApplicationRecord
+  include Searchable::Student
   include UserTrackable
   include Archivable
 

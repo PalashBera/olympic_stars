@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Group < ApplicationRecord
+  include Searchable::Group
   include UserTrackable
   include Archivable
 

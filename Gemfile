@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+gem "algoliasearch-rails", "~> 2.2", ">= 2.2.1"
 gem "bootsnap", "~> 1.12", require: false
 gem "caxlsx_rails", "~> 0.6.3"
 gem "devise", "~> 4.8", ">= 4.8.1"

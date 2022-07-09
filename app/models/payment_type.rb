@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PaymentType < ApplicationRecord
+  include Searchable::PaymentType
   include UserTrackable
   include Archivable
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ClientType < ApplicationRecord
+  include Searchable::ClientType
   include UserTrackable
   include Archivable
 

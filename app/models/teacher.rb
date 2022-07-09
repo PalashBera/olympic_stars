@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Teacher < ApplicationRecord
-  include ActionView::Helpers::NumberHelper
+  include Searchable::Teacher
   include UserTrackable
   include Archivable
 
