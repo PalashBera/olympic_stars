@@ -33,3 +33,10 @@ en:
   email_subjects:
     data_import_success: "%{module_name} Imported"
     data_import_failure: "%{module_name} Partially Imported"
+
+  messages:
+    group:
+      overloaded: "Group has been overloaded."
+    attendance:
+      present: "Student has been marked as present."
+      absent: "Student has been marked as absent."

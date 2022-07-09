@@ -4,7 +4,7 @@
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
         %th{scope: "col"}= sort_link @search, :fee, "Fee"
-        %th{scope: "col"} Students Count
+        %th{scope: "col"}= sort_link @search, :students_count, "Students Count"
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 

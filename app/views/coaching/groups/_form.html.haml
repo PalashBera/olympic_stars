@@ -18,7 +18,7 @@
 
     .col-md-6.mb-3
       = f.label :start_time, class: "form-label required"
-      = f.text_field :start_time, placeholder: "Enter start time", class: "form-control", required: true, maxlength: 255
+      = f.select :start_time, time_dropdown_list, { prompt: "Select start time" }, { class: "selectize", required: true }
       - if resource.errors.include?(:start_time)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:start_time).each do |error_message|
@@ -26,7 +26,7 @@
 
     .col-md-6.mb-3
       = f.label :end_time, class: "form-label required"
-      = f.text_field :end_time, placeholder: "Enter end time", class: "form-control", required: true, maxlength: 255
+      = f.select :end_time, time_dropdown_list, { prompt: "Select end time" }, { class: "selectize", required: true }
       - if resource.errors.include?(:end_time)
         .secondary-text.text-danger
           - resource.errors.full_messages_for(:end_time).each do |error_message|

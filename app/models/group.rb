@@ -42,6 +42,10 @@ class Group < ApplicationRecord
     "#{start_time} - #{end_time}"
   end
 
+  def overloaded?
+    subscribers_count > quota
+  end
+
   def schedule_days
     days = []
     days << "Monday" if monday?

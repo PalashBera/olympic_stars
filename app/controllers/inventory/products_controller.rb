@@ -58,6 +58,11 @@ module Inventory
       end
     end
 
+    def import
+      ::Importers::ProductImportService.call(params[:file], current_account, current_user)
+      redirect_to inventory_products_path, flash: { success: t("flash_messages.imported", name: "Products") }
+    end
+
     private
 
     def product_params

@@ -3,8 +3,8 @@
     %thead
       %tr
         %th{scope: "col"}= sort_link @search, :name, "Name"
-        %th{scope: "col"} Student Payments
-        %th{scope: "col"} Teacher Payments
+        %th{scope: "col"}= sort_link @search, :student_payments_count, "Student Payments"
+        %th{scope: "col"}= sort_link @search, :teacher_payments_count, "Teacher Payments"
         %th{scope: "col"}= sort_link @search, :archived, "Status"
         %th.text-center{scope: "col"} Actions
 

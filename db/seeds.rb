@@ -41,7 +41,7 @@ account.payment_types.create(name: "Monthly Staff Salary", category: PaymentType
 account.payment_types.create(name: "Monthly Teacher Salary", category: PaymentType::CATEGORY_LIST.sample)
 account.payment_types.update_all(created_by_id: user.id, updated_by_id: user.id)
 
-100.times do |t|
+150.times do |t|
   account.students.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -66,22 +66,6 @@ account.payment_types.update_all(created_by_id: user.id, updated_by_id: user.id)
   )
 end
 account.students.update_all(created_by_id: user.id, updated_by_id: user.id)
-
-account.students.order("RANDOM()").limit(70).each do |student|
-  rand(10..30).times do |t|
-    student.student_payments.create(
-      date: Faker::Date.backward(days: t + 1),
-      amount: Faker::Number.number(digits: 3),
-      discount: Faker::Number.number(digits: 2),
-      details: Faker::ChuckNorris.fact,
-      status: StudentPayment::STATUS_LIST.sample,
-      payment_type: account.payment_types.sample,
-      payment_method: account.payment_methods.sample
-    )
-  end
-
-  student.student_payments.update_all(created_by_id: user.id, updated_by_id: user.id)
-end
 
 50.times do |t|
   account.teachers.create(
@@ -146,10 +130,26 @@ account.groups.update_all(created_by_id: user.id, updated_by_id: user.id)
 
 account.groups.each do |group|
   5.times do |t|
-    student = account.students.available_for_subscription.sample
+    student = account.students.not_subscribed.sample
     group.subscribers.create(student_id: student&.id)
   end
   group.subscribers.update_all(created_by_id: user.id, updated_by_id: user.id)
+end
+
+account.students.subscribed.each do |student|
+  rand(10..30).times do |t|
+    student.student_payments.create(
+      date: Faker::Date.backward(days: t + 1),
+      amount: Faker::Number.number(digits: 3),
+      discount: Faker::Number.number(digits: 2),
+      details: Faker::ChuckNorris.fact,
+      status: StudentPayment::STATUS_LIST.sample,
+      payment_type: account.payment_types.sample,
+      payment_method: account.payment_methods.sample
+    )
+  end
+
+  student.student_payments.update_all(created_by_id: user.id, updated_by_id: user.id)
 end
 
 50.times do |t|

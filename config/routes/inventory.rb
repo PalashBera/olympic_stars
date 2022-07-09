@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       get :export, on: :collection
     end
 
-    resources :products, concerns: %i[exportable change_loggable]
+    concern :importable do
+      post :import, on: :collection
+    end
+
+    resources :products, concerns: %i[exportable importable change_loggable]
   end
 end

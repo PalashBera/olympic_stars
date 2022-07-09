@@ -35,7 +35,8 @@ class Student < ApplicationRecord
   validates :pro_client, :facebook, inclusion: { in: [true, false] }
 
   scope :order_by_first_name, -> { order("LOWER(first_name)") }
-  scope :available_for_subscription, -> { left_joins(:subscriber).where(subscribers: { id: nil }) }
+  scope :not_subscribed, -> { left_joins(:subscriber).where(subscribers: { id: nil }) }
+  scope :subscribed, -> { left_joins(:subscriber).where.not(subscribers: { id: nil }) }
 
   def full_name
     [first_name, last_name].join(" ")

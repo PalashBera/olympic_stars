@@ -3,7 +3,7 @@
 
 .page-card
   .page-card-header
-    = link_to "Add New", new_personal_teacher_path, class: "btn btn-primary m-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new teacher"
+    = link_to "Add New", new_personal_teacher_path, class: "btn btn-primary ms-0", data: { turbo_frame: "remote_modal_form" }, title: "Add new teacher"
     %button.btn.btn-light(type="button" data-bs-toggle="modal" data-bs-target="#importModal" title="Import teachers") Import
     = link_to "Export", export_personal_teachers_path(q: params[:q]&.to_unsafe_h.to_h, format: "xlsx"), title: "Export teachers", class: "btn btn-light me-0"
 

@@ -12,6 +12,14 @@ module GroupsHelper
 
   def attendance_state(subscriber, date, attendances)
     attendance = attendances.detect { |a| a.attended?(subscriber, date) }
-    attendance ? "Present" : "Absent"
+    attendance ? t("messages.attendance.present") : t("messages.attendance.absent")
+  end
+
+  def display_subscribers_count(group)
+    if group.overloaded?
+      content_tag(:span, group.subscribers_count, title: t("messages.group.overloaded"), class: "text-danger")
+    else
+      group.subscribers_count
+    end
   end
 end
